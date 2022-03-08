@@ -1,0 +1,37 @@
+h3{
+    color: rgb(31, 25, 58);
+    text-align: center;
+    padding:12px
+}
+
+.exp-contenedor{
+    background-color: whitesmoke; 
+    margin-top:12px;
+    border-radius: 16px;
+}
+
+.exp-col{
+    padding:12px;
+    justify-content: center;
+    display: flex;
+}
+
+.exp-card{
+    border-width: 4px;
+    border-color: rgb(31, 25, 58);
+    background-color: transparent;
+    text-align: justify;
+    border-radius: 8px;
+    width:90%;
+    
+}
+
+.exp-title{
+    color:rgb(31, 25, 58);
+    text-align: center;
+}
+
+.exp-text{
+    color: black;
+    padding:12px;
+}

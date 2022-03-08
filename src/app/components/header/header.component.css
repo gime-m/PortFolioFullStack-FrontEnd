@@ -1,0 +1,17 @@
+#first-banner{
+    border-radius: 16px;
+    background-color: rgb(8, 9, 26);
+    margin-top: 12px;
+}
+
+#logo-arg{
+    width: 200px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.login{
+    justify-content: flex-end ;
+    display: flex;
+    align-items: center;
+}
