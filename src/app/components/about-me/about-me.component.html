@@ -1,22 +1,66 @@
+<!--Banner-->
+<div class="container-fluid banner"></div>
 
-<div class="container-xl" id="about-container">
-    
-    <!--Banner imagen-->
+<!--Imagen de perfil + Nombre y trabajo-->
+<div class="container">
     <div class="row">
-        <div class="col" style="padding: 0px;">
-            <img src="https://pbs.twimg.com/media/EcOjIZdXQAAgx8h.jpg" class="banner-img">
+        <!--Imagen de perfil-->
+        <div class="col-3">
+            <img class="profile-pic" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsvGjXaf8e_D6qQKOq4yhnlxuGJSGPhNwlqQpwuegJ1z0yqr-RkEpeUdpq7PxI9hioYq0&usqp=CAU">   
         </div>
-    </div>
 
-    <!--Imagen de perfil + Acerca de mi-->
-    <div class="row">
-        <div class="col-2">
-            <img class="profile-pic" src="https://chicagophotovideo.com/wp-content/uploads/2017/10/ezgif.com-webp-to-jpg-17.jpg">   
-            <p class="name">Gimena Martín Girardi</p>
+        <!--Nombre y trabajo-->
+        <div class="col-9 me-container">
+            <h3 class="me">Gimena Martín Girardi</h3>
+            <h6 class="me">Astróloga profesional</h6>
         </div>
-        <div class="col-10 info" style="padding-top: 12px;">
-            <p><b>Acerca de mi</b></p>
-            <p>Me llaman kime. Naci en el lejano oeste argentino (San Juan). Mi juventud fue muy dificil. Pasé los primeros años de mi vida con problemas motrices que me impidieron caminar y comer por mi misma por 2 años. No tenía control de mis esfínteres, necesitando recurrir a pañales y a cuidadores no pagos que me ayudaran a ir al baño. Fue humillante.</p>
+
+        <!--Barra de división-->
+        <hr style="margin:24px;">
+
+        <!--Información personal + Acerca de mí-->
+        <div class="row">
+
+            <!--Información personal-->
+            <div class="col-3 personal-info">
+                
+                <div class="personal-info-item" style="display:flex; flex-direction: row; justify-content:left;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill=dimgray class="bi bi-geo-alt-fill" viewBox="0 0 16 16" style="margin:auto;"> 
+                        <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+                      </svg>
+                    <p class="personal-info-text">San Juan, Argentina</p>
+                </div>
+
+                <div class="personal-info-item" style="display:flex; flex-direction: row; justify-content:left;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill=dimgray class="bi bi-building" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022zM6 8.694 1 10.36V15h5V8.694zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15z"/>
+                        <path d="M2 11h1v1H2v-1zm2 0h1v1H4v-1zm-2 2h1v1H2v-1zm2 0h1v1H4v-1zm4-4h1v1H8V9zm2 0h1v1h-1V9zm-2 2h1v1H8v-1zm2 0h1v1h-1v-1zm2-2h1v1h-1V9zm0 2h1v1h-1v-1zM8 7h1v1H8V7zm2 0h1v1h-1V7zm2 0h1v1h-1V7zM8 5h1v1H8V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5zm0-2h1v1h-1V3z"/>
+                      </svg>
+                    <p class="personal-info-text">FCEFN - UNSJ</p>
+                </div>
+
+                <div class="personal-info-item" style="display:flex; flex-direction: row; justify-content:left;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill=dimgray class="bi bi-envelope" viewBox="0 0 16 16">
+                        <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+                      </svg>
+                    <p class="personal-info-text">gimenamartin@hotmail.com</p>
+                </div>
+
+                <div class="personal-info-item" style="display:flex; flex-direction: row; justify-content:left;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill=dimgray class="bi bi-telephone-fill" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+                      </svg>
+                    <p class="personal-info-text">+54 264 123 4567</p>
+                </div>
+
+            </div>
+           
+            <!--Acerca de mí-->
+            <div class="col-9 info">
+                <h6>Acerca de mí</h6>
+                <p>Me llaman kime. Naci en el lejano oeste argentino (San Juan). Mi juventud fue muy dificil. Pasé los primeros años de mi vida con problemas motrices que me impidieron caminar y comer por mi misma por 2 años. No tenía control de mis esfínteres, necesitando recurrir a pañales y a cuidadores no pagos que me ayudaran a ir al baño. Fue humillante.</p>
+                <p>He estudiado la astrología por años. Conozco el pasado y el futuro. Cada vez que miro hacia el cielo nocturno los astros me dicen quienes moriran esa noche. Es un don, y una maldición.</p>
+            </div>
         </div>
     </div>
 

@@ -1,40 +1,62 @@
-#about-container{
-    background-color:whitesmoke; 
-    border-radius: 16px; 
-    margin-top: 12px;
-}
-
-.banner-img{
-    width: 100%;
-    height: 6cm;
-    object-fit: cover;
-    border-top-left-radius: 16px;
-    border-top-right-radius: 16px;
+.banner{
+    background-image: url("https://i.pinimg.com/originals/45/97/93/459793db693bb8b93f6ab68adb90a64c.jpg");
+    height:350px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .profile-pic{
-    height:3cm;
-    width:3cm;
+    height:5cm;
+    width:5cm;
+    border-color:white;
+    border-width: 10px;
+    border-style: solid;
     border-radius: 50%;
     object-fit: cover;
-    margin-top: -1.5cm;
+    margin-top: -2cm;
     display: block;
     margin-left: auto;
     margin-right: auto;
+    box-shadow: 0px 0px 10px black;
+}
+
+.me-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-top:20px;
+}
+
+.me{
+    margin:auto;
+    margin-left: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.personal-info{
+    display: flex;
+    flex-direction: column;
+    align-content:flex-start;
+    padding-left: 64px;
+}
+
+.personal-info-item{
+    margin:auto;
+    margin-left: 0px;
+    margin-top: 0px;
+    margin-bottom: 16px;
+   }
+
+.personal-info-text{
+    font-weight: 400;
+    color: dimgray;
+    margin:auto;
+    padding-left: 5px;
+    font-size:small;
 }
 
 .info{
     text-align: justify;
-    padding-left: 48px;
-    padding-right: 48px;
-}
-
-.name{
-    font-weight: 600;
-    display: block;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top:6px;
-    width:3cm;
 }
