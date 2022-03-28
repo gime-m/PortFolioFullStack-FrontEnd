@@ -2,36 +2,36 @@
 <div class="container-fluid banner"></div>
 
 <!--Imagen de perfil + Nombre y trabajo-->
-<div class="container">
+<div class="container-lg">
     <div class="row">
         <!--Imagen de perfil-->
-        <div class="col-3">
+        <div class="col-sm-3 col-6">
             <img class="profile-pic" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsvGjXaf8e_D6qQKOq4yhnlxuGJSGPhNwlqQpwuegJ1z0yqr-RkEpeUdpq7PxI9hioYq0&usqp=CAU">   
         </div>
 
         <!--Nombre y trabajo-->
-        <div class="col-9 me-container">
-            <h3 class="me">Gimena Martín Girardi</h3>
-            <h6 class="me">Astróloga profesional</h6>
+        <div class="col-sm-9 col-6 me-container">
+            <h4 class="me">{{nombre}}</h4>
+            <h6 class="me">{{trabajo}}</h6>
         </div>
-
+    </div>
         <!--Barra de división-->
-        <hr style="margin:24px;">
+        <hr class="divisor">
 
         <!--Información personal + Acerca de mí-->
-        <div class="row">
+    <div class="row">
 
             <!--Información personal-->
-            <div class="col-3 personal-info">
-                
-                <div class="personal-info-item" style="display:flex; flex-direction: row; justify-content:left;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill=dimgray class="bi bi-geo-alt-fill" viewBox="0 0 16 16" style="margin:auto;"> 
+            <div class="col-sm-3 col-12 personal-info">
+        
+                <div class="personal-info-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill=dimgray class="bi bi-geo-alt-fill" viewBox="0 0 16 16"> 
                         <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
                       </svg>
                     <p class="personal-info-text">San Juan, Argentina</p>
                 </div>
 
-                <div class="personal-info-item" style="display:flex; flex-direction: row; justify-content:left;">
+                <div class="personal-info-item">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill=dimgray class="bi bi-building" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022zM6 8.694 1 10.36V15h5V8.694zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15z"/>
                         <path d="M2 11h1v1H2v-1zm2 0h1v1H4v-1zm-2 2h1v1H2v-1zm2 0h1v1H4v-1zm4-4h1v1H8V9zm2 0h1v1h-1V9zm-2 2h1v1H8v-1zm2 0h1v1h-1v-1zm2-2h1v1h-1V9zm0 2h1v1h-1v-1zM8 7h1v1H8V7zm2 0h1v1h-1V7zm2 0h1v1h-1V7zM8 5h1v1H8V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5zm0-2h1v1h-1V3z"/>
@@ -39,29 +39,43 @@
                     <p class="personal-info-text">FCEFN - UNSJ</p>
                 </div>
 
-                <div class="personal-info-item" style="display:flex; flex-direction: row; justify-content:left;">
+                <div class="personal-info-item">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill=dimgray class="bi bi-envelope" viewBox="0 0 16 16">
                         <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
                       </svg>
-                    <p class="personal-info-text">gimenamartin@hotmail.com</p>
+                    <p class="personal-info-text personal-email">gimenamartin@hotmail.com</p>
                 </div>
 
-                <div class="personal-info-item" style="display:flex; flex-direction: row; justify-content:left;">
+                <div class="personal-info-item">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill=dimgray class="bi bi-telephone-fill" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
                       </svg>
                     <p class="personal-info-text">+54 264 123 4567</p>
                 </div>
-
             </div>
            
             <!--Acerca de mí-->
-            <div class="col-9 info">
-                <h6>Acerca de mí</h6>
-                <p>Me llaman kime. Naci en el lejano oeste argentino (San Juan). Mi juventud fue muy dificil. Pasé los primeros años de mi vida con problemas motrices que me impidieron caminar y comer por mi misma por 2 años. No tenía control de mis esfínteres, necesitando recurrir a pañales y a cuidadores no pagos que me ayudaran a ir al baño. Fue humillante.</p>
-                <p>He estudiado la astrología por años. Conozco el pasado y el futuro. Cada vez que miro hacia el cielo nocturno los astros me dicen quienes moriran esa noche. Es un don, y una maldición.</p>
+            <div class="col-sm-9 col-12" (mouseenter)="showEditButton = true" (mouseleave)="showEditButton = false">
+                <div class="about-header">
+                    <h6 class="about-title"> Acerca de mí</h6>
+                    <button *ngIf="showEditButton" type="button" class="btn btn-outline edit-button" (click)="clicEditar()">
+                        <ng-template [ngIf]="editando" [ngIfElse]="noEditando">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+                                <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
+                            </svg>
+                        </ng-template>
+
+                        <ng-template #noEditando>
+                            <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-pencil-fill' viewBox='0 0 16 16'> 
+                                <path d='M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z'/>
+                            </svg>
+                        </ng-template>
+                    </button>
+                </div>
+                               
+                <p class="info" *ngIf="!editando">{{sobreMi}}</p>
+                <textarea  *ngIf="editando" [(ngModel)]="sobreMi" id="editor" rows="10"></textarea>               
             </div>
-        </div>
     </div>
 
 </div>

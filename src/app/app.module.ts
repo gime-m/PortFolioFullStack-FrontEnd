@@ -8,6 +8,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AboutMeComponent } from './components/about-me/about-me.component';
 import { ExperienciaComponent } from './components/experiencia/experiencia.component';
 
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +20,8 @@ import { ExperienciaComponent } from './components/experiencia/experiencia.compo
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
