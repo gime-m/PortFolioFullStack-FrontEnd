@@ -9,19 +9,25 @@ import { AboutMeComponent } from './components/about-me/about-me.component';
 import { ExperienciaComponent } from './components/experiencia/experiencia.component';
 
 import { FormsModule } from '@angular/forms';
+import { OverlayModule } from "@angular/cdk/overlay";
+import { BannerComponent } from './components/banner/banner.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     AboutMeComponent,
-    ExperienciaComponent
+    ExperienciaComponent,
+    BannerComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    OverlayModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,9 +1,6 @@
-#first-banner{
-    /*border-radius: 16px;
-    background-color: rgb(8, 9, 26);
-    margin-top: 12px;*/
-    background-color: whitesmoke;
-    box-shadow: 0px 0px 10px  black;
+#header-background{
+    background-color: var(--back-color);
+    box-shadow: 0px 0px 10px  var(--shadow-color);
     position: sticky;
     top:0;
     z-index: 300;
@@ -14,36 +11,17 @@
     margin:10px;
 }
 
-.login{
+.buttons{
     justify-content: flex-end ;
     display: flex;
     align-items: center;
 }
 
-#login-button{
-    color:indigo;
-    border-color: indigo;
-    border-width: 2px;
-    font-weight: 600;
-    margin-right: 2%;
-    height: 50%;
+.icon-button-text{
+    padding-left: 5px;
 }
 
-#github-button{
-    color:indigo;
-    border-color: indigo;
+.thin-button{
     border-width: 1px;
     font-weight:400;
-    margin-right: 3%;
-    display: flex;
-    height:50%;
-}
-
-.button-icon{
-    margin:auto;
-}
-
-.button-text{
-    padding-left:5px; 
-    margin:auto;
 }

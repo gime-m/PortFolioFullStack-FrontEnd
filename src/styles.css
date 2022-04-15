@@ -1,5 +1,39 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~@angular/cdk/overlay-prebuilt.css';
 
-html,body{
+/*html,body{
     overflow-x: hidden;
+}*/
+
+:root{
+    --main-color: indigo;
+    --back-color: whitesmoke;
+    --shadow-color: black;
+}
+
+.my-button{
+    color: var(--main-color);
+    border-color: var(--main-color);
+    margin-right: 3%;
+    display: flex;
+    border-width: 2px;
+    font-weight: 600;
+    height: 46px;
+    align-content: center;
+}
+
+.button-icon{
+    margin:auto;
+}
+
+.button-text{
+    margin:auto;
+}
+
+.edit-button{
+    margin: 0;
+    height: 32px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
 }

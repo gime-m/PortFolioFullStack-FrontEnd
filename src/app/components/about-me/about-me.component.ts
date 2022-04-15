@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener  } from '@angular/core';
+import { GlobalComponent } from '../global-component';
+import { FormControl, Validators, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-about-me',
@@ -11,18 +13,38 @@ export class AboutMeComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.screenSize()
   }
 
-  nombre: string = "Gimena Martín"
-  trabajo: string = "Trabajadora sexual con experiencia"
-  sobreMi: string = "Me llaman kime. Naci en el lejano oeste argentino (San Juan). Mi juventud fue muy dificil. Pasé los primeros años de mi vida con problemas motrices que me impidieron caminar y comer por mi misma por 2 años. No tenía control de mis esfínteres, necesitando recurrir a pañales y a cuidadores no pagos que me ayudaran a ir al baño. Fue humillante. He estudiado la astrología por años. Conozco el pasado y el futuro. Cada vez que miro hacia el cielo nocturno los astros me dicen quienes moriran esa noche. Es un don, y una maldición."
-  
-  editando: boolean = false
-  showEditButton: boolean = false
+  global = new GlobalComponent()
+  smallScreen: boolean = true
 
-  clicEditar(): void {
-    this.editando=!(this.editando)
+  showEditButtonSobreMi: boolean = false
+  overlayOpenSobreMi: boolean = false
+  sobreMiForm = new FormControl(this.global.sobreMi, [
+    Validators.required,
+    Validators.minLength(100),
+    Validators.maxLength(600)
+  ]);
+
+  locationIcon: string = "assets/icons/geo-alt-fill.svg"
+  workplaceIcon: string = "assets/icons/building.svg"
+  emailIcon: string = "assets/icons/envelope.svg"
+  phoneIcon: string = "assets/icons/telephone-fill.svg"
+
+  showEditButtonInfo: boolean = false
+  overlayOpenInfo: boolean = false
+
+  screenSize(){
+    if (window.innerWidth < 575) {this.smallScreen = true} else {this.smallScreen = false}
   }
+
+  submitSobreMi() {
+    this.overlayOpenSobreMi = false,
+    this.global.sobreMi=this.sobreMiForm.value
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event:any) {this.screenSize()}
 
 }
-
