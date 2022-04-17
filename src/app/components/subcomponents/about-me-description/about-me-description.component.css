@@ -1,0 +1,33 @@
+.info{
+    text-align: justify;
+}
+
+.about-header{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    padding: 0;
+    align-items: center;
+    margin: 0;
+}
+
+.about-title{
+    margin: 0; 
+    padding: 0;
+    height: 32px;
+}
+
+.overlay-input{
+    width: 100%;
+    border-radius: 12px;
+    padding: 10px;
+    margin-top: 8px;
+    margin-bottom: 12px;
+}
+
+@media screen and (max-width: 575px) {
+    .about-title .info{
+        margin-left: 12px;
+        margin-right: 12px;
+    }
+}

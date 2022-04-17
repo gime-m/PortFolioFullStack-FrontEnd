@@ -1,23 +1,15 @@
-
-<!--Banner-->
-<div class="container-fluid banner" [ngStyle]="{'background-image': 'url(' + global.bannerImg + ')'}"></div>
+<app-banner-image></app-banner-image>
 
 <div class="container-lg">
     <div class="row">
         <!--Imagen de perfil-->
-        <div class="col-sm-3 col-12 profile-pic-container">
-            <img id="profile-pic" [src]="global.profilePicScr" alt="Imagen de perfil">   
+        <div class="col-sm-3 col-12">
+            <app-banner-profile-pic></app-banner-profile-pic>
         </div>
 
         <!--Nombre y trabajo-->
-        <div class="col-sm-9 col-12" (mouseenter)="showEditButtonMe=true" (mouseleave)="showEditButtonMe=false">
-            <div class="name-container">
-                <p class="me name">{{global.nombre}}</p> 
-                <button  type="button" class="btn btn-outline edit-button" [hidden]="!showEditButtonMe" (click)="showOverlayMe=true">
-                    <img [src]="global.editIcon" alt="Editar">
-                </button>
-            </div>
-            <h6 class="me">{{global.trabajo}}</h6>
+        <div class="col-sm-9 col-12">
+            <app-banner-name></app-banner-name>
         </div>
     </div>
 </div>

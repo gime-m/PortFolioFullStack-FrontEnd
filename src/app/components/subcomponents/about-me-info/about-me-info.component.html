@@ -1,0 +1,101 @@
+<!--Información personal-->
+<div class="personal-info" (mouseenter)="showEditButton = true" (mouseleave)="showEditButton = false">
+        
+    <div class="personal-info-item">
+        <img [src]="locationIcon" alt="Ubicación">
+        <p class="personal-info-text">{{global.location}}</p>
+    </div>
+
+    <div class="personal-info-item">
+        <img [src]="workplaceIcon" alt="Lugar de trabajo o estudio">
+        <p class="personal-info-text">{{global.workplace}}</p>
+    </div>
+
+    <div class="personal-info-item">
+        <img [src]="emailIcon" alt="Dirección de email">
+        <p class="personal-info-text personal-email">{{global.email}}</p>
+    </div>
+
+    <div class="personal-info-item">
+        <img [src]="phoneIcon" alt="Número de teléfono">
+        <p class="personal-info-text">{{global.phone}}</p>
+    </div>
+
+    <button [hidden]="!showEditButton && !smallScreen" type="button" class="btn btn-outline edit-button" style="align-self: flex-end;" (click)="overlayOpen=true">
+        <img [src]="global.editIcon" alt="Editar">
+    </button>
+</div>
+
+
+
+<!--Overlay para la edición-->
+<div class="editing-overlay" *ngIf="overlayOpen">
+    
+    <div class="overlay-container">
+        
+        <!--Título-->
+        <p class="overlay-text"> 
+            Ingresa los siguientes datos personales.
+        </p>  
+        
+        <!--Formulario-->
+        <form [formGroup]="componentForm" (ngSubmit)="submitForm()">
+            <div>
+                <label for="location-id" class="overlay-text">Ubicación: </label>
+                <input id="location-id" type="text" formControlName="locationForm" class="overlay-input">   
+            </div>
+            <br>
+            <div>
+                <label for="workplace-id" class="overlay-text">Lugar de trabajo/estudio: </label>
+                <input id="workplace-id" type="text" formControlName="workplaceForm" class="overlay-input">
+            </div>  
+            <br>        
+            <div>
+                <label for="email-id" class="overlay-text">Dirección de e-mail: </label>
+                <input id="email-id" type="text" formControlName="emailForm" class="overlay-input">
+            </div> 
+            <br>
+            <div>
+                <label for="phone-id" class="overlay-text">Número de teléfono: </label>
+                <input id="phone-id" type="text" formControlName="phoneForm" class="overlay-input">
+            </div> 
+        </form>
+        
+        <div class="overlay-alerts-buttons-container"> 
+            <!--Alertas-->
+            <div class="overlay-alerts-container">
+                <div *ngIf="locationForm?.errors?.['required']  && (locationForm?.dirty || locationForm?.touched)">
+                    <p class="overlay-alert-text">Escribe tu ubicación.</p>
+                </div>
+                <div *ngIf="workplaceForm?.errors?.['required']  && (workplaceForm?.dirty || workplaceForm?.touched)">
+                    <p class="overlay-alert-text">Escribe tu lugar de trabajo.</p>
+                </div>
+                <div *ngIf="emailForm?.errors?.['required']  && (emailForm?.dirty || emailForm?.touched)">
+                    <p class="overlay-alert-text">Escribe tu dirección de e-mail.</p>
+                </div>
+                <div *ngIf="phoneForm?.errors?.['required']  && (phoneForm?.dirty || phoneForm?.touched)">
+                    <p class="overlay-alert-text">Escribe tu número de teléfono.</p>
+                </div>
+                <div *ngIf="emailForm?.errors?.['email']  && (emailForm?.dirty || emailForm?.touched)">
+                    <p class="overlay-alert-text">Escribe una dirección de e-mail válida.</p>
+                </div>
+                <div *ngIf="phoneForm?.errors?.['pattern']  && (phoneForm?.dirty || phoneForm?.touched)">
+                    <p class="overlay-alert-text">Escribe un número de teléfono válido.</p>
+                </div>
+                
+            </div>
+
+            <!--Botones-->
+            <div class="overlay-buttons-container">
+                <button type="submit" class="btn btn-outline my-button" [disabled]="!componentForm.valid" (click)="submitForm()">
+                    <p *ngIf="!smallScreen" class="button-text">Guardar</p>
+                    <img [src]="global.checkIcon" alt="Guardar" *ngIf="smallScreen" class="button-icon"> 
+                </button>
+                <button type="button" class="btn btn-outline my-button" (click)="overlayOpen=false">
+                    <p *ngIf="!smallScreen" class="button-text">Cancelar</p>
+                    <img [src]="global.xIcon" alt="Cancelar" *ngIf="smallScreen" class="button-icon">
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

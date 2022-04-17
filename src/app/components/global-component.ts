@@ -78,7 +78,7 @@ export class GlobalComponent {
         return this._phone;
     }
     public set phone(v : string) {
-        this.phone = v;
+        this._phone = v;
     }
 
     //Getter de iconos

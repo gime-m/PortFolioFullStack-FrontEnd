@@ -1,0 +1,32 @@
+.me{
+    margin:auto;
+    margin-top: 12px;
+    margin-bottom: 5px;
+    margin-left: 0;
+    text-align: left;
+}
+
+.name{
+    font-size:x-large;
+    font-weight: 600;
+    margin: 0;
+    align-self:center; 
+}
+
+.name-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-content: center;
+}
+
+.edit-button{
+   align-self:center; 
+   margin-left: 6px;
+}
+
+@media screen and (max-width: 575px) {
+    .me-container{
+        text-align: center; 
+    }
+}

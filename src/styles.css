@@ -1,16 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
 @import '~@angular/cdk/overlay-prebuilt.css';
 
 /*html,body{
     overflow-x: hidden;
 }*/
 
+/*colores*/
 :root{
     --main-color: indigo;
     --back-color: whitesmoke;
     --shadow-color: black;
 }
 
+/*botones*/
 .my-button{
     color: var(--main-color);
     border-color: var(--main-color);
@@ -36,4 +37,82 @@
     display: flex;
     align-content: center;
     justify-content: center;
+}
+
+/*Overlay*/
+
+.editing-overlay{
+    width: 100vw; 
+    height: 100vh; 
+    background-color: rgba(43, 38, 46, 0.75);
+    backdrop-filter: blur(5px);
+    z-index: 500; 
+    position: fixed; 
+    top: 0;
+    left: 0;
+}
+
+.overlay-container{
+    background-color: rgb(235, 198, 255);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50vw;
+    border-radius: 16px;
+    padding: 16px 32px;
+    box-shadow: 0px 0px 10px  black;
+}
+
+.overlay-text{
+    color: black;
+    font-weight: 500;
+    background-color: transparent;
+    border: 0;
+}
+
+.overlay-alerts-buttons-container{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+}
+
+.overlay-buttons-container{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.overlay-alert-text{
+    font-size: small;
+    color: indigo;
+    margin: 0;
+    
+}
+
+.overlay-alerts-container{
+    min-height: 48px;
+    align-content: center;
+    padding: 0;
+    padding-right: 12px;
+}
+
+.overlay-input{
+    background-color: whitesmoke;
+    text-align: justify;
+    margin-left: 4px;
+    border-radius: 3px;
+    width: 100%;
+    min-width: max-content;
+}
+
+@media screen and (max-width: 575px) {
+    .overlay-container{
+        padding: 16px 16px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .overlay-container{
+        width: 90vw;
+    }
 }

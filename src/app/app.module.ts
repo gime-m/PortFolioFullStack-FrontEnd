@@ -12,6 +12,12 @@ import { FormsModule } from '@angular/forms';
 import { OverlayModule } from "@angular/cdk/overlay";
 import { BannerComponent } from './components/banner/banner.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BannerImageComponent } from './components/subcomponents/banner-image/banner-image.component';
+import { BaseComponent } from './components/base/base.component';
+import { BannerProfilePicComponent } from './components/subcomponents/banner-profile-pic/banner-profile-pic.component';
+import { BannerNameComponent } from './components/subcomponents/banner-name/banner-name.component';
+import { AboutMeDescriptionComponent } from './components/subcomponents/about-me-description/about-me-description.component';
+import { AboutMeInfoComponent } from './components/subcomponents/about-me-info/about-me-info.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +26,12 @@ import { ReactiveFormsModule } from '@angular/forms';
     AboutMeComponent,
     ExperienciaComponent,
     BannerComponent,
+    BannerImageComponent,
+    BaseComponent,
+    BannerProfilePicComponent,
+    BannerNameComponent,
+    AboutMeDescriptionComponent,
+    AboutMeInfoComponent,
   ],
   imports: [
     BrowserModule,

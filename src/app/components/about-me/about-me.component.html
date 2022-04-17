@@ -1,97 +1,18 @@
-<!--Overlay para la edición de Sobre Mí-->
-<div class="editing-overlay" *ngIf="overlayOpenSobreMi">
-    
-    <!--Overlay-->
-    <div class="overlay-container">
-        
-        <!--Título-->
-        <label for="about-me-textarea" class="form-control overlay-text"> 
-            Escribe una breve descripción sobre tí: 
-        </label>        
-    
-        <!--Input-->
-        <textarea  id="about-me-textarea" [rows]="smallScreen ? '16' : '10'" type="text" class="form-control"  [formControl]="sobreMiForm" requiered (ngSubmit)="submitSobreMi()"></textarea>
-
-        <div class="overlay-alerts-buttons-container">
-            
-            <!--Alertas-->
-            <div class="overlay-alerts-container">
-                <div *ngIf="sobreMiForm.errors?.['required']  && (sobreMiForm.dirty || sobreMiForm.touched)">
-                    <p class="overlay-alert-text">La descripción es obligatoria.</p>
-                </div>
-                <div *ngIf="sobreMiForm.errors?.['minlength']  && (sobreMiForm.dirty || sobreMiForm.touched)">
-                    <p class="overlay-alert-text">Escribe una descripción de al menos 100 carateres.</p>
-                </div>
-                <div *ngIf="sobreMiForm.errors?.['maxlength']  && (sobreMiForm.dirty || sobreMiForm.touched)">
-                    <p class="overlay-alert-text">Tu descripción no puede superar los 600 carateres.</p>
-                </div> 
-            </div>
-
-            <!--Botones-->
-            <div class="overlay-buttons-container">
-
-                <button type="submit" class="btn btn-outline my-button" [disabled]="!sobreMiForm.valid" (click)="submitSobreMi()">
-                    <p *ngIf="!smallScreen" class="button-text">Guardar</p>
-                    <img [src]="global.checkIcon" alt="Guardar" *ngIf="smallScreen" class="button-icon"> 
-                </button>
-
-                <button type="button" class="btn btn-outline my-button" (click)="overlayOpenSobreMi=false">
-                    <p *ngIf="!smallScreen" class="button-text">Cancelar</p>
-                    <img [src]="global.xIcon" alt="Cancelar" *ngIf="smallScreen" class="button-icon">
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
-
 <!--Información personal + Acerca de mí-->
 <div class="container-lg">
     
     <div class="row">
 
             <!--Información personal-->
-            <div class="col-sm-3 col-12 personal-info" (mouseenter)="showEditButtonInfo = true" (mouseleave)="showEditButtonInfo = false">
-        
-                <div class="personal-info-item">
-                    <img [src]="locationIcon" alt="Ubicación">
-                    <p class="personal-info-text">{{global.location}}</p>
-                </div>
-
-                <div class="personal-info-item">
-                    <img [src]="workplaceIcon" alt="Lugar de trabajo o estudio">
-                    <p class="personal-info-text">{{global.workplace}}</p>
-                </div>
-
-                <div class="personal-info-item">
-                    <img [src]="emailIcon" alt="Dirección de email">
-                    <p class="personal-info-text personal-email">{{global.email}}</p>
-                </div>
-
-                <div class="personal-info-item">
-                    <img [src]="phoneIcon" alt="Número de teléfono">
-                    <p class="personal-info-text">{{global.phone}}</p>
-                </div>
-
-                <button [hidden]="!showEditButtonInfo && !smallScreen" type="button" class="btn btn-outline edit-button" style="align-self: flex-end;" (click)="overlayOpenInfo=true">
-                    <img [src]="global.editIcon" alt="Editar">
-                </button>
+            <div class="col-sm-3 col-12">
+                <app-about-me-info></app-about-me-info>
             </div>
 
             <hr *ngIf="smallScreen">
            
             <!--Acerca de mí-->
-            <div class="col-sm-9 col-12" (mouseenter)="showEditButtonSobreMi = true" (mouseleave)="showEditButtonSobreMi = false">
-
-                <!--Título + Botón de editar-->
-                <div class="about-header">
-                    <h6 class="about-title"> Acerca de mí</h6>
-                    <button [hidden]="!showEditButtonSobreMi && !smallScreen" type="button" class="btn btn-outline edit-button" (click)="overlayOpenSobreMi=true">
-                        <img [src]="global.editIcon" alt="Editar">
-                    </button>
-                </div>
-                
-                <!--Texto sobre mí-->
-                <p class="info">{{global.sobreMi}}</p>  
+            <div class="col-sm-9 col-12">
+                <app-about-me-description></app-about-me-description>
             </div>
     </div>
 </div>
