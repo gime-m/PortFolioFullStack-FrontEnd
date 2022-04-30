@@ -6,9 +6,12 @@
 
 /*colores*/
 :root{
-    --main-color: indigo;
+    --main-color: rgb(120, 47, 172);
     --back-color: whitesmoke;
     --shadow-color: black;
+    --light-text-color: rgb(59, 59, 59);
+    --lighter-text-color: dimgray;
+    --input-color: rgb(233, 233, 233);
 }
 
 /*botones*/
@@ -33,10 +36,12 @@
 
 .edit-button{
     margin: 0;
-    height: 32px;
+    height: 16px;
     display: flex;
     align-content: center;
     justify-content: center;
+    align-items: center;
+    color: dimgray;
 }
 
 /*Overlay*/
@@ -53,19 +58,32 @@
 }
 
 .overlay-container{
-    background-color: rgb(235, 198, 255);
+    background-color: var(--back-color);
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 50vw;
-    border-radius: 16px;
-    padding: 16px 32px;
-    box-shadow: 0px 0px 10px  black;
+    /*border-radius: 16px;*/
+    padding: 32px;
+    box-shadow: 0px 0px 10px  var(--shadow-color);
+}
+
+.overlay-title{
+    text-align: center; 
+    color: var(--main-color);
+    font-weight: 500;
+    background-color: transparent;
+    border: 0;
+}
+
+.overlay-hr{
+    color: var(--main-color); 
+    opacity: 100%;
 }
 
 .overlay-text{
-    color: black;
+    color: var(--light-text-color);
     font-weight: 500;
     background-color: transparent;
     border: 0;
@@ -74,7 +92,7 @@
 .overlay-alerts-buttons-container{
     display: flex;
     justify-content: space-between;
-    margin-top: 12px;
+    margin-top: 24px;
 }
 
 .overlay-buttons-container{
@@ -84,7 +102,7 @@
 
 .overlay-alert-text{
     font-size: small;
-    color: indigo;
+    color: var(--main-color);
     margin: 0;
     
 }
@@ -97,12 +115,19 @@
 }
 
 .overlay-input{
-    background-color: whitesmoke;
-    text-align: justify;
-    margin-left: 4px;
-    border-radius: 3px;
+    border-width: 0;
+    background-color: var(--input-color);
+    padding: 10px;
     width: 100%;
     min-width: max-content;
+    border-bottom-width: 2px;
+    border-color: lightslategrey;
+}
+
+.overlay-input:focus{
+    outline:none;
+    background-color: var(--input-color);
+    border-color: var(--main-color);
 }
 
 @media screen and (max-width: 575px) {

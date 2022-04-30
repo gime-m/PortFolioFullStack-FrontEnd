@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BaseComponent } from '../../base/base.component';
-
+import { ScreenSizeService } from 'src/app/services/screen-size.service';
+import { GlobalVariablesService } from 'src/app/services/global-variables.service';
 
 @Component({
   selector: 'app-banner-profile-pic',
@@ -9,7 +10,8 @@ import { BaseComponent } from '../../base/base.component';
 })
 export class BannerProfilePicComponent extends BaseComponent implements OnInit {
 
-  constructor() {
-    super();
+  constructor(screenService: ScreenSizeService, global: GlobalVariablesService) {
+    super(screenService, global);
   }
+  
 }

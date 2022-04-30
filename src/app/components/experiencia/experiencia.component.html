@@ -1,46 +1,92 @@
-<div class="container-xl exp-contenedor">
+<div class="container-xl" style="margin-bottom: 50px;">
    
-   <h3>Experiencia</h3>
-   
-    <div class="row">
-        <div class="col-4 exp-col">
-            <div class="card exp-card">
-                <div class="card-body">
-                   <h5 class="card-title exp-title">Experiencia 1</h5>
-                   <p class="card-text exp-text">Una vez vi un gato mientras esperaba al juani y lo acaricie. Fue una buena experiencia. Soy muy buena acariciando gatos. Los gatos no me muerden y yo tampoco los muerdo. A veces los gatos no quieren caricias y hay que respetarlos.</p>
-                 </div>
-             </div>
-        </div>
-        <div class="col-4 exp-col">
-            <div class="card exp-card">
-                <div class="card-body">
-                   <h5 class="card-title exp-title">Experiencia 1</h5>
-                   <p class="card-text exp-text">Una vez vi un gato mientras esperaba al juani y lo acaricie. Fue una buena experiencia. Soy muy buena acariciando gatos. Los gatos no me muerden y yo tampoco los muerdo. A veces los gatos no quieren caricias y hay que respetarlos.</p>
-                 </div>
-             </div>
-        </div>
-        <div class="col-4 exp-col">
-            <div class="card exp-card">
-                <div class="card-body">
-                   <h5 class="card-title exp-title">Experiencia 1</h5>
-                   <p class="card-text exp-text">Una vez vi un gato mientras esperaba al juani y lo acaricie. Fue una buena experiencia. Soy muy buena acariciando gatos. Los gatos no me muerden y yo tampoco los muerdo. A veces los gatos no quieren caricias y hay que respetarlos.</p>
-                 </div>
-             </div>
-        </div>
-        <div class="col-4 exp-col">
-            <div class="card exp-card">
-                <div class="card-body">
-                   <h5 class="card-title exp-title">Experiencia 1</h5>
-                   <p class="card-text exp-text">Una vez vi un gato mientras esperaba al juani y lo acaricie. Fue una buena experiencia. Soy muy buena acariciando gatos. Los gatos no me muerden y yo tampoco los muerdo. A veces los gatos no quieren caricias y hay que respetarlos.</p>
-                 </div>
-             </div>
+    <div class="exp-header">
+        <h5 class="exp-title">Experiencia</h5>
+
+        <div class="col-4 exp-buttons-container">
+            <app-edit-button (click)="expService.editing=true" *ngIf="!expService.editing"></app-edit-button>
+            <button type="button" class="btn btn-outline edit-button" (click)="overlayOpen=true" *ngIf="expService.editing">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                </svg>
+            </button>
+            <button type="button" class="btn btn-outline edit-button" (click)="expService.editing=false" *ngIf="expService.editing">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+                    <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
+                </svg>
+            </button>
         </div>
     </div>
-
-
-
     
+    <div class="row">
+        <div class="col-4" *ngFor="let item of items, let i = index" style="padding: 12px;">
+            <app-experiencia-item [expTitle]="item.title" [expText]="item.text" [expPlace]="item.place" [expDate]="item.date"  [expIndex]="i"></app-experiencia-item>
+        </div>
+    </div>    
+</div>
 
-   
 
+<!--Overlay para la edición-->
+<div class="editing-overlay" *ngIf="overlayOpen">
+    
+    <div class="overlay-container">
+        
+        <!--Título-->
+        <p class="overlay-title">Ingresa un nuevo ítem.</p>
+        <hr class="overlay-hr">
+
+        <!--Formulario-->
+        <form [formGroup]="componentForm" (ngSubmit)="submitForm()">
+            <div>
+                <label for="title-id" class="overlay-text">Título: </label>
+                <input id="title-id" type="text" formControlName="titleForm" class="overlay-input">   
+            </div>
+            <br>
+            <div>
+                <label for="text-id" class="overlay-text">Descripción (opcional): </label>
+                <input id="text-id" type="text" formControlName="textForm" class="overlay-input">
+            </div>    
+            <br>
+            <div>
+                <label for="place-id" class="overlay-text">Lugar (opcional): </label>
+                <input id="place-id" type="text" formControlName="placeForm" class="overlay-input">
+            </div>    
+            <br>
+            <div>
+                <label for="date-id" class="overlay-text">Fecha (opcional): </label>
+                <input id="date-id" type="date" formControlName="dateForm" class="overlay-input">
+            </div>          
+        
+        
+            <div class="overlay-alerts-buttons-container"> 
+                <!--Alertas-->
+                <div class="overlay-alerts-container">
+                    <div *ngIf="titleForm?.errors?.['required']  && (titleForm?.dirty || titleForm?.touched)">
+                        <p class="overlay-alert-text">Escribe un título para el ítem.</p>
+                    </div>
+                    <div *ngIf="titleForm?.errors?.['maxLenght']  && (titleForm?.dirty || titleForm?.touched)">
+                        <p class="overlay-alert-text">El título no puede superar los 60 caracteres.</p>
+                    </div>
+                    <div *ngIf="textForm?.errors?.['maxLenght']  && (textForm?.dirty || textForm?.touched)">
+                        <p class="overlay-alert-text">La descripción no puede superar los 250 caracteres.</p>
+                    </div>
+                    <div *ngIf="placeForm?.errors?.['maxLenght']  && (placeForm?.dirty || placeForm?.touched)">
+                        <p class="overlay-alert-text">El lugar no puede superar los 50 caracteres.</p>
+                    </div>
+                </div>
+
+                <!--Botones-->
+                <div class="overlay-buttons-container">
+                    <button type="submit" class="btn btn-outline my-button" [disabled]="!componentForm.valid">
+                        <p *ngIf="!smallScreen" class="button-text">Guardar</p>
+                        <img [src]="global.checkIcon" alt="Guardar" *ngIf="smallScreen" class="button-icon"> 
+                    </button>
+                    <button type="button" class="btn btn-outline my-button" (click)="cancelForm()">
+                        <p *ngIf="!smallScreen" class="button-text">Cancelar</p>
+                        <img [src]="global.xIcon" alt="Cancelar" *ngIf="smallScreen" class="button-icon">
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>

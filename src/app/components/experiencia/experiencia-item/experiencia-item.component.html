@@ -1,0 +1,92 @@
+<div class="card exp-card">
+
+  <div class="card-header exp-header-footer">
+    <p class="exp-footer-header-text">{{expPlace}}</p>
+    
+    <div class="exp-butttons-container">
+      <app-edit-button class="edit-button"  (click)="overlayOpen=true" [style.visibility]="!expService.editing? 'hidden': 'visible'"></app-edit-button>
+      
+      <button  type="button" class="btn btn-outline edit-button" (click)="deleteCard()" [style.visibility]="!expService.editing? 'hidden': 'visible'">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="dimgray" class="bi bi-trash-fill" viewBox="0 0 16 16">
+          <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+        </svg>
+      </button>
+    </div>
+
+  </div>
+
+  <div class="card-body">
+       <h5 class="card-title exp-title">{{expTitle}}</h5>
+       <p class="card-text exp-descripcion">{{expText}}</p>
+  </div>
+
+  <div class="card-footer exp-header-footer">
+    <p class="exp-footer-header-text" exp-text *ngIf="expDate != null">{{expDate | date:'longDate'}}</p>
+  </div>
+</div>
+
+
+<!--Overlay para la edición-->
+<div class="editing-overlay" *ngIf="overlayOpen">
+    
+  <div class="overlay-container">
+      
+      <!--Título-->
+      <p class="overlay-title">Edita este ítem.</p>
+      <hr class="overlay-hr">
+
+      <!--Formulario-->
+      <form [formGroup]="componentForm" (ngSubmit)="submitForm()">
+          <div>
+              <label for="title-id" class="overlay-text">Título: </label>
+              <input id="title-id" type="text" formControlName="titleForm" class="overlay-input">   
+          </div>
+          <br>
+          <div>
+              <label for="text-id" class="overlay-text">Descripción (opcional): </label>
+              <input id="text-id" type="text" formControlName="textForm" class="overlay-input">
+          </div>    
+          <br>
+          <div>
+              <label for="place-id" class="overlay-text">Lugar (opcional): </label>
+              <input id="place-id" type="text" formControlName="placeForm" class="overlay-input">
+          </div>    
+          <br>
+          <div>
+              <label for="date-id" class="overlay-text">Fecha (opcional): </label>
+              <input id="date-id" type="date" formControlName="dateForm" class="overlay-input">
+          </div>          
+      
+      
+          <div class="overlay-alerts-buttons-container"> 
+              <!--Alertas-->
+              <div class="overlay-alerts-container">
+                  <div *ngIf="titleForm?.errors?.['required']  && (titleForm?.dirty || titleForm?.touched)">
+                      <p class="overlay-alert-text">Escribe un título para el ítem.</p>
+                  </div>
+                  <div *ngIf="titleForm?.errors?.['maxLenght']  && (titleForm?.dirty || titleForm?.touched)">
+                      <p class="overlay-alert-text">El título no puede superar los 60 caracteres.</p>
+                  </div>
+                  <div *ngIf="textForm?.errors?.['maxLenght']  && (textForm?.dirty || textForm?.touched)">
+                      <p class="overlay-alert-text">La descripción no puede superar los 250 caracteres.</p>
+                  </div>
+                  <div *ngIf="placeForm?.errors?.['maxLenght']  && (placeForm?.dirty || placeForm?.touched)">
+                      <p class="overlay-alert-text">El lugar no puede superar los 50 caracteres.</p>
+                  </div>
+              </div>
+
+              <!--Botones-->
+              <div class="overlay-buttons-container">
+                  <button type="submit" class="btn btn-outline my-button" [disabled]="!componentForm.valid">
+                      <p *ngIf="!smallScreen" class="button-text">Guardar</p>
+                      <img [src]="global.checkIcon" alt="Guardar" *ngIf="smallScreen" class="button-icon"> 
+                  </button>
+                  <button type="button" class="btn btn-outline my-button" (click)="cancelForm()">
+                      <p *ngIf="!smallScreen" class="button-text">Cancelar</p>
+                      <img [src]="global.xIcon" alt="Cancelar" *ngIf="smallScreen" class="button-icon">
+                  </button>
+              </div>
+          </div>
+      </form>
+  </div>
+</div>

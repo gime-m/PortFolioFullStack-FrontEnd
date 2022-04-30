@@ -3,9 +3,7 @@
     <!--Título + Botón de editar-->
     <div class="about-header">
         <h6 class="about-title"> Acerca de mí</h6>
-        <button [hidden]="!showEditButton && !smallScreen" type="button" class="btn btn-outline edit-button" (click)="overlayOpen=true">
-            <img [src]="global.editIcon" alt="Editar">
-        </button>
+        <app-edit-button [hidden]="!showEditButton" (click)="overlayOpen=true"></app-edit-button>
     </div>
     
     <!--Texto sobre mí-->
@@ -49,7 +47,7 @@
                     <img [src]="global.checkIcon" alt="Guardar" *ngIf="smallScreen" class="button-icon"> 
                 </button>
 
-                <button type="button" class="btn btn-outline my-button" (click)="overlayOpen=false">
+                <button type="button" class="btn btn-outline my-button" (click)="cancelForm()">
                     <p *ngIf="!smallScreen" class="button-text">Cancelar</p>
                     <img [src]="global.xIcon" alt="Cancelar" *ngIf="smallScreen" class="button-icon">
                 </button>

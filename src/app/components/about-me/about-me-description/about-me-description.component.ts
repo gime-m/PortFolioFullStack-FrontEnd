@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { BaseComponent } from '../../base/base.component';
 import { FormControl, Validators } from '@angular/forms';
+
+import { BaseComponent } from '../../base/base.component';
+import { ScreenSizeService } from 'src/app/services/screen-size.service';
+import { GlobalVariablesService } from 'src/app/services/global-variables.service';
 
 @Component({
   selector: 'app-about-me-description',
@@ -9,10 +12,6 @@ import { FormControl, Validators } from '@angular/forms';
 })
 
 export class AboutMeDescriptionComponent extends BaseComponent implements OnInit {
-
-  constructor() {
-    super();
-  }
 
   componentForm = new FormControl(this.global.sobreMi, [
     Validators.required,
@@ -24,4 +23,14 @@ export class AboutMeDescriptionComponent extends BaseComponent implements OnInit
     this.overlayOpen = false,
     this.global.sobreMi=this.componentForm.value
   }
+
+  override cancelForm(){
+    this.overlayOpen = false
+    this.componentForm?.setValue(this.global.sobreMi)
+  }
+
+  constructor(screenService: ScreenSizeService, global: GlobalVariablesService) {
+    super(screenService, global);
+  }
+
 }

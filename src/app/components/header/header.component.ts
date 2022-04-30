@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+//import { AuthService } from 'src/app/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -8,12 +9,17 @@ import { Component, OnInit } from '@angular/core';
 
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  private _logoArgSrc: string = "assets/images/APlogo.png";
+  private _linkGitHub: string = "https://github.com/gime-m";
+  
+  public get logoArgSrc(): string {
+    return this._logoArgSrc;
+  }
+  public get linkGitHub(): string {
+    return this._linkGitHub;
+  }
 
-  logoArgSrc: string = "assets/images/APlogo.png"
-  logoArgAlt: string = "Logo Argentina Programa"
-  //gitHubIcon: string = "assets/icons/github.svg"
-  linkGitHub: string = "https://github.com/gime-m"
+  constructor(/*authService : AuthService*/) { }
 
   ngOnInit(): void {
   }

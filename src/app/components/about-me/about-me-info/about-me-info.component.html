@@ -21,9 +21,7 @@
         <p class="personal-info-text">{{global.phone}}</p>
     </div>
 
-    <button [hidden]="!showEditButton && !smallScreen" type="button" class="btn btn-outline edit-button" style="align-self: flex-end;" (click)="overlayOpen=true">
-        <img [src]="global.editIcon" alt="Editar">
-    </button>
+    <app-edit-button [hidden]="!showEditButton" (click)="overlayOpen=true" class="edit-button-here"></app-edit-button>
 </div>
 
 
@@ -33,11 +31,10 @@
     
     <div class="overlay-container">
         
-        <!--Título-->
-        <p class="overlay-text"> 
-            Ingresa los siguientes datos personales.
-        </p>  
-        
+        <!--Título -->
+        <p class="overlay-title"> Ingresa los siguientes datos personales.</p>
+        <hr class="overlay-hr">
+
         <!--Formulario-->
         <form [formGroup]="componentForm" (ngSubmit)="submitForm()">
             <div>
@@ -87,11 +84,11 @@
 
             <!--Botones-->
             <div class="overlay-buttons-container">
-                <button type="submit" class="btn btn-outline my-button" [disabled]="!componentForm.valid" (click)="submitForm()">
+                <button type="submit" class="btn my-button" [disabled]="!componentForm.valid" (click)="submitForm()">
                     <p *ngIf="!smallScreen" class="button-text">Guardar</p>
                     <img [src]="global.checkIcon" alt="Guardar" *ngIf="smallScreen" class="button-icon"> 
                 </button>
-                <button type="button" class="btn btn-outline my-button" (click)="overlayOpen=false">
+                <button type="button" class="btn my-button" (click)="cancelForm()">
                     <p *ngIf="!smallScreen" class="button-text">Cancelar</p>
                     <img [src]="global.xIcon" alt="Cancelar" *ngIf="smallScreen" class="button-icon">
                 </button>
