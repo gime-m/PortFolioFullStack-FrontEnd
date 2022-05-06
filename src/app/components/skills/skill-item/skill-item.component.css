@@ -1,0 +1,28 @@
+.skill-item-title{
+    text-align: left;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+}
+
+.skill-progress{
+    background-color: var(--input-color);
+    height: 24px;
+    border-radius: 24px;
+    margin-top: 8px;
+    margin-bottom: 16px;
+}
+
+.skill-progress-bar{
+    background-color: var(--main-color);
+    border-radius: 24px;
+    border-width: 0px;
+    overflow: visible;
+}
+
+.skill-progress-value{
+    font-size:small;
+    font-weight: 600;
+    overflow: visible;
+}

@@ -11,7 +11,7 @@
     --shadow-color: black;
     --light-text-color: rgb(59, 59, 59);
     --lighter-text-color: dimgray;
-    --input-color: rgb(233, 233, 233);
+    --input-color: rgb(206, 206, 206);
 }
 
 /*botones*/
@@ -67,6 +67,7 @@
     /*border-radius: 16px;*/
     padding: 32px;
     box-shadow: 0px 0px 10px  var(--shadow-color);
+    max-height: 90vh;
 }
 
 .overlay-title{
@@ -75,11 +76,22 @@
     font-weight: 500;
     background-color: transparent;
     border: 0;
+    margin: 0;
 }
 
 .overlay-hr{
     color: var(--main-color); 
     opacity: 100%;
+}
+
+.overlay-form{
+    display: flex; 
+    flex-direction: column; 
+    height: 70vh;
+}
+
+.overlay-scrollable-inputs{
+    overflow-y: scroll;
 }
 
 .overlay-text{
@@ -141,3 +153,65 @@
         width: 90vw;
     }
 }
+
+/*Cards*/
+
+.my-card{
+    border-width: 1px;
+    border-color: rgb(196, 196, 196);
+    background-color: var(--background-color);
+    text-align: justify;
+    width: 100%;
+    height: 100%;
+}
+
+.my-card-title{
+    text-align: left;
+    font-size: large;
+    color:var(--main-color);
+}
+
+.card-descripcion{
+    color: var(--light-text-color);
+}
+
+.card-footer-header-text{
+    color: var(--light-text-color);
+    text-align: left;
+    margin:0;
+    font-size: small;
+}
+
+.card-header-footer {
+    background-color: var(--input-color);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.card-butttons-container{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: right;
+    align-content: center;
+    align-items: center;
+}
+
+.component-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0,
+}
+
+.component-header-buttons {
+    display: flex;
+    justify-content: right;
+    align-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+

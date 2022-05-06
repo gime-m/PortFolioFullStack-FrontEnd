@@ -12,9 +12,11 @@ import { BaseComponent } from '../../base/base.component';
 })
 export class ExperienciaItemComponent extends BaseComponent implements OnInit {
 
-  @Input() expTitle: string = ""
+  @Input() expTitle: string = "a"
   @Input() expText: string = ""
-  @Input() expDate?: Date
+  @Input() expStartDate?: Date
+  @Input() expEndDate?: Date
+  @Input() expCurrent: boolean = false
   @Input() expPlace: string = ""
   @Input() expIndex: number = 0
   datepipe: any;
@@ -23,18 +25,23 @@ export class ExperienciaItemComponent extends BaseComponent implements OnInit {
     titleForm: new FormControl(this.expTitle, [Validators.required, Validators.maxLength(60)]),
     textForm: new FormControl(this.expText,[Validators.maxLength(250)]),
     placeForm: new FormControl(this.expPlace,[Validators.maxLength(50)]),
-    dateForm: new FormControl(this.expDate),
+    startDateForm: new FormControl(null),
+    endDateForm: new FormControl(null),
+    currentForm: new FormControl(this.expCurrent),
   })
 
   get textForm() { return this.componentForm.get('textForm'); }
   get titleForm() { return this.componentForm.get('titleForm'); }
   get placeForm() { return this.componentForm.get('placeForm'); }
-  get dateForm() { return this.componentForm.get('dateForm'); }
+  get startDateForm() { return this.componentForm.get('startDateForm'); }
+  get endDateForm() { return this.componentForm.get('endDateForm'); }
+  get currentForm() { return this.componentForm.get('currentForm'); }
 
   override submitForm() {
     this.overlayOpen = false,
-    this.expService.changeItem (this.expIndex, this.titleForm?.value, this.textForm?.value, this.placeForm?.value, this.dateForm?.value)
+    this.service.changeItem (this.expIndex, this.titleForm?.value, this.textForm?.value, this.placeForm?.value, this.startDateForm?.value, this.endDateForm?.value, this.currentForm?.value)
   }
+
   override cancelForm(){
     this.overlayOpen = false
     this.setFormDefault()
@@ -44,14 +51,16 @@ export class ExperienciaItemComponent extends BaseComponent implements OnInit {
     this.textForm?.setValue(this.expText);
     this.titleForm?.setValue(this.expTitle);
     this.placeForm?.setValue(this.expPlace);
-    this.dateForm?.setValue(this.expDate);
+    this.startDateForm?.setValue(this.expStartDate);
+    this.endDateForm?.setValue(this.expEndDate);
+    this.currentForm?.setValue(this.expCurrent)
   }
 
   deleteCard(){
-    this.expService.deleteItem(this.expIndex)
+    this.service.deleteItem(this.expIndex)
   }
   
-  constructor(screenService: ScreenSizeService, global: GlobalVariablesService, public expService: ExperienciaService) {
+  constructor(screenService: ScreenSizeService, global: GlobalVariablesService, public service: ExperienciaService) {
     super(screenService, global);
   }
 

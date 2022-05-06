@@ -14,24 +14,28 @@ import { BaseComponent } from '../base/base.component';
 export class ExperienciaComponent extends BaseComponent implements OnInit {
   
   //Variables
-  items = this.expService.items;
+  items = this.service.items;
 
   //Form añadir
   componentForm = new FormGroup({
     titleForm: new FormControl("", [Validators.required, Validators.maxLength(60)]),
     textForm: new FormControl("",[Validators.maxLength(250)]),
     placeForm: new FormControl("",[Validators.maxLength(50)]),
-    dateForm: new FormControl(null),
+    startDateForm: new FormControl(null),
+    endDateForm: new FormControl(null),
+    currentForm: new FormControl(false),
   })
 
   get textForm() { return this.componentForm.get('textForm'); }
   get titleForm() { return this.componentForm.get('titleForm'); }
   get placeForm() { return this.componentForm.get('placeForm'); }
-  get dateForm() { return this.componentForm.get('dateForm'); }
+  get startDateForm() { return this.componentForm.get('startDateForm'); }
+  get endDateForm() { return this.componentForm.get('endDateForm'); }
+  get currentForm() { return this.componentForm.get('currentForm'); }
 
   override submitForm() {
     this.overlayOpen = false,
-    this.expService.addItem(this.titleForm?.value, this.textForm?.value, this.placeForm?.value, this.dateForm?.value)
+    this.service.addItem(this.titleForm?.value, this.textForm?.value, this.placeForm?.value, this.startDateForm?.value, this.endDateForm?.value, this.currentForm?.value)
     this.componentForm.reset()
   }
   override cancelForm(){
@@ -40,13 +44,7 @@ export class ExperienciaComponent extends BaseComponent implements OnInit {
   }
   
   //Constructor
-  constructor(screenService: ScreenSizeService, global: GlobalVariablesService, public expService: ExperienciaService) {
+  constructor(screenService: ScreenSizeService, global: GlobalVariablesService, public service: ExperienciaService) {
     super(screenService, global);
   }
-
-  /*clicEdit(c: boolean) {
-    this.editing=c
-  }
-  (editThisCard)="clicEdit($event)"*/
-
 }

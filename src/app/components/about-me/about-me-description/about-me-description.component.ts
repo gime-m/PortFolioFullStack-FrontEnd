@@ -15,7 +15,7 @@ export class AboutMeDescriptionComponent extends BaseComponent implements OnInit
 
   componentForm = new FormControl(this.global.sobreMi, [
     Validators.required,
-    Validators.minLength(100),
+    Validators.minLength(50),
     Validators.maxLength(600)
   ]);
 

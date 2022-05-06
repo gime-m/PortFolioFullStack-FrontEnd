@@ -5,12 +5,10 @@ import { Injectable } from '@angular/core';
 })
 export class ExperienciaService {
 
-  constructor() { }
-
   //Variables
    items: ExpItem[] = [
-    {title: "Experiencia 1", text:"Hice un portfolio y sufri.", place: "Mi casa", date: new Date(2022, 1, 1)},
-    {title: "Experiencia 2", text:"Hice un cosos para ver espectros y sufri muchi. Borderline traumatic. Fue al pedo.", place: "Mi cama", date: new Date(2020, 11, 1)}
+    {title: "Experiencia 1", text:"Hice un portfolio y sufri.", place: "Mi casa", startDate: new Date(2022, 1, 1), endDate: new Date(2022,3,4), current: false},
+    {title: "Experiencia 2", text:"Hice un cosos para ver espectros y sufri muchi. Borderline traumatic. Fue al pedo.", place: "Mi cama", startDate: new Date(2020, 11, 1), endDate: undefined, current: true}
   ]
   
   private _editing: boolean = false;
@@ -24,17 +22,19 @@ export class ExperienciaService {
   }
 
   //Metodos
-  addItem (newTitle: string, newText: string, newPlace: string, newDate: Date){
-    this.items.push({title: newTitle, text: newText, place: newPlace, date: newDate})
+  addItem (newTitle: string, newText: string, newPlace: string, newStartDate: Date, newEndDate: Date, newCurrent: boolean){
+    this.items.push({title: newTitle, text: newText, place: newPlace, startDate: newStartDate, endDate: newEndDate, current: newCurrent})
   }
 
-  changeItem (i: number, newTitle: string, newText: string, newPlace: string, newDate: Date){
-    this.items[i]={title: newTitle, text: newText, place: newPlace, date: newDate}
+  changeItem (i: number, newTitle: string, newText: string, newPlace: string, newStartDate: Date, newEndDate: Date, newCurrent: boolean){
+    this.items[i]={title: newTitle, text: newText, place: newPlace, startDate: newStartDate, endDate: newEndDate, current: newCurrent}
   }
 
   deleteItem(i: number){
     this.items.splice(i,1)
   }
+
+  constructor() { }
 }
 
 
@@ -42,7 +42,9 @@ class ExpItem {
     title: string = ""
     text: string = ""
     place: string = ""
-    date?: Date
+    startDate?: Date
+    endDate?: Date
+    current: boolean = false
 }
 
 

@@ -80,6 +80,19 @@
                     <p class="overlay-alert-text">Escribe un número de teléfono válido.</p>
                 </div>
                 
+                <div *ngIf="locationForm?.errors?.['maxLenght']  && (locationForm?.dirty || locationForm?.touched)">
+                    <p class="overlay-alert-text">Tu ubicación no puede tener más de 60 caracteres.</p>
+                </div>
+                <div *ngIf="workplaceForm?.errors?.['maxLenght']  && (workplaceForm?.dirty || workplaceForm?.touched)">
+                    <p class="overlay-alert-text">Tu lugar de trabajo no puede tener más de 60 caracteres.</p>
+                </div>
+                <div *ngIf="emailForm?.errors?.['maxLenght']  && (emailForm?.dirty || emailForm?.touched)">
+                    <p class="overlay-alert-text">Tu dirección de e-mail no puede tener más de 60 caracteres.</p>
+                </div>
+                <div *ngIf="phoneForm?.errors?.['maxLenght']  && (phoneForm?.dirty || phoneForm?.touched)">
+                    <p class="overlay-alert-text">Tu número de teléfono no puede tener más de 25 caracteres.</p>
+                </div>
+                
             </div>
 
             <!--Botones-->

@@ -22,6 +22,13 @@ import { ExperienciaItemComponent } from './components/experiencia/experiencia-i
 import { EditButtonComponent } from './components/subcomponents/edit-button/edit-button.component';
 
 import localeEs from '@angular/common/locales/es';
+import { EducacionComponent } from './components/educacion/educacion.component';
+import { EducacionItemComponent } from './components/educacion/educacion-item/educacion-item.component';
+import { SkillsComponent } from './components/skills/skills.component';
+import { SkillItemComponent } from './components/skills/skill-item/skill-item.component';
+import { AddButtonComponent } from './components/subcomponents/add-button/add-button.component';
+import { DoneButtonComponent } from './components/subcomponents/done-button/done-button.component';
+import { DeleteButtonComponent } from './components/subcomponents/delete-button/delete-button.component';
 registerLocaleData(localeEs, 'es')
 
 //import { OverlayModule } from "@angular/cdk/overlay";
@@ -41,6 +48,13 @@ registerLocaleData(localeEs, 'es')
     AboutMeInfoComponent,
     ExperienciaItemComponent,
     EditButtonComponent,
+    EducacionComponent,
+    EducacionItemComponent,
+    SkillsComponent,
+    SkillItemComponent,
+    AddButtonComponent,
+    DoneButtonComponent,
+    DeleteButtonComponent,
   ],
   imports: [
     BrowserModule,

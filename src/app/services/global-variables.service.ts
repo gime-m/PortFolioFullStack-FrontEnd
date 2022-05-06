@@ -6,7 +6,8 @@ import { Injectable } from '@angular/core';
 export class GlobalVariablesService {
 
   //Variables 
-  private _nombre: string = "Gimena Martín Girardi"
+  private _nombre: string = "Gimena"
+  private _apellido: string = "Martín Girardi";
   private _trabajo: string = "Licenciada en astronomía ponele"
   private _profilePicScr: string = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsvGjXaf8e_D6qQKOq4yhnlxuGJSGPhNwlqQpwuegJ1z0yqr-RkEpeUdpq7PxI9hioYq0&usqp=CAU"
   private _bannerImg: string = "https://i.pinimg.com/originals/45/97/93/459793db693bb8b93f6ab68adb90a64c.jpg"
@@ -29,6 +30,13 @@ export class GlobalVariablesService {
   public set nombre(v : string) {
       this._nombre = v;
   }
+
+  public get apellido(): string {
+    return this._apellido;
+    }
+    public set apellido(value: string) {
+    this._apellido = value;
+    }
 
   public get trabajo() : string {
       return this._trabajo;

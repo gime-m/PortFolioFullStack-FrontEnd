@@ -21,10 +21,10 @@ export class AboutMeInfoComponent extends BaseComponent implements OnInit {
 
   //Form
   componentForm = new FormGroup({
-    locationForm: new FormControl(this.global.location, [Validators.required]),
-    workplaceForm: new FormControl(this.global.workplace, [Validators.required]),
-    emailForm: new FormControl(this.global.email, [Validators.required, Validators.email]),
-    phoneForm: new FormControl(this.global.phone, [Validators.required, Validators.pattern("^[+]?[0-9()-\\s]+$"),]),
+    locationForm: new FormControl(this.global.location, [Validators.required, Validators.maxLength(60)]),
+    workplaceForm: new FormControl(this.global.workplace, [Validators.required, Validators.maxLength(60)],),
+    emailForm: new FormControl(this.global.email, [Validators.required, Validators.email, Validators.maxLength(60)], ),
+    phoneForm: new FormControl(this.global.phone, [Validators.required, Validators.maxLength(25), Validators.pattern("^[+]?[0-9()-\\s]+$"),]),
   })
 
   //iconos getters
