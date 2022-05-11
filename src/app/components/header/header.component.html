@@ -14,10 +14,60 @@
                 <p class="d-none d-sm-inline button-text icon-button-text">Github</p>
             </a>
 
-            <button type="button" class="btn btn-outline my-button">
+            <button type="button" class="btn btn-outline my-button" (click)="overlayOpen= true">
                 <p class="button-text" >Login</p>
             </button>
 
         </div>
+    </div>
+</div>
+
+<div class="editing-overlay" *ngIf="overlayOpen">
+    
+    <div class="overlay-container">
+        
+        <!--Título-->
+        <p class="overlay-title">Ingresa usuario y contraseña</p>
+        <hr class="overlay-hr">
+
+        <!--Formulario-->
+        <form [formGroup]="componentForm" (ngSubmit)="submitForm()">
+            <div>
+                <label for="user-id" class="overlay-text">Usuario: </label>
+                <input id="user-id" type="text" formControlName="userForm" class="overlay-input">   
+            </div>
+            <br>
+            <div>
+                <label for="password-id" class="overlay-text">Constraseña: </label>
+                <input id="password-id" type="password" formControlName="passwordForm" class="overlay-input">
+            </div>  
+        
+            <div class="overlay-alerts-buttons-container"> 
+                <!--Alertas-->
+                <div class="overlay-alerts-container">
+                    <div *ngIf="userForm?.errors?.['required']  && (userForm?.dirty || userForm?.touched)">
+                        <p class="overlay-alert-text">Ingresa tu usuario.</p>
+                    </div>
+                    <div *ngIf="passwordForm?.errors?.['required']  && (passwordForm?.dirty || passwordForm?.touched)">
+                        <p class="overlay-alert-text">Ingresa tu contraseña.</p>
+                    </div>
+                    <div *ngIf="wrongLogIn">
+                        <p class="overlay-alert-text">Usuario o contraseña incorrectos.</p>
+                    </div>
+                </div>
+
+                <!--Botones-->
+                <div class="overlay-buttons-container">
+                    <button type="submit" class="btn btn-outline my-button" [disabled]="!componentForm.valid">
+                        <p *ngIf="!smallScreen" class="button-text">Guardar</p>
+                        <img [src]="global.checkIcon" alt="Guardar" *ngIf="smallScreen" class="button-icon"> 
+                    </button>
+                    <button type="button" class="btn btn-outline my-button" (click)="cancelForm()">
+                        <p *ngIf="!smallScreen" class="button-text">Cancelar</p>
+                        <img [src]="global.xIcon" alt="Cancelar" *ngIf="smallScreen" class="button-icon">
+                    </button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>

@@ -18,7 +18,7 @@ export class SkillItemComponent extends BaseComponent implements OnInit {
   @Input() skillLabel: string = ""
   @Input() skillIndex: number = 0
   skillWidth : string = ""
-  skillImage : string = "assets/images/repeating-cats.png"
+  usedLabel: string = this.skillLabel
 
   //Form
   componentForm = new FormGroup({
@@ -33,36 +33,38 @@ export class SkillItemComponent extends BaseComponent implements OnInit {
   get valueForm() { return this.componentForm.get('valueForm'); }
   get labelForm() { return this.componentForm.get('labelForm'); }
 
-  override submitForm() {
-    this.overlayOpen = false,
-    this.service.changeItem(this.skillIndex, this.titleForm?.value, this.descriptionForm?.value, this.valueForm?.value, this.labelForm?.value)
-    this.componentForm.reset()
+  override submitForm(): void {
+    this.overlayOpen = false;
+    this.service.changeItem(this.skillIndex, this.titleForm?.value, this.descriptionForm?.value, this.valueForm?.value, this.labelForm?.value);
+    this.componentForm.reset();
   }
-  override cancelForm(){
-    this.overlayOpen = false
-    this.componentForm.reset()
+  override cancelForm(): void{
+    this.overlayOpen = false;
+    this.componentForm.reset();
   }
   
-  setFormDefault(){
+  setFormDefault(): void{
     this.titleForm?.setValue(this.skillTitle);
     this.descriptionForm?.setValue(this.skillDescription);
     this.valueForm?.setValue(this.skillValue);
     this.labelForm?.setValue(this.skillLabel);
   }
 
-  deleteItem(){
-    this.service.deleteItem(this.skillIndex)
+  deleteItem(): void{
+    this.service.deleteItem(this.skillIndex);
   }
     
-  numberToPercentage(n: number){
-    let a: number = n/100
-    return a.toLocaleString('en-US',{style:'percent'})
+  numberToPercentage(n: number): string{
+    let a: number = n/100;
+    return a.toLocaleString('en-US',{style:'percent'});
   }
 
-  defaultLabel (){
+  defaultLabel (): void{
     if (this.skillLabel==""){
-      this.skillLabel = this.skillWidth
-    }
+      this.usedLabel = this.skillWidth;
+    } else {
+      this.usedLabel = this.skillLabel;
+    };
   }
    
 
@@ -71,9 +73,9 @@ export class SkillItemComponent extends BaseComponent implements OnInit {
   }
 
   override ngOnInit(): void {
-    this.skillWidth = this.numberToPercentage(this.skillValue)
-    this.defaultLabel()
-    this.setFormDefault()
+    this.skillWidth = this.numberToPercentage(this.skillValue);
+    this.defaultLabel();
+    this.setFormDefault();
   }
 
 }

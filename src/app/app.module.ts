@@ -29,6 +29,7 @@ import { SkillItemComponent } from './components/skills/skill-item/skill-item.co
 import { AddButtonComponent } from './components/subcomponents/add-button/add-button.component';
 import { DoneButtonComponent } from './components/subcomponents/done-button/done-button.component';
 import { DeleteButtonComponent } from './components/subcomponents/delete-button/delete-button.component';
+import { LoginComponent } from './components/header/login/login.component';
 registerLocaleData(localeEs, 'es')
 
 //import { OverlayModule } from "@angular/cdk/overlay";
@@ -55,6 +56,7 @@ registerLocaleData(localeEs, 'es')
     AddButtonComponent,
     DoneButtonComponent,
     DeleteButtonComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

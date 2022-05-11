@@ -8,7 +8,7 @@ export class SkillsService {
   //Variables
   items: SkillItem[] = [
     {title: "Comer", description:"Me gusta el helado", value: 10, label: "No me gusta el tomate"},
-    {title: "Integrales", description:"Indicador de ebriedad", value: 68, label: ""}
+    {title: "Integrales", description:" Conozco el pasado y el futuro. Cada vez que miro hacia el cielo nocturno los astros me dicen quienes morirán esa noche. Es un don, y una maldición.", value: 68, label: ""}
   ]
   
   private _editing: boolean = false;

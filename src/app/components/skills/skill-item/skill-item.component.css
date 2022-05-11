@@ -1,7 +1,10 @@
 .skill-item-title{
-    text-align: left;
     text-transform: uppercase;
     font-weight: 600;
+}
+
+.skill-item-text{
+    text-align: left;
     margin: 0;
     padding: 0;
 }
@@ -12,6 +15,7 @@
     border-radius: 24px;
     margin-top: 8px;
     margin-bottom: 16px;
+    overflow: visible;
 }
 
 .skill-progress-bar{
@@ -26,3 +30,23 @@
     font-weight: 600;
     overflow: visible;
 }
+
+/*.skill-modal{
+    background-color:whitesmoke;
+    z-index: 1000;
+    position: relative;
+    top: 20px;
+    border-color: indigo;
+    border-radius: 4px;
+    border-width: 2px;
+    border-style: solid;
+    height: fit-content;
+    min-width: 20%;
+}
+
+.skill-modal-text{
+    color: black;
+    font-size:medium;
+    padding: 8px;
+    margin: 0;
+}*/

@@ -1,5 +1,5 @@
 <div class="component-header">
-    <p class="skill-item-title">{{skillTitle}}</p>
+    <p class="skill-item-text"><b class="skill-item-title">{{skillTitle}}</b>: {{skillDescription}}</p>
 
     <div class="component-header-buttons">
         <app-edit-button class="edit-button"  (click)="overlayOpen=true" [style.visibility]="!service.editing? 'hidden': 'visible'"></app-edit-button>
@@ -8,8 +8,8 @@
 </div>
 
 <div class="progress skill-progress">
-    <div class="progress-bar skill-progress-bar" role="progressbar" [ngStyle]="{'width': skillWidth}" [attr.aria-valuenow]="skillValue" aria-valuemin="0" aria-valuemax="100">
-        <div class="skill-progress-value">{{skillLabel}}</div>
+    <div class="progress-bar skill-progress-bar" role="progressbar" [ngStyle]="{'width': skillWidth, 'min-width': skillWidth}" [attr.aria-valuenow]="skillValue" aria-valuemin="0" aria-valuemax="100">
+        <div class="skill-progress-value">{{usedLabel}}</div>
     </div>
 </div>
 
