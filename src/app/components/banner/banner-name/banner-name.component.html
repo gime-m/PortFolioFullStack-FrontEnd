@@ -1,9 +1,9 @@
-<div (mouseenter)="showEditButton=true" (mouseleave)="showEditButton=false">
+<div>
     <div class="name-container">
-        <p class="me name">{{global.nombre + ' ' + global.apellido}}</p> 
-        <app-edit-button [hidden]="!showEditButton" (click)="overlayOpen=true" class="edit-button-here"></app-edit-button>
+        <p class="me name">{{pers.persona?.nombre + ' ' + pers.persona?.apellido}}</p> 
+        <app-edit-button [style.visibility]="!login.logedIn? 'hidden': 'visible'" (click)="clickEditButton()" class="edit-button-here"></app-edit-button>
     </div>
-    <h6 class="me">{{global.trabajo}}</h6>
+    <h6 class="me">{{pers.persona?.ocupacion}}</h6>
 </div>
 
 <!--Overlay para la edición-->
@@ -16,50 +16,50 @@
         <hr class="overlay-hr">
 
         <!--Formulario-->
-        <form [formGroup]="componentForm" (ngSubmit)="submitForm()">
+        <form [formGroup]="form.componentForm" (ngSubmit)="submitForm()">
             <div>
                 <label for="nombre-id" class="overlay-text">Nombre: </label>
-                <input id="nombre-id" type="text" formControlName="nombreForm" class="overlay-input">   
+                <input id="nombre-id" type="text" formControlName="nombre" class="overlay-input">   
             </div>
             <br>
             <div>
                 <label for="apellido-id" class="overlay-text">Apellido: </label>
-                <input id="apellido-id" type="text" formControlName="apellidoForm" class="overlay-input">
+                <input id="apellido-id" type="text" formControlName="apellido" class="overlay-input">
             </div> 
             <br>
             <div>
                 <label for="trabajo-id" class="overlay-text">Ocupación: </label>
-                <input id="trabajo-id" type="text" formControlName="trabajoForm" class="overlay-input">
+                <input id="trabajo-id" type="text" formControlName="ocupacion" class="overlay-input">
             </div>          
         
         
             <div class="overlay-alerts-buttons-container"> 
                 <!--Alertas-->
                 <div class="overlay-alerts-container">
-                    <div *ngIf="nombreForm?.errors?.['required']  && (nombreForm?.dirty || nombreForm?.touched)">
+                    <div *ngIf="form.nombre?.errors?.['required']  && (form.nombre?.dirty || form.nombre?.touched)">
                         <p class="overlay-alert-text">El nombre es obligatorio.</p>
                     </div>
-                    <div *ngIf="apellidoForm?.errors?.['required']  && (apellidoForm?.dirty || apellidoForm?.touched)">
+                    <div *ngIf="form.apellido?.errors?.['required']  && (form.apellido?.dirty || form.apellido?.touched)">
                         <p class="overlay-alert-text">El apellido es obligatorio.</p>
                     </div>
-                    <div *ngIf="trabajoForm?.errors?.['required']  && (trabajoForm?.dirty || trabajoForm?.touched)">
+                    <div *ngIf="form.ocupacion?.errors?.['required']  && (form.ocupacion?.dirty || form.ocupacion?.touched)">
                         <p class="overlay-alert-text">La ocupación es obligatoria.</p>
                     </div>
 
-                    <div *ngIf="nombreForm?.errors?.['maxLenght']  && (nombreForm?.dirty || nombreForm?.touched)">
+                    <div *ngIf="form.nombre?.errors?.['maxLenght']  && (form.nombre?.dirty || form.nombre?.touched)">
                         <p class="overlay-alert-text">El nombre no puede superar los 25 caracteres.</p>
                     </div>
-                    <div *ngIf="apellidoForm?.errors?.['maxLenght']  && (apellidoForm?.dirty || apellidoForm?.touched)">
+                    <div *ngIf="form.apellido?.errors?.['maxLenght']  && (form.apellido?.dirty || form.apellido?.touched)">
                         <p class="overlay-alert-text">El apellido no puede superar los 25 caracteres.</p>
                     </div>
-                    <div *ngIf="trabajoForm?.errors?.['maxLenght']  && (trabajoForm?.dirty || trabajoForm?.touched)">
+                    <div *ngIf="form.ocupacion?.errors?.['maxLenght']  && (form.ocupacion?.dirty || form.ocupacion?.touched)">
                         <p class="overlay-alert-text">La ocupación no puede superar los 60 caracteres.</p>
                     </div>
                 </div>
 
                 <!--Botones-->
                 <div class="overlay-buttons-container">
-                    <button type="submit" class="btn btn-outline my-button" [disabled]="!componentForm.valid">
+                    <button type="submit" class="btn btn-outline my-button" [disabled]="!form.componentForm.valid">
                         <p *ngIf="!smallScreen" class="button-text">Guardar</p>
                         <img [src]="global.checkIcon" alt="Guardar" *ngIf="smallScreen" class="button-icon"> 
                     </button>

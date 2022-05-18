@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
 
 import { BaseComponent } from '../../base/base.component';
 import { ScreenSizeService } from 'src/app/services/screen-size.service';
 import { GlobalVariablesService } from 'src/app/services/global-variables.service';
+import { LoginService } from 'src/app/services/login.service';
+import { PersonaVariablesService } from 'src/app/services/http-requests/persona-variables.service';
+import { PersonaFormService } from 'src/app/services/persona-form.service';
 
 @Component({
   selector: 'app-about-me-description',
@@ -13,24 +15,21 @@ import { GlobalVariablesService } from 'src/app/services/global-variables.servic
 
 export class AboutMeDescriptionComponent extends BaseComponent implements OnInit {
 
-  componentForm = new FormControl(this.global.sobreMi, [
-    Validators.required,
-    Validators.minLength(50),
-    Validators.maxLength(600)
-  ]);
-
-  override submitForm() {
-    this.overlayOpen = false,
-    this.global.sobreMi=this.componentForm.value
+  submitForm() {
+    this.overlayOpen = false;
+    this.form.submit();
+  }
+  cancelForm(){
+    this.overlayOpen = false;
+    this.form.default();
+  }
+  clickEditButton(){
+    this.form.default();
+    this.overlayOpen=true;
   }
 
-  override cancelForm(){
-    this.overlayOpen = false
-    this.componentForm?.setValue(this.global.sobreMi)
-  }
-
-  constructor(screenService: ScreenSizeService, global: GlobalVariablesService) {
-    super(screenService, global);
+  constructor(screenService: ScreenSizeService, global: GlobalVariablesService, login: LoginService, public pers: PersonaVariablesService, public form: PersonaFormService) {
+    super(screenService, global, login);
   }
 
 }

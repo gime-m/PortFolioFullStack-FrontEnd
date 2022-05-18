@@ -1,9 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { GlobalVariablesService } from 'src/app/services/global-variables.service';
 import { ScreenSizeService } from 'src/app/services/screen-size.service';
-import { ExperienciaService } from 'src/app/services/experiencia.service';
+
 import { BaseComponent } from '../base/base.component';
+import { LoginService } from 'src/app/services/login.service';
+import { ExperienciaRequestsService } from 'src/app/services/http-requests/experiencia-requests.service';
 
 
 @Component({
@@ -13,38 +15,36 @@ import { BaseComponent } from '../base/base.component';
 })
 export class ExperienciaComponent extends BaseComponent implements OnInit {
   
-  //Variables
-  items = this.service.items;
-
   //Form añadir
   componentForm = new FormGroup({
-    titleForm: new FormControl("", [Validators.required, Validators.maxLength(60)]),
-    textForm: new FormControl("",[Validators.maxLength(250)]),
-    placeForm: new FormControl("",[Validators.maxLength(50)]),
-    startDateForm: new FormControl(null),
-    endDateForm: new FormControl(null),
-    currentForm: new FormControl(false),
+    titulo: new FormControl("", [Validators.required, Validators.maxLength(60)]),
+    descripcion: new FormControl("",[Validators.maxLength(250)]),
+    lugar: new FormControl("",[Validators.maxLength(50)]),
+    fechaInicio: new FormControl(null),
+    fechaFin: new FormControl(null),
+    isCurrent: new FormControl(false),
+    personaId: new FormControl(this.service.personaId)
   })
 
-  get textForm() { return this.componentForm.get('textForm'); }
-  get titleForm() { return this.componentForm.get('titleForm'); }
-  get placeForm() { return this.componentForm.get('placeForm'); }
-  get startDateForm() { return this.componentForm.get('startDateForm'); }
-  get endDateForm() { return this.componentForm.get('endDateForm'); }
-  get currentForm() { return this.componentForm.get('currentForm'); }
+  get titulo() { return this.componentForm.get('titulo'); }
+  get descripcion() { return this.componentForm.get('descripcion'); }
+  get lugar() { return this.componentForm.get('lugar'); }
+  get fechaInicio() { return this.componentForm.get('fechaInicio'); }
+  get fechaFin() { return this.componentForm.get('fechaFin'); }
+  get isCurrent() { return this.componentForm.get('isCurrent'); }
 
-  override submitForm() {
-    this.overlayOpen = false,
-    this.service.addItem(this.titleForm?.value, this.textForm?.value, this.placeForm?.value, this.startDateForm?.value, this.endDateForm?.value, this.currentForm?.value)
-    this.componentForm.reset()
+  submitForm() {
+    this.overlayOpen = false;
+    this.service.postJSON(this.componentForm.value);
+    this.componentForm.reset();
   }
-  override cancelForm(){
-    this.overlayOpen = false
-    this.componentForm.reset()
+  cancelForm(){
+    this.overlayOpen = false;
+    this.componentForm.reset();
   }
   
   //Constructor
-  constructor(screenService: ScreenSizeService, global: GlobalVariablesService, public service: ExperienciaService) {
-    super(screenService, global);
+  constructor(screenService: ScreenSizeService, global: GlobalVariablesService, public service: ExperienciaRequestsService, login: LoginService) {
+    super(screenService, global, login);
   }
 }

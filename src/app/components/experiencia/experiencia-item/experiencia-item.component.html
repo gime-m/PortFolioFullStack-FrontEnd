@@ -1,32 +1,31 @@
 <div class="card my-card">
 
   <div class="card-header card-header-footer">
-    <p class="card-footer-header-text">{{expPlace}}</p>
+    <p class="card-footer-header-text">{{expObject?.lugar}}</p>
     
     <div class="card-butttons-container">
-      <app-edit-button class="edit-button"  (click)="overlayOpen=true" [style.visibility]="!service.editing? 'hidden': 'visible'"></app-edit-button>
-      
-      <app-delete-button (click)="deleteCard()" [style.visibility]="!service.editing? 'hidden': 'visible'"></app-delete-button>
+        <app-edit-button class="edit-button" [style.visibility]="!login.logedIn? 'hidden': 'visible'" (click)="overlayOpen=true"></app-edit-button>
+        <app-delete-button (click)="deleteCard()" [style.visibility]="!login.logedIn? 'hidden': 'visible'"></app-delete-button>
     </div>
-
+    
   </div>
 
   <div class="card-body">
-       <h5 class="card-title my-card-title">{{expTitle}}</h5>
-       <p class="card-text card-descripcion">{{expText}}</p>
+       <h5 class="card-title my-card-title">{{expObject?.titulo}}</h5>
+       <p class="card-text card-descripcion">{{expObject?.descripcion}}</p>
   </div>
 
   <div class="card-footer card-header-footer">
 
-    <p class="card-footer-header-text" *ngIf="(expStartDate != null)&&(expEndDate != null)&&(expCurrent==false)">{{expStartDate|date:'mediumDate'}} - {{expEndDate | date:'mediumDate'}}</p>
+    <p class="card-footer-header-text" *ngIf="(expObject?.fechaInicio != null)&&(expObject?.fechaFin != null)&&(expObject?.isCurrent==false)">{{expObject?.fechaInicio|date:'mediumDate'}} - {{expObject?.fechaFin | date:'mediumDate'}}</p>
 
-    <p class="card-footer-header-text" *ngIf="(expStartDate != null)&&(expCurrent==true)">{{expStartDate | date:'mediumDate'}} - presente</p>
+    <p class="card-footer-header-text" *ngIf="(expObject?.fechaInicio != null)&&(expObject?.isCurrent==true)">{{expObject?.fechaInicio | date:'mediumDate'}} - presente</p>
 
-    <p class="card-footer-header-text" *ngIf="(expStartDate != null)&&(expEndDate == null)&&(expCurrent==false)">{{expStartDate | date:'mediumDate'}}</p>
+    <p class="card-footer-header-text" *ngIf="(expObject?.fechaInicio != null)&&(expObject?.fechaFin == null)&&(expObject?.isCurrent==false)">{{expObject?.fechaInicio | date:'mediumDate'}}</p>
 
-    <p class="card-footer-header-text" *ngIf="(expStartDate == null)&&(expCurrent==true)">Actualmente</p>
+    <p class="card-footer-header-text" *ngIf="(expObject?.fechaInicio == null)&&(expObject?.isCurrent==true)">Actualmente</p>
 
-    <p class="card-footer-header-text"*ngIf="(expStartDate == null)&&(expEndDate != null)&&(expCurrent==false)">{{expEndDate | date:'mediumDate'}}</p>
+    <p class="card-footer-header-text"*ngIf="(expObject?.fechaInicio == null)&&(expObject?.fechaFin != null)&&(expObject?.isCurrent==false)">{{expObject?.fechaFin | date:'mediumDate'}}</p>
 
   </div>
 </div>
@@ -47,48 +46,48 @@
         <div class="overlay-scrollable-inputs">
             <div>
                 <label for="title-id" class="overlay-text">Título: </label>
-                <input id="title-id" type="text" formControlName="titleForm" class="overlay-input">   
+                <input id="title-id" type="text" formControlName="titulo" class="overlay-input">   
             </div>
             <br>
             <div>
                 <label for="text-id" class="overlay-text">Descripción (opcional): </label>
-                <input id="text-id" type="text" formControlName="textForm" class="overlay-input">
+                <input id="text-id" type="text" formControlName="descripcion" class="overlay-input">
             </div>    
             <br>
             <div>
                 <label for="place-id" class="overlay-text">Lugar (opcional): </label>
-                <input id="place-id" type="text" formControlName="placeForm" class="overlay-input">
+                <input id="place-id" type="text" formControlName="lugar" class="overlay-input">
             </div>    
             <br>
             <div>
                 <label for="start-date-id" class="overlay-text">Fecha de inicio (opcional): </label>
-                <input id="start-date-id" type="date" formControlName="startDateForm" class="overlay-input">
+                <input id="start-date-id" type="date" formControlName="fechaInicio" class="overlay-input">
             </div>          
             <br>
             <div>
                 <label for="end-date-id" class="overlay-text">Fecha de finalización (opcional): </label>
-                <input id="end-date-id" type="date" formControlName="endDateForm" class="overlay-input">
+                <input id="end-date-id" type="date" formControlName="fechaFin" class="overlay-input">
             </div> 
             <br>
             <div>
                 <label for="current-id" class="overlay-text">Es tu trabajo actual?: </label>
-                <input id="current-id" type="checkbox" formControlName="currentForm">
+                <input id="current-id" type="checkbox" formControlName="isCurrent">
             </div> 
         </div>
       
           <div class="overlay-alerts-buttons-container"> 
               <!--Alertas-->
               <div class="overlay-alerts-container">
-                  <div *ngIf="titleForm?.errors?.['required']  && (titleForm?.dirty || titleForm?.touched)">
+                  <div *ngIf="titulo?.errors?.['required']  && (titulo?.dirty || titulo?.touched)">
                       <p class="overlay-alert-text">Escribe un título para el ítem.</p>
                   </div>
-                  <div *ngIf="titleForm?.errors?.['maxLenght']  && (titleForm?.dirty || titleForm?.touched)">
+                  <div *ngIf="titulo?.errors?.['maxLenght']  && (titulo?.dirty || titulo?.touched)">
                       <p class="overlay-alert-text">El título no puede superar los 60 caracteres.</p>
                   </div>
-                  <div *ngIf="textForm?.errors?.['maxLenght']  && (textForm?.dirty || textForm?.touched)">
+                  <div *ngIf="descripcion?.errors?.['maxLenght']  && (descripcion?.dirty || descripcion?.touched)">
                       <p class="overlay-alert-text">La descripción no puede superar los 250 caracteres.</p>
                   </div>
-                  <div *ngIf="placeForm?.errors?.['maxLenght']  && (placeForm?.dirty || placeForm?.touched)">
+                  <div *ngIf="lugar?.errors?.['maxLenght']  && (lugar?.dirty || lugar?.touched)">
                       <p class="overlay-alert-text">El lugar no puede superar los 50 caracteres.</p>
                   </div>
               </div>

@@ -1,32 +1,31 @@
 <div class="card my-card">
 
     <div class="card-header card-header-footer">
-      <p class="card-footer-header-text">{{edInstitucion}}</p>
+      <p class="card-footer-header-text">{{educObject?.institucion}}</p>
       
       <div class="card-butttons-container">
-        <app-edit-button class="edit-button" [style.visibility]="!service.editing? 'hidden': 'visible'" (click)="overlayOpen=true"></app-edit-button>
-        
-        <app-delete-button (click)="deleteCard()" [style.visibility]="!service.editing? 'hidden': 'visible'"></app-delete-button>
+        <app-edit-button class="edit-button" [style.visibility]="!login.logedIn? 'hidden': 'visible'" (click)="overlayOpen=true"></app-edit-button>
+        <app-delete-button (click)="deleteCard()" [style.visibility]="!login.logedIn? 'hidden': 'visible'"></app-delete-button>
       </div>
   
     </div>
   
     <div class="card-body">
-         <h5 class="card-title my-card-title">{{edTitulo}}</h5>
-         <p class="card-text card-descripcion">{{edDescripcion}}</p>
+         <h5 class="card-title my-card-title">{{educObject?.titulo}}</h5>
+         <p class="card-text card-descripcion">{{educObject?.descripcion}}</p>
     </div>
   
     <div class="card-footer card-header-footer">
   
-      <p class="card-footer-header-text" *ngIf="(edStartDate != null)&&(edEndDate != null)&&(edCurrent==false)">{{edStartDate|date:'mediumDate'}} - {{edEndDate | date:'mediumDate'}}</p>
+      <p class="card-footer-header-text" *ngIf="(educObject?.fechaInicio != null)&&(educObject?.fechaFin != null)&&(educObject?.isCurrent==false)">{{educObject?.fechaInicio|date:'mediumDate'}} - {{educObject?.fechaFin | date:'mediumDate'}}</p>
   
-      <p class="card-footer-header-text" *ngIf="(edStartDate != null)&&(edCurrent==true)">{{edStartDate | date:'mediumDate'}} - presente</p>
+      <p class="card-footer-header-text" *ngIf="(educObject?.fechaInicio != null)&&(educObject?.isCurrent==true)">{{educObject?.fechaInicio | date:'mediumDate'}} - presente</p>
   
-      <p class="card-footer-header-text" *ngIf="(edStartDate != null)&&(edEndDate == null)&&(edCurrent==false)">{{edStartDate | date:'mediumDate'}}</p>
+      <p class="card-footer-header-text" *ngIf="(educObject?.fechaInicio != null)&&(educObject?.fechaFin == null)&&(educObject?.isCurrent==false)">{{educObject?.fechaInicio | date:'mediumDate'}}</p>
   
-      <p class="card-footer-header-text" *ngIf="(edStartDate == null)&&(edCurrent==true)">Actualmente</p>
+      <p class="card-footer-header-text" *ngIf="(educObject?.fechaInicio == null)&&(educObject?.isCurrent==true)">Actualmente</p>
   
-      <p class="card-footer-header-text" *ngIf="(edStartDate == null)&&(edEndDate != null)&&(edCurrent==false)">{{edEndDate | date:'mediumDate'}}</p>
+      <p class="card-footer-header-text" *ngIf="(educObject?.fechaInicio == null)&&(educObject?.fechaFin != null)&&(educObject?.isCurrent==false)">{{educObject?.fechaFin | date:'mediumDate'}}</p>
   
     </div>
 </div>
@@ -46,47 +45,47 @@
             <div class="overlay-scrollable-inputs">
                 <div>
                     <label for="titulo-id" class="overlay-text">Título: </label>
-                    <input id="titulo-id" type="text" formControlName="tituloForm" class="overlay-input">   
+                    <input id="titulo-id" type="text" formControlName="titulo" class="overlay-input">   
                 </div>
                 <br>
                 <div>
                     <label for="institucion-id" class="overlay-text">Institución (opcional): </label>
-                    <input id="institucion-id" type="text" formControlName="institucionForm" class="overlay-input">
+                    <input id="institucion-id" type="text" formControlName="institucion" class="overlay-input">
                 </div>    
                 <br>
                 <div>
                     <label for="descripcion-id" class="overlay-text">Descripción (opcional): </label>
-                    <input id="descripcion-id" type="text" formControlName="descripcionForm" class="overlay-input">
+                    <input id="descripcion-id" type="text" formControlName="descripcion" class="overlay-input">
                 </div>    
                 <br>
                 <div>
                     <label for="start-date-id" class="overlay-text">Fecha de inicio (opcional): </label>
-                    <input id="start-date-id" type="date" formControlName="startDateForm" class="overlay-input">
+                    <input id="start-date-id" type="date" formControlName="fechaInicio" class="overlay-input">
                 </div>          
                 <br>
                 <div>
                     <label for="end-date-id" class="overlay-text">Fecha de finalización (opcional): </label>
-                    <input id="end-date-id" type="date" formControlName="endDateForm" class="overlay-input">
+                    <input id="end-date-id" type="date" formControlName="fechaFin" class="overlay-input">
                 </div> 
                 <br>
                 <div>
                     <label for="current-id" class="overlay-text">Realizas actualmente este curso?: </label>
-                    <input id="current-id" type="checkbox" formControlName="currentForm">
+                    <input id="current-id" type="checkbox" formControlName="isCurrent">
                 </div>        
             </div>
         
             <div class="overlay-alerts-buttons-container"> 
                 <!--Alertas-->
-                <div *ngIf="tituloForm?.errors?.['required']  && (tituloForm?.dirty || tituloForm?.touched)">
+                <div *ngIf="titulo?.errors?.['required']  && (titulo?.dirty || titulo?.touched)">
                     <p class="overlay-alert-text">Escribe un título para el ítem.</p>
                 </div>
-                <div *ngIf="tituloForm?.errors?.['maxLenght']  && (tituloForm?.dirty || tituloForm?.touched)">
+                <div *ngIf="titulo?.errors?.['maxLenght']  && (titulo?.dirty || titulo?.touched)">
                     <p class="overlay-alert-text">El título no puede superar los 100 caracteres.</p>
                 </div>
-                <div *ngIf="institucionForm?.errors?.['maxLenght']  && (institucionForm?.dirty || institucionForm?.touched)">
+                <div *ngIf="institucion?.errors?.['maxLenght']  && (institucion?.dirty || institucion?.touched)">
                     <p class="overlay-alert-text">La institución no puede superar los 60 caracteres.</p>
                 </div>
-                <div *ngIf="descripcionForm?.errors?.['maxLenght']  && (descripcionForm?.dirty || descripcionForm?.touched)">
+                <div *ngIf="descripcion?.errors?.['maxLenght']  && (descripcion?.dirty || descripcion?.touched)">
                     <p class="overlay-alert-text">El lugar no puede superar los 250 caracteres.</p>
                 </div>
 
@@ -105,83 +104,3 @@
         </form>
     </div>
 </div>
-
-<!--div class="modal"  tabindex="-1" [ngStyle]="{'display':modalDisplay}">
-    <div class="modal-dialog">
-        <div class="modal-content overlay-container">
-
-            <div class="modal-body">
-                
-                <p class="overlay-title">Edita este ítem.</p>
-                <hr class="overlay-hr">
-  
-                
-                <form [formGroup]="componentForm" (ngSubmit)="submitForm()" style="display: flex; flex-direction: column; height: 70vh;">
-
-                   
-                    <div style="overflow-y: scroll ">
-                        <div>
-                            <label for="titulo-id" class="overlay-text">Título: </label>
-                            <input id="titulo-id" type="text" formControlName="tituloForm" class="overlay-input">   
-                        </div>
-                        <br>
-                        <div>
-                            <label for="institucion-id" class="overlay-text">Institución (opcional): </label>
-                            <input id="institucion-id" type="text" formControlName="institucionForm" class="overlay-input">
-                        </div>    
-                        <br>
-                        <div>
-                            <label for="descripcion-id" class="overlay-text">Descripción (opcional): </label>
-                            <input id="descripcion-id" type="text" formControlName="descripcionForm" class="overlay-input">
-                        </div>    
-                        <br>
-                        <div>
-                            <label for="start-date-id" class="overlay-text">Fecha de inicio (opcional): </label>
-                            <input id="start-date-id" type="date" formControlName="startDateForm" class="overlay-input">
-                        </div>          
-                        <br>
-                        <div>
-                            <label for="end-date-id" class="overlay-text">Fecha de finalización (opcional): </label>
-                            <input id="end-date-id" type="date" formControlName="endDateForm" class="overlay-input">
-                        </div> 
-                        <br>
-                        <div>
-                            <label for="current-id" class="overlay-text">Realizas actualmente este curso?: </label>
-                            <input id="current-id" type="checkbox" formControlName="currentForm">
-                        </div> 
-                    </div>
-        
-                    <div class="overlay-alerts-buttons-container"> 
-                        
-                        <div class="overlay-alerts-container">
-                            <div *ngIf="tituloForm?.errors?.['required']  && (tituloForm?.dirty || tituloForm?.touched)">
-                                <p class="overlay-alert-text">Escribe un título para el ítem.</p>
-                            </div>
-                            <div *ngIf="tituloForm?.errors?.['maxLenght']  && (tituloForm?.dirty || tituloForm?.touched)">
-                                <p class="overlay-alert-text">El título no puede superar los 100 caracteres.</p>
-                            </div>
-                            <div *ngIf="institucionForm?.errors?.['maxLenght']  && (institucionForm?.dirty || institucionForm?.touched)">
-                                <p class="overlay-alert-text">La institución no puede superar los 60 caracteres.</p>
-                            </div>
-                            <div *ngIf="descripcionForm?.errors?.['maxLenght']  && (descripcionForm?.dirty ||      descripcionForm?.touched)">
-                                <p class="overlay-alert-text">El lugar no puede superar los 250 caracteres.</p>
-                            </div>
-                        </div>
-  
-                        
-                        <div class="overlay-buttons-container">
-                            <button type="submit" class="btn btn-outline my-button" [disabled]="!componentForm.valid">
-                                <p *ngIf="!smallScreen" class="button-text">Guardar</p>
-                                <img [src]="global.checkIcon" alt="Guardar" *ngIf="smallScreen" class="button-icon"> 
-                            </button>
-                            <button type="button" class="btn btn-outline my-button" (click)="cancelForm()">
-                                <p *ngIf="!smallScreen" class="button-text">Cancelar</p>
-                                <img [src]="global.xIcon" alt="Cancelar" *ngIf="smallScreen" class="button-icon">
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div-->

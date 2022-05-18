@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { GlobalVariablesService } from 'src/app/services/global-variables.service';
+import { SkillRequestsService } from 'src/app/services/http-requests/skill-requests.service';
+import { LoginService } from 'src/app/services/login.service';
 import { ScreenSizeService } from 'src/app/services/screen-size.service';
-import { SkillsService } from 'src/app/services/skills.service';
 import { BaseComponent } from '../base/base.component';
 
 @Component({
@@ -12,33 +13,32 @@ import { BaseComponent } from '../base/base.component';
 })
 export class SkillsComponent extends BaseComponent implements OnInit{
 
-  items = this.service.items;
-
   //Form añadir
   componentForm = new FormGroup({
-    titleForm: new FormControl("", [Validators.required, Validators.maxLength(25)]),
-    descriptionForm: new FormControl("",[Validators.maxLength(150)]),
-    valueForm: new FormControl(0,[Validators.max(100), Validators.min(0), Validators.required]),
-    labelForm: new FormControl("", [Validators.maxLength(25)]),
+    titulo: new FormControl("", [Validators.required, Validators.maxLength(25)]),
+    descripcion: new FormControl("",[Validators.maxLength(150)]),
+    valor: new FormControl(0,[Validators.max(100), Validators.min(0), Validators.required]),
+    etiqueta: new FormControl("", [Validators.maxLength(25)]),
+    personaId: new FormControl (this.service.personaId)
   })
 
-  get titleForm() { return this.componentForm.get('titleForm'); }
-  get descriptionForm() { return this.componentForm.get('descriptionForm'); }
-  get valueForm() { return this.componentForm.get('valueForm'); }
-  get labelForm() { return this.componentForm.get('labelForm'); }
+  get titulo() { return this.componentForm.get('titulo'); }
+  get descripcion() { return this.componentForm.get('descripcion'); }
+  get valor() { return this.componentForm.get('valor'); }
+  get etiqueta() { return this.componentForm.get('etiqueta'); }
 
-  override submitForm() {
-    this.overlayOpen = false,
-    this.service.addItem(this.titleForm?.value, this.descriptionForm?.value, this.valueForm?.value, this.labelForm?.value)
-    this.componentForm.reset()
+  submitForm() {
+    this.overlayOpen = false;
+    this.service.postJSON(this.componentForm.value);
+    this.componentForm.reset();
   }
-  override cancelForm(){
-    this.overlayOpen = false
-    this.componentForm.reset()
+  cancelForm(){
+    this.overlayOpen = false;
+    this.componentForm.reset();
   }
   
-  constructor(screenService: ScreenSizeService, global: GlobalVariablesService, public service: SkillsService) {
-    super(screenService, global);
+  constructor(screenService: ScreenSizeService, global: GlobalVariablesService, public service: SkillRequestsService, login: LoginService) {
+    super(screenService, global, login);
   }
 
 }

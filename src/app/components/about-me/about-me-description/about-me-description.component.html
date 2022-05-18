@@ -1,13 +1,13 @@
-<div  (mouseenter)="showEditButton = true" (mouseleave)="showEditButton = false">
+<div >
 
     <!--Título + Botón de editar-->
     <div class="about-header">
         <h6 class="about-title"> Acerca de mí</h6>
-        <app-edit-button [hidden]="!showEditButton" (click)="overlayOpen=true"></app-edit-button>
+        <app-edit-button [style.visibility]="!login.logedIn? 'hidden': 'visible'"  (click)="clickEditButton()"></app-edit-button>
     </div>
     
     <!--Texto sobre mí-->
-    <p class="info">{{global.sobreMi}}</p>  
+    <p class="info">{{pers.persona?.descripcion}}</p>  
 </div>
 
 <!--Overlay para la edición de Sobre Mí-->
@@ -22,36 +22,38 @@
         </label>        
     
         <!--Input-->
-        <textarea  id="about-me-id" [rows]="smallScreen ? '16' : '10'" type="text" class="form-control overlay-input"  [formControl]="componentForm" requiered (ngSubmit)="submitForm()"></textarea>
-
-        <div class="overlay-alerts-buttons-container">
+        <form [formGroup]="form.componentForm" (ngSubmit)="submitForm()">
+            <textarea  id="about-me-id" [rows]="smallScreen ? '16' : '10'" type="text" class="form-control overlay-input"  formControlName="descripcion"></textarea>      
+        
+            <div class="overlay-alerts-buttons-container">
             
-            <!--Alertas-->
-            <div class="overlay-alerts-container">
-                <div *ngIf="componentForm.errors?.['required']  && (componentForm.dirty || componentForm.touched)">
-                    <p class="overlay-alert-text">La descripción es obligatoria.</p>
+                <!--Alertas-->
+                <div class="overlay-alerts-container">
+                    <div *ngIf="form.descripcion?.errors?.['required']  && (form.descripcion?.dirty || form.descripcion?.touched)">
+                        <p class="overlay-alert-text">La descripción es obligatoria.</p>
+                    </div>
+                    <div *ngIf="form.descripcion?.errors?.['minlength']  && (form.descripcion?.dirty || form.descripcion?.touched)">
+                        <p class="overlay-alert-text">Escribe una descripción de al menos 100 carateres.</p>
+                    </div>
+                    <div *ngIf="form.descripcion?.errors?.['maxlength']  && (form.descripcion?.dirty || form.descripcion?.touched)">
+                        <p class="overlay-alert-text">Tu descripción no puede superar los 600 carateres.</p>
+                    </div> 
                 </div>
-                <div *ngIf="componentForm.errors?.['minlength']  && (componentForm.dirty || componentForm.touched)">
-                    <p class="overlay-alert-text">Escribe una descripción de al menos 100 carateres.</p>
+
+                <!--Botones-->
+                <div class="overlay-buttons-container">
+
+                    <button type="submit" class="btn btn-outline my-button" [disabled]="!form.componentForm.valid" (click)="submitForm()">
+                        <p *ngIf="!smallScreen" class="button-text">Guardar</p>
+                        <img [src]="global.checkIcon" alt="Guardar" *ngIf="smallScreen" class="button-icon"> 
+                    </button>
+
+                    <button type="button" class="btn btn-outline my-button" (click)="cancelForm()">
+                        <p *ngIf="!smallScreen" class="button-text">Cancelar</p>
+                        <img [src]="global.xIcon" alt="Cancelar" *ngIf="smallScreen" class="button-icon">
+                    </button>
                 </div>
-                <div *ngIf="componentForm.errors?.['maxlength']  && (componentForm.dirty || componentForm.touched)">
-                    <p class="overlay-alert-text">Tu descripción no puede superar los 600 carateres.</p>
-                </div> 
             </div>
-
-            <!--Botones-->
-            <div class="overlay-buttons-container">
-
-                <button type="submit" class="btn btn-outline my-button" [disabled]="!componentForm.valid" (click)="submitForm()">
-                    <p *ngIf="!smallScreen" class="button-text">Guardar</p>
-                    <img [src]="global.checkIcon" alt="Guardar" *ngIf="smallScreen" class="button-icon"> 
-                </button>
-
-                <button type="button" class="btn btn-outline my-button" (click)="cancelForm()">
-                    <p *ngIf="!smallScreen" class="button-text">Cancelar</p>
-                    <img [src]="global.xIcon" alt="Cancelar" *ngIf="smallScreen" class="button-icon">
-                </button>
-            </div>
-        </div>
+        </form>
     </div>
 </div>

@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators, FormGroup } from '@angular/forms';
 
 import { BaseComponent } from '../../base/base.component';
 import { ScreenSizeService } from 'src/app/services/screen-size.service';
 import { GlobalVariablesService } from 'src/app/services/global-variables.service';
+import { LoginService } from 'src/app/services/login.service';
+import { PersonaFormService } from 'src/app/services/persona-form.service';
+import { PersonaVariablesService } from 'src/app/services/http-requests/persona-variables.service'; 
 
 @Component({
   selector: 'app-about-me-info',
@@ -19,15 +21,7 @@ export class AboutMeInfoComponent extends BaseComponent implements OnInit {
   private _emailIcon: string = "assets/icons/envelope.svg";
   private _phoneIcon: string = "assets/icons/telephone-fill.svg";
 
-  //Form
-  componentForm = new FormGroup({
-    locationForm: new FormControl(this.global.location, [Validators.required, Validators.maxLength(60)]),
-    workplaceForm: new FormControl(this.global.workplace, [Validators.required, Validators.maxLength(60)],),
-    emailForm: new FormControl(this.global.email, [Validators.required, Validators.email, Validators.maxLength(60)], ),
-    phoneForm: new FormControl(this.global.phone, [Validators.required, Validators.maxLength(25), Validators.pattern("^[+]?[0-9()-\\s]+$"),]),
-  })
-
-  //iconos getters
+  //getters
   public get locationIcon(): string {
     return this._locationIcon;
   }
@@ -41,30 +35,23 @@ export class AboutMeInfoComponent extends BaseComponent implements OnInit {
     return this._phoneIcon;
   }
 
-  //Form getters
-  get locationForm() { return this.componentForm.get('locationForm'); }
-  get workplaceForm() { return this.componentForm.get('workplaceForm'); }
-  get emailForm() { return this.componentForm.get('emailForm'); }
-  get phoneForm() { return this.componentForm.get('phoneForm'); }
-
   //Form methods
-  override submitForm() {
-    this.overlayOpen = false
-    this.global.location=this.locationForm?.value,
-    this.global.workplace=this.workplaceForm?.value
-    this.global.email=this.emailForm?.value
-    this.global.phone=this.phoneForm?.value
+  submitForm() {
+    this.form.submit();
+    this.overlayOpen = false;
   }
-  override cancelForm(){
-    this.overlayOpen = false
-    this.locationForm?.setValue(this.global.location),
-    this.workplaceForm?.setValue(this.global.workplace)
-    this.emailForm?.setValue(this.global.email)
-    this.phoneForm?.setValue(this.global.phone)
+  cancelForm(){
+    this.overlayOpen = false;
+    this.form.default();
+  }
+  clickEditButton(){
+    this.form.default();
+    this.overlayOpen=true;
   }
 
   //Constructor
-  constructor(screenService: ScreenSizeService, global: GlobalVariablesService) {
-    super(screenService, global);
+  constructor(screenService: ScreenSizeService, global: GlobalVariablesService, login: LoginService,public pers: PersonaVariablesService, public form: PersonaFormService) {
+    super(screenService, global, login);
   }
+
 }

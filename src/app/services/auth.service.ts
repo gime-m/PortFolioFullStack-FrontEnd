@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import {HttpClientModule, HttpClient} from '@angular/common/http'
+import { HttpClient } from '@angular/common/http'
 import { Router } from '@angular/router';
-
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,29 @@ import { Router } from '@angular/router';
 
 export class AuthService {
 
+  url="https://localhost:4200/api/auth/login";
+  currentUserSubject: BehaviorSubject<any>;
+
+  constructor(private http: HttpClient){
+    this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(sessionStorage.getItem('currentUseer') || '{}'))
+  }
+
+  IniciarSesion(credenciales:any):Observable<any> {
+    return this.http.post(this.url, credenciales).pipe(
+      map(data=>{
+        sessionStorage.setItem('currentUser',JSON.stringify(data));
+        return data;
+      })
+    )
+  }
+
+
+
+
+
+
+  
+  /*
   api = 'https://localhost:4200/api'; 
   token: any;
 
@@ -28,6 +52,7 @@ export class AuthService {
   public get logedIn() : boolean {
     return (localStorage.getItem('token') !== null);
   }
+  */
 
 
 }

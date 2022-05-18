@@ -1,27 +1,27 @@
 <!--Información personal-->
-<div class="personal-info" (mouseenter)="showEditButton = true" (mouseleave)="showEditButton = false">
+<div class="personal-info">
         
     <div class="personal-info-item">
         <img [src]="locationIcon" alt="Ubicación">
-        <p class="personal-info-text">{{global.location}}</p>
+        <p class="personal-info-text">{{pers.persona?.ubicacion}}</p>
     </div>
 
     <div class="personal-info-item">
         <img [src]="workplaceIcon" alt="Lugar de trabajo o estudio">
-        <p class="personal-info-text">{{global.workplace}}</p>
+        <p class="personal-info-text">{{pers.persona?.lugarTrabajo}}</p>
     </div>
 
     <div class="personal-info-item">
         <img [src]="emailIcon" alt="Dirección de email">
-        <p class="personal-info-text personal-email">{{global.email}}</p>
+        <p class="personal-info-text personal-email">{{pers.persona?.email}}</p>
     </div>
 
     <div class="personal-info-item">
         <img [src]="phoneIcon" alt="Número de teléfono">
-        <p class="personal-info-text">{{global.phone}}</p>
+        <p class="personal-info-text">{{pers.persona?.telefono}}</p>
     </div>
 
-    <app-edit-button [hidden]="!showEditButton" (click)="overlayOpen=true" class="edit-button-here"></app-edit-button>
+    <app-edit-button [style.visibility]="!login.logedIn? 'hidden': 'visible'" (click)="clickEditButton()" class="edit-button-here"></app-edit-button>
 </div>
 
 
@@ -36,76 +36,76 @@
         <hr class="overlay-hr">
 
         <!--Formulario-->
-        <form [formGroup]="componentForm" (ngSubmit)="submitForm()">
+        <form [formGroup]="form.componentForm" (ngSubmit)="submitForm()">
             <div>
                 <label for="location-id" class="overlay-text">Ubicación: </label>
-                <input id="location-id" type="text" formControlName="locationForm" class="overlay-input">   
+                <input id="location-id" type="text" formControlName="ubicacion" class="overlay-input">   
             </div>
             <br>
             <div>
                 <label for="workplace-id" class="overlay-text">Lugar de trabajo/estudio: </label>
-                <input id="workplace-id" type="text" formControlName="workplaceForm" class="overlay-input">
+                <input id="workplace-id" type="text" formControlName="lugarTrabajo" class="overlay-input">
             </div>  
             <br>        
             <div>
                 <label for="email-id" class="overlay-text">Dirección de e-mail: </label>
-                <input id="email-id" type="text" formControlName="emailForm" class="overlay-input">
+                <input id="email-id" type="text" formControlName="email" class="overlay-input">
             </div> 
             <br>
             <div>
                 <label for="phone-id" class="overlay-text">Número de teléfono: </label>
-                <input id="phone-id" type="text" formControlName="phoneForm" class="overlay-input">
+                <input id="phone-id" type="text" formControlName="telefono" class="overlay-input">
             </div> 
-        </form>
         
-        <div class="overlay-alerts-buttons-container"> 
-            <!--Alertas-->
-            <div class="overlay-alerts-container">
-                <div *ngIf="locationForm?.errors?.['required']  && (locationForm?.dirty || locationForm?.touched)">
-                    <p class="overlay-alert-text">Escribe tu ubicación.</p>
-                </div>
-                <div *ngIf="workplaceForm?.errors?.['required']  && (workplaceForm?.dirty || workplaceForm?.touched)">
-                    <p class="overlay-alert-text">Escribe tu lugar de trabajo.</p>
-                </div>
-                <div *ngIf="emailForm?.errors?.['required']  && (emailForm?.dirty || emailForm?.touched)">
-                    <p class="overlay-alert-text">Escribe tu dirección de e-mail.</p>
-                </div>
-                <div *ngIf="phoneForm?.errors?.['required']  && (phoneForm?.dirty || phoneForm?.touched)">
-                    <p class="overlay-alert-text">Escribe tu número de teléfono.</p>
-                </div>
-                <div *ngIf="emailForm?.errors?.['email']  && (emailForm?.dirty || emailForm?.touched)">
-                    <p class="overlay-alert-text">Escribe una dirección de e-mail válida.</p>
-                </div>
-                <div *ngIf="phoneForm?.errors?.['pattern']  && (phoneForm?.dirty || phoneForm?.touched)">
-                    <p class="overlay-alert-text">Escribe un número de teléfono válido.</p>
-                </div>
+        
+            <div class="overlay-alerts-buttons-container"> 
+                <!--Alertas-->
+                <div class="overlay-alerts-container">
+                    <div *ngIf="form.ubicacion?.errors?.['required']  && (form.ubicacion?.dirty || form.ubicacion?.touched)">
+                        <p class="overlay-alert-text">Escribe tu ubicación.</p>
+                    </div>
+                    <div *ngIf="form.lugarTrabajo?.errors?.['required']  && (form.lugarTrabajo?.dirty || form.lugarTrabajo?.touched)">
+                        <p class="overlay-alert-text">Escribe tu lugar de trabajo.</p>
+                    </div>
+                    <div *ngIf="form.email?.errors?.['required']  && (form.email?.dirty || form.email?.touched)">
+                        <p class="overlay-alert-text">Escribe tu dirección de e-mail.</p>
+                    </div>
+                    <div *ngIf="form.telefono?.errors?.['required']  && (form.telefono?.dirty || form.telefono?.touched)">
+                        <p class="overlay-alert-text">Escribe tu número de teléfono.</p>
+                    </div>
+                    <div *ngIf="form.email?.errors?.['email']  && (form.email?.dirty || form.email?.touched)">
+                        <p class="overlay-alert-text">Escribe una dirección de e-mail válida.</p>
+                    </div>
+                    <div *ngIf="form.telefono?.errors?.['pattern']  && (form.telefono?.dirty || form.telefono?.touched)">
+                        <p class="overlay-alert-text">Escribe un número de teléfono válido.</p>
+                    </div>
                 
-                <div *ngIf="locationForm?.errors?.['maxLenght']  && (locationForm?.dirty || locationForm?.touched)">
-                    <p class="overlay-alert-text">Tu ubicación no puede tener más de 60 caracteres.</p>
+                    <div *ngIf="form.ubicacion?.errors?.['maxLenght']  && (form.ubicacion?.dirty || form.ubicacion?.touched)">
+                        <p class="overlay-alert-text">Tu ubicación no puede tener más de 60 caracteres.</p>
+                    </div>
+                    <div *ngIf="form.lugarTrabajo?.errors?.['maxLenght']  && (form.lugarTrabajo?.dirty || form.lugarTrabajo?.touched)">
+                        <p class="overlay-alert-text">Tu lugar de trabajo no puede tener más de 60 caracteres.</p>
+                    </div>
+                    <div *ngIf="form.email?.errors?.['maxLenght']  && (form.email?.dirty || form.email?.touched)">
+                        <p class="overlay-alert-text">Tu dirección de e-mail no puede tener más de 60 caracteres.</p>
+                    </div>
+                    <div *ngIf="form.telefono?.errors?.['maxLenght']  && (form.telefono?.dirty || form.telefono?.touched)">
+                        <p class="overlay-alert-text">Tu número de teléfono no puede tener más de 25 caracteres.</p>
+                    </div> 
                 </div>
-                <div *ngIf="workplaceForm?.errors?.['maxLenght']  && (workplaceForm?.dirty || workplaceForm?.touched)">
-                    <p class="overlay-alert-text">Tu lugar de trabajo no puede tener más de 60 caracteres.</p>
-                </div>
-                <div *ngIf="emailForm?.errors?.['maxLenght']  && (emailForm?.dirty || emailForm?.touched)">
-                    <p class="overlay-alert-text">Tu dirección de e-mail no puede tener más de 60 caracteres.</p>
-                </div>
-                <div *ngIf="phoneForm?.errors?.['maxLenght']  && (phoneForm?.dirty || phoneForm?.touched)">
-                    <p class="overlay-alert-text">Tu número de teléfono no puede tener más de 25 caracteres.</p>
-                </div>
-                
-            </div>
 
-            <!--Botones-->
-            <div class="overlay-buttons-container">
-                <button type="submit" class="btn my-button" [disabled]="!componentForm.valid" (click)="submitForm()">
-                    <p *ngIf="!smallScreen" class="button-text">Guardar</p>
-                    <img [src]="global.checkIcon" alt="Guardar" *ngIf="smallScreen" class="button-icon"> 
-                </button>
-                <button type="button" class="btn my-button" (click)="cancelForm()">
-                    <p *ngIf="!smallScreen" class="button-text">Cancelar</p>
-                    <img [src]="global.xIcon" alt="Cancelar" *ngIf="smallScreen" class="button-icon">
-                </button>
+                <!--Botones-->
+                <div class="overlay-buttons-container">
+                    <button type="submit" class="btn my-button" [disabled]="!form.componentForm.valid" (click)="submitForm()">
+                        <p *ngIf="!smallScreen" class="button-text">Guardar</p>
+                        <img [src]="global.checkIcon" alt="Guardar" *ngIf="smallScreen" class="button-icon"> 
+                    </button>
+                    <button type="button" class="btn my-button" (click)="cancelForm()">
+                        <p *ngIf="!smallScreen" class="button-text">Cancelar</p>
+                        <img [src]="global.xIcon" alt="Cancelar" *ngIf="smallScreen" class="button-icon">
+                    </button>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>

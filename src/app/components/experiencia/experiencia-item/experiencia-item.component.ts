@@ -2,8 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { GlobalVariablesService } from 'src/app/services/global-variables.service';
 import { ScreenSizeService } from 'src/app/services/screen-size.service';
-import { ExperienciaService } from 'src/app/services/experiencia.service';
 import { BaseComponent } from '../../base/base.component';
+import { LoginService } from 'src/app/services/login.service';
+import { ExperienciaRequestsService } from 'src/app/services/http-requests/experiencia-requests.service';
+import { ExpItem } from 'src/app/services/http-requests/model-interfaces';
 
 @Component({
   selector: 'app-experiencia-item',
@@ -12,60 +14,61 @@ import { BaseComponent } from '../../base/base.component';
 })
 export class ExperienciaItemComponent extends BaseComponent implements OnInit {
 
-  @Input() expTitle: string = "a"
-  @Input() expText: string = ""
-  @Input() expStartDate?: Date
-  @Input() expEndDate?: Date
-  @Input() expCurrent: boolean = false
-  @Input() expPlace: string = ""
-  @Input() expIndex: number = 0
+  @Input() expObject?: ExpItem;
   datepipe: any;
 
   componentForm = new FormGroup({
-    titleForm: new FormControl(this.expTitle, [Validators.required, Validators.maxLength(60)]),
-    textForm: new FormControl(this.expText,[Validators.maxLength(250)]),
-    placeForm: new FormControl(this.expPlace,[Validators.maxLength(50)]),
-    startDateForm: new FormControl(null),
-    endDateForm: new FormControl(null),
-    currentForm: new FormControl(this.expCurrent),
+    id: new FormControl(this.expObject?.id),
+    titulo: new FormControl(this.expObject?.titulo, [Validators.required, Validators.maxLength(60)]),
+    descripcion: new FormControl(this.expObject?.descripcion,[Validators.maxLength(250)]),
+    lugar: new FormControl(this.expObject?.lugar,[Validators.maxLength(50)]),
+    fechaInicio: new FormControl(null),
+    fechaFin: new FormControl(null),
+    isCurrent: new FormControl(this.expObject?.isCurrent),
+    personaId: new FormControl (this.expObject?.personaId)
   })
 
-  get textForm() { return this.componentForm.get('textForm'); }
-  get titleForm() { return this.componentForm.get('titleForm'); }
-  get placeForm() { return this.componentForm.get('placeForm'); }
-  get startDateForm() { return this.componentForm.get('startDateForm'); }
-  get endDateForm() { return this.componentForm.get('endDateForm'); }
-  get currentForm() { return this.componentForm.get('currentForm'); }
+  get id() { return this.componentForm.get('id');}
+  get titulo() { return this.componentForm.get('titulo'); }
+  get descripcion() { return this.componentForm.get('descripcion'); }
+  get lugar() { return this.componentForm.get('lugar'); }
+  get fechaInicio() { return this.componentForm.get('fechaInicio'); }
+  get fechaFin() { return this.componentForm.get('fechaFin'); }
+  get isCurrent() { return this.componentForm.get('isCurrent'); }
+  get personaId() { return this.componentForm.get('personaId');}
 
-  override submitForm() {
-    this.overlayOpen = false,
-    this.service.changeItem (this.expIndex, this.titleForm?.value, this.textForm?.value, this.placeForm?.value, this.startDateForm?.value, this.endDateForm?.value, this.currentForm?.value)
+  submitForm() {
+    this.overlayOpen = false;
+    this.service.putJSON(this.componentForm.value);
   }
 
-  override cancelForm(){
-    this.overlayOpen = false
-    this.setFormDefault()
+  cancelForm(){
+    this.overlayOpen = false;
+    this.setFormDefault();
   }
 
   setFormDefault(){
-    this.textForm?.setValue(this.expText);
-    this.titleForm?.setValue(this.expTitle);
-    this.placeForm?.setValue(this.expPlace);
-    this.startDateForm?.setValue(this.expStartDate);
-    this.endDateForm?.setValue(this.expEndDate);
-    this.currentForm?.setValue(this.expCurrent)
+    if (this.expObject != undefined){
+      this.componentForm.setValue(this.expObject);
+    } else {
+      console.error("Error: Item de experiencia indefinido");
+    }
   }
 
   deleteCard(){
-    this.service.deleteItem(this.expIndex)
+    if (this.expObject != undefined){
+      this.service.deleteJSON(this.expObject?.id); 
+    } else {
+      console.error("Error en solicitud DELETE: objeto indefinido");
+    }
   }
-  
-  constructor(screenService: ScreenSizeService, global: GlobalVariablesService, public service: ExperienciaService) {
-    super(screenService, global);
+ 
+  constructor(screenService: ScreenSizeService, global: GlobalVariablesService, public service: ExperienciaRequestsService, login: LoginService) {
+    super(screenService, global, login);
   }
 
   override ngOnInit(): void {
-    this.setFormDefault()
+    this.setFormDefault();
   }
 
 }

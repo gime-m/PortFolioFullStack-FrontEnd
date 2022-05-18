@@ -4,15 +4,13 @@
         <h5>Educación</h5>
 
         <div class="col-4 component-header-buttons">
-            <app-edit-button (click)="service.editing=true" *ngIf="!service.editing"></app-edit-button>
-            <app-add-button (click)="overlayOpen=true" *ngIf="service.editing"></app-add-button>
-            <app-done-button (click)="service.editing=false" *ngIf="service.editing"></app-done-button>
+            <app-add-button (click)="overlayOpen=true" [style.visibility]="!login.logedIn? 'hidden': 'visible'"></app-add-button>
         </div>
     </div>
     
     <div class="row">
-        <div class="col-4" *ngFor="let item of items, let i = index" style="padding: 12px;">
-            <app-educacion-item [edTitulo]="item.titulo" [edInstitucion]="item.institucion" [edDescripcion]="item.descripcion" [edStartDate]="item.startDate" [edEndDate]="item.endDate" [edCurrent]="item.current" [edIndex]="i"></app-educacion-item>
+        <div class="col-4" *ngFor="let item of service.items" style="padding: 12px;">
+            <app-educacion-item [educObject]="item"></app-educacion-item>
         </div>
     </div>    
 </div>
@@ -33,49 +31,52 @@
             <div class="overlay-scrollable-inputs">
                 <div>
                     <label for="titulo-id" class="overlay-text">Título: </label>
-                    <input id="titulo-id" type="text" formControlName="tituloForm" class="overlay-input">   
+                    <input id="titulo-id" type="text" formControlName="titulo" class="overlay-input">   
                 </div>
                 <br>
                 <div>
                     <label for="institucion-id" class="overlay-text">Institución (opcional): </label>
-                    <input id="institucion-id" type="text" formControlName="institucionForm" class="overlay-input">
+                    <input id="institucion-id" type="text" formControlName="institucion" class="overlay-input">
                 </div>    
                 <br>
                 <div>
                     <label for="descripcion-id" class="overlay-text">Descripción (opcional): </label>
-                    <input id="descripcion-id" type="text" formControlName="descripcionForm" class="overlay-input">
+                    <input id="descripcion-id" type="text" formControlName="descripcion" class="overlay-input">
                 </div>    
                 <br>
                 <div>
                     <label for="start-date-id" class="overlay-text">Fecha de inicio (opcional): </label>
-                    <input id="start-date-id" type="date" formControlName="startDateForm" class="overlay-input">
+                    <input id="start-date-id" type="date" formControlName="fechaInicio" class="overlay-input">
                 </div>          
                 <br>
                 <div>
                     <label for="end-date-id" class="overlay-text">Fecha de finalización (opcional): </label>
-                    <input id="end-date-id" type="date" formControlName="endDateForm" class="overlay-input">
+                    <input id="end-date-id" type="date" formControlName="fechaFin" class="overlay-input">
                 </div> 
                 <br>
                 <div>
                     <label for="current-id" class="overlay-text">Realizas actualmente este curso?: </label>
-                    <input id="current-id" type="checkbox" formControlName="currentForm">
+                    <input id="current-id" type="checkbox" formControlName="isCurrent">
                 </div>        
             </div>
         
             <div class="overlay-alerts-buttons-container"> 
                 <!--Alertas-->
-                <div *ngIf="tituloForm?.errors?.['required']  && (tituloForm?.dirty || tituloForm?.touched)">
-                    <p class="overlay-alert-text">Escribe un título para el ítem.</p>
+                <div class="overlay-alerts-container">
+                    <div *ngIf="titulo?.errors?.['required']  && (titulo?.dirty || titulo?.touched)">
+                        <p class="overlay-alert-text">Escribe un título para el ítem.</p>
+                    </div>
+                    <div *ngIf="titulo?.errors?.['maxLenght']  && (titulo?.dirty || titulo?.touched)">
+                        <p class="overlay-alert-text">El título no puede superar los 100 caracteres.</p>
+                    </div>
+                    <div *ngIf="institucion?.errors?.['maxLenght']  && (institucion?.dirty || institucion?.touched)">
+                        <p class="overlay-alert-text">La institución no puede superar los 60 caracteres.</p>
+                    </div>
+                    <div *ngIf="descripcion?.errors?.['maxLenght']  && (descripcion?.dirty || descripcion?.touched)">
+                        <p class="overlay-alert-text">El lugar no puede superar los 250 caracteres.</p>
+                    </div>
                 </div>
-                <div *ngIf="tituloForm?.errors?.['maxLenght']  && (tituloForm?.dirty || tituloForm?.touched)">
-                    <p class="overlay-alert-text">El título no puede superar los 100 caracteres.</p>
-                </div>
-                <div *ngIf="institucionForm?.errors?.['maxLenght']  && (institucionForm?.dirty || institucionForm?.touched)">
-                    <p class="overlay-alert-text">La institución no puede superar los 60 caracteres.</p>
-                </div>
-                <div *ngIf="descripcionForm?.errors?.['maxLenght']  && (descripcionForm?.dirty || descripcionForm?.touched)">
-                    <p class="overlay-alert-text">El lugar no puede superar los 250 caracteres.</p>
-                </div>
+                
                 <!--Botones-->
                 <div class="overlay-buttons-container">
                     <button type="submit" class="btn btn-outline my-button" [disabled]="!componentForm.valid">
