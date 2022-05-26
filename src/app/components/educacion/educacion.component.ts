@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { GlobalVariablesService } from 'src/app/services/global-variables.service';
 import { ScreenSizeService } from 'src/app/services/screen-size.service';
 import { BaseComponent } from '../base/base.component';
 import { LoginService } from 'src/app/services/login.service';
@@ -42,8 +41,8 @@ export class EducacionComponent extends BaseComponent implements OnInit {
   }
   
   //Constructor
-  constructor(screenService: ScreenSizeService, global: GlobalVariablesService, public service: EducacionRequestsService, login: LoginService) {
-    super(screenService, global, login);
+  constructor(screenService: ScreenSizeService, public service: EducacionRequestsService, login: LoginService) {
+    super(screenService, login);
   }
 
 }

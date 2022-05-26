@@ -6,7 +6,7 @@
 
 /*colores*/
 :root{
-    --main-color: rgb(120, 47, 172);
+    --main-color: rgb(0, 98, 13)    ;  /*rgb(120, 47, 172);*/
     --back-color: whitesmoke;
     --shadow-color: black;
     --light-text-color: rgb(59, 59, 59);

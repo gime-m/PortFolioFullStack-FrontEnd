@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { GlobalVariablesService } from 'src/app/services/global-variables.service';
 import { ScreenSizeService } from 'src/app/services/screen-size.service';
-
 import { BaseComponent } from '../base/base.component';
 import { LoginService } from 'src/app/services/login.service';
 import { ExperienciaRequestsService } from 'src/app/services/http-requests/experiencia-requests.service';
+import { ExpItemPost } from 'src/app/services/model-interfaces';
 
 
 @Component({
@@ -23,7 +22,6 @@ export class ExperienciaComponent extends BaseComponent implements OnInit {
     fechaInicio: new FormControl(null),
     fechaFin: new FormControl(null),
     isCurrent: new FormControl(false),
-    personaId: new FormControl(this.service.personaId)
   })
 
   get titulo() { return this.componentForm.get('titulo'); }
@@ -35,7 +33,9 @@ export class ExperienciaComponent extends BaseComponent implements OnInit {
 
   submitForm() {
     this.overlayOpen = false;
-    this.service.postJSON(this.componentForm.value);
+    let postObj: ExpItemPost = this.componentForm.value
+    postObj.personaId = this.service.personaId
+    this.service.postJSON(postObj);
     this.componentForm.reset();
   }
   cancelForm(){
@@ -44,7 +44,7 @@ export class ExperienciaComponent extends BaseComponent implements OnInit {
   }
   
   //Constructor
-  constructor(screenService: ScreenSizeService, global: GlobalVariablesService, public service: ExperienciaRequestsService, login: LoginService) {
-    super(screenService, global, login);
+  constructor(screenService: ScreenSizeService, public service: ExperienciaRequestsService, login: LoginService) {
+    super(screenService, login);
   }
 }

@@ -5,4 +5,12 @@
     position: fixed; 
     top: 0;
     left: 0;
+    background-position:  50% 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.overlay-container{
+    border-radius: 12px;
+    background-color: rgba(245, 245, 245, 0.834);
 }

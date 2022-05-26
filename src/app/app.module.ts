@@ -4,7 +4,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { registerLocaleData } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -32,9 +32,11 @@ import { DoneButtonComponent } from './components/subcomponents/done-button/done
 import { DeleteButtonComponent } from './components/subcomponents/delete-button/delete-button.component';
 
 import localeEs from '@angular/common/locales/es';
+import { InterceptorService } from './services/auth/interceptor.service';
+import { BaseFormComponent } from './components/base-form/base-form.component';
+import { BannerImageBaseComponent } from './components/banner/banner-image-base/banner-image-base.component';
 registerLocaleData(localeEs, 'es')
 
-//import { OverlayModule } from "@angular/cdk/overlay";
 
 @NgModule({
   declarations: [
@@ -60,6 +62,8 @@ registerLocaleData(localeEs, 'es')
     DeleteButtonComponent,
     LoginComponent,
     PortfolioComponent,
+    BaseFormComponent,
+    BannerImageBaseComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,10 +72,10 @@ registerLocaleData(localeEs, 'es')
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule
-    //OverlayModule
   ],
   providers: [
-    {provide: LOCALE_ID, useValue: "es"}
+    {provide: LOCALE_ID, useValue: "es"},
+    {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}
   ],
   bootstrap: [AppComponent]
 })

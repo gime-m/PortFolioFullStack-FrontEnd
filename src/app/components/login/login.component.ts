@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
-import { GlobalVariablesService } from 'src/app/services/global-variables.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { LoginService } from 'src/app/services/login.service';
 import { ScreenSizeService } from 'src/app/services/screen-size.service';
 import { BaseComponent } from '../base/base.component';
@@ -13,51 +11,39 @@ import { BaseComponent } from '../base/base.component';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent extends BaseComponent implements OnInit{
-
-  logedIn: boolean = false
-  wrongLogIn: boolean = false
-  user: string = "Gimena"
-  password: string = "a"
   
+  backgroundImages: String[] = [] ;
+  random: number = 0;
+
   //Form
   componentForm = new FormGroup({
-    userForm: new FormControl("", [Validators.required]),
-    passwordForm: new FormControl("", [Validators.required]),
+    username: new FormControl("", [Validators.required]),
+    password: new FormControl("", [Validators.required]),
   })
 
   //Form getter
-  get userForm() { return this.componentForm.get('userForm'); }
-  get passwordForm() { return this.componentForm.get('passwordForm');}
+  get username() { return this.componentForm.get('username'); }
+  get password() { return this.componentForm.get('password');}
 
   //Form methods
   submitForm() {
-    if (this.userForm?.value == this.user && this.passwordForm?.value == this.password){
-      this.logedIn = true;
-      this.wrongLogIn = false
-    } else {
-      this.wrongLogIn = true;
-      console.log(this.userForm?.value)
-      console.log(this.passwordForm?.value)
-    }
+    this.auth.iniciarSesion(this.componentForm.value);
     this.componentForm.reset()  
   }
   cancelForm(){
     this.componentForm.reset()
   }
-  
+
+  makeBackgroundImages(){
+    for (let i = 0; i <=5; i++){
+      this.backgroundImages.push('assets/images/login-background/'+(i+1)+'.jpg')
+    }
+  }
+
   //Constructor
-  constructor(screenService: ScreenSizeService, global: GlobalVariablesService, login: LoginService, private auth: AuthService, private route:Router) {
-    super(screenService, global, login);
+  constructor(screenService: ScreenSizeService, login: LoginService, public auth: AuthService) {
+    super(screenService, login);
+    this.makeBackgroundImages();
+    this.random = Math.floor((Math.random()*(this.backgroundImages.length-1)))
   }
-
-
-
-  onEnviar(event: Event){
-    event.preventDefault;
-    this.auth.IniciarSesion(this.componentForm.value).subscribe(data=>{
-      console.log("DATA: "+JSON.stringify(data))
-      this.route.navigate(['/portfolio'])
-    })
-  }
-
 }

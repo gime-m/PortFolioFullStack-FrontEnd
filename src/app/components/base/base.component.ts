@@ -1,5 +1,4 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { GlobalVariablesService } from 'src/app/services/global-variables.service';
 import { LoginService } from 'src/app/services/login.service';
 import { ScreenSizeService } from 'src/app/services/screen-size.service';
 
@@ -27,7 +26,7 @@ export class BaseComponent implements OnInit{
   } 
 
   //Constuctor, OnInit, HostListener
-  constructor(public screenService: ScreenSizeService, public global: GlobalVariablesService, public login: LoginService){}
+  constructor(public screenService: ScreenSizeService, public login: LoginService){}
   
   ngOnInit(): void {
     this.screenService.updateScreenSize(), 

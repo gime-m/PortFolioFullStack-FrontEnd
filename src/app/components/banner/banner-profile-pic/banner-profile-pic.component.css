@@ -1,20 +1,41 @@
 .profile-pic-container{
     display: flex;
     justify-content: center;
-}
-
-#profile-pic{
-    align-self: start;
-    width:80%;
-    max-width: 50vw;
+    align-items: center;
+    position: relative;
     aspect-ratio: 1 / 1;
     border-color:white;
     border-width: 10px;
     border-style: solid;
     border-radius: 50%;
     box-shadow: 0px 0px 10px var(--shadow-color);
-    object-fit: cover;
     margin-top: -40%;
     margin-left: auto;
     margin-right: auto;
+    width:80%;
+    max-width: 50vw;
+}
+
+.profile-pic{
+    align-self: start;
+    width: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
+}
+
+.edit-button{
+    position: absolute;
+    z-index: 200;
+    color: rgb(213, 213, 213);
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.button-text{
+    white-space: nowrap; 
+    text-overflow: ellipsis; 
+    overflow: hidden; 
 }

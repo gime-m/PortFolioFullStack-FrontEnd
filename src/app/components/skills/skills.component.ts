@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { GlobalVariablesService } from 'src/app/services/global-variables.service';
 import { SkillRequestsService } from 'src/app/services/http-requests/skill-requests.service';
 import { LoginService } from 'src/app/services/login.service';
 import { ScreenSizeService } from 'src/app/services/screen-size.service';
@@ -37,8 +36,8 @@ export class SkillsComponent extends BaseComponent implements OnInit{
     this.componentForm.reset();
   }
   
-  constructor(screenService: ScreenSizeService, global: GlobalVariablesService, public service: SkillRequestsService, login: LoginService) {
-    super(screenService, global, login);
+  constructor(screenService: ScreenSizeService, public service: SkillRequestsService, login: LoginService) {
+    super(screenService, login);
   }
 
 }

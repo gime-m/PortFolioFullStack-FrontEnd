@@ -4,14 +4,16 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class LoginService {
+  
+  public isAdmin(): string | null {
+    return sessionStorage.getItem('isAdmin')
+  }
+  
+  public user(): string | null {
+    return sessionStorage.getItem('username');
+  }
 
-  private _logedIn: boolean = true;
-  public get logedIn(): boolean {
-    return this._logedIn;
-  }
-  public set logedIn(value: boolean) {
-    this._logedIn = value;
-  }
+  public editando: boolean = false;
 
   constructor() { }
 }

@@ -1,8 +1,6 @@
 import { Component, OnInit} from '@angular/core';
-
 import { BaseComponent } from '../base/base.component';
 import { ScreenSizeService } from 'src/app/services/screen-size.service';
-import { GlobalVariablesService } from 'src/app/services/global-variables.service';
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({
@@ -13,8 +11,8 @@ import { LoginService } from 'src/app/services/login.service';
 
 export class AboutMeComponent extends BaseComponent implements OnInit {
 
-  constructor(screenService: ScreenSizeService, global: GlobalVariablesService, login: LoginService) {
-    super(screenService, global, login);
+  constructor(screenService: ScreenSizeService, login: LoginService) {
+    super(screenService, login);
   }
 
   

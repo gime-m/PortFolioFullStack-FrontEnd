@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { GlobalVariablesService } from 'src/app/services/global-variables.service';
-import { SkillItem } from 'src/app/services/http-requests/model-interfaces';
+import { SkillItem } from 'src/app/services/model-interfaces';
 import { SkillRequestsService } from 'src/app/services/http-requests/skill-requests.service';
 import { LoginService } from 'src/app/services/login.service';
 import { ScreenSizeService } from 'src/app/services/screen-size.service';
@@ -73,8 +72,8 @@ export class SkillItemComponent extends BaseComponent implements OnInit {
   }
    
 
-  constructor(screenService: ScreenSizeService, global: GlobalVariablesService, public service: SkillRequestsService, login: LoginService) {
-    super(screenService, global, login);
+  constructor(screenService: ScreenSizeService, public service: SkillRequestsService, login: LoginService) {
+    super(screenService, login);
   }
 
   override ngOnInit(): void {

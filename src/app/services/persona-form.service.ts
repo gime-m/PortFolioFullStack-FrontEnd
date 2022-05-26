@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { PersonaVariablesService } from './http-requests/persona-variables.service';
+import {PersonaRequestsService} from './http-requests/persona-requests.service';
 
 @Injectable({
   providedIn: 'root'
@@ -32,8 +32,6 @@ export class PersonaFormService {
   get lugarTrabajo() { return this.componentForm.get('lugarTrabajo'); }
   get email() { return this.componentForm.get('email'); }
   get telefono() { return this.componentForm.get('telefono'); }
-  get imagenPerfil() { return this.componentForm.get('imagenPerfil'); }
-  get banner() { return this.componentForm.get('banner'); }
   get github() { return this.componentForm.get('github'); }
   
   //Form methods
@@ -48,11 +46,11 @@ export class PersonaFormService {
     if (this.pers.persona != undefined) {
       this.pers.persona=this.componentForm.value
     }
-    this.pers.putJSON();
+    this.pers.putJSON(); 
   }
 
 
   //Constructor
-  constructor(public pers: PersonaVariablesService) {
+  constructor(public pers: PersonaRequestsService) {
   }
 }

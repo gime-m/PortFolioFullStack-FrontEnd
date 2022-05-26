@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { BaseComponent } from '../../base/base.component';
 import { ScreenSizeService } from 'src/app/services/screen-size.service';
-import { GlobalVariablesService } from 'src/app/services/global-variables.service';
 import { LoginService } from 'src/app/services/login.service';
-import { PersonaVariablesService } from 'src/app/services/http-requests/persona-variables.service';
+import { PersonaRequestsService } from 'src/app/services/http-requests/persona-requests.service';
 import { PersonaFormService } from 'src/app/services/persona-form.service';
 
 @Component({
@@ -28,8 +27,8 @@ export class AboutMeDescriptionComponent extends BaseComponent implements OnInit
     this.overlayOpen=true;
   }
 
-  constructor(screenService: ScreenSizeService, global: GlobalVariablesService, login: LoginService, public pers: PersonaVariablesService, public form: PersonaFormService) {
-    super(screenService, global, login);
+  constructor(screenService: ScreenSizeService, login: LoginService, public pers: PersonaRequestsService, public form: PersonaFormService) {
+    super(screenService, login);
   }
 
 }
