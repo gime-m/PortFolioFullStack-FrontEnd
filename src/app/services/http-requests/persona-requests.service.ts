@@ -29,15 +29,6 @@ export class PersonaRequestsService extends RequestsBaseService<Persona,undefine
 
   // Imagen
 
-  public makeRandomImage(){
-    let backgroundImages: String[] = [] ;
-    for (let i = 0; i < 6; i++){
-      backgroundImages.push('assets/images/login-background/'+(i+1)+'.jpg');
-    }
-    let random : number = Math.floor((Math.random()*(backgroundImages.length-1)));
-    return backgroundImages[random];
-  }
-
   getImagenPerfil(){
     let httpHeaders = new HttpHeaders().set('Accept', "image/webp,*/*");
     let reader = new FileReader;
@@ -66,11 +57,11 @@ export class PersonaRequestsService extends RequestsBaseService<Persona,undefine
           reader.readAsDataURL(result);
         },
         error: () => {
-          this.imagenBanner =  this.makeRandomImage();
+          this.imagenBanner =  "assets/images/login-background/4.jpg"
         }
       })
     } else {
-      this.imagenBanner =  this.makeRandomImage();
+      this.imagenBanner =  "assets/images/login-background/4.jpg"
     } 
   }
 
@@ -95,7 +86,7 @@ export class PersonaRequestsService extends RequestsBaseService<Persona,undefine
       complete: () => {
         this.getJSON();
       },
-      error: (error: any) => {console.error("Error en solicitud POST",error, form)}
+      error: (error: any) => {console.error("Error en solicitud PUT",error, form)}
     });    
   }
 

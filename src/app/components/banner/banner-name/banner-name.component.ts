@@ -12,17 +12,14 @@ import { PersonaFormService } from 'src/app/services/persona-form.service';
 })
 export class BannerNameComponent extends BaseComponent implements OnInit {
 
-  submitForm() {
-    this.overlayOpen = false;
-    this.form.submit();
-  }
-  cancelForm(){
-    this.overlayOpen = false;
-    this.form.default();
-  }
+  public overlayOpen: boolean = false;
+
   clickEditButton(){
     this.form.default();
     this.overlayOpen=true;
+  }
+  changeOverlayOpen(value: boolean){
+    this.overlayOpen = value;
   }
 
   //Constructor

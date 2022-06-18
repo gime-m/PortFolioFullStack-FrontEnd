@@ -6,7 +6,7 @@ import { LoginGuard } from './services/auth/login.guard';
 import { PortfolioGuard } from './services/auth/portfolio.guard';
 
 const routes: Routes = [
-  {path:'portfolio' , component:PortfolioComponent, canActivate:[PortfolioGuard]},
+  {path:'portfolio', component:PortfolioComponent, canActivate:[PortfolioGuard]},
   {path:'login', component:LoginComponent, canActivate:[LoginGuard]},
   {path:'', redirectTo:'portfolio',pathMatch:'full'}
 ];

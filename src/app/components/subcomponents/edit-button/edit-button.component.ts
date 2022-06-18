@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-edit-button',
-  templateUrl: './edit-button.component.html',
-  styleUrls: ['./edit-button.component.css']
+  templateUrl: './edit-button.component.html'
 })
 export class EditButtonComponent implements OnInit {
 

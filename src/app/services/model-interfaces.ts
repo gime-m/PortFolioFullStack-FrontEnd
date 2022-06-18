@@ -20,6 +20,7 @@ export interface ExpItemPost {
     fechaInicio?: Date;
     fechaFin?: Date;
     isCurrent: boolean;
+    imagen: string;
     personaId: number;
 }
   
@@ -34,6 +35,7 @@ export interface EducItemPost {
     fechaInicio?: Date;
     fechaFin?: Date;
     isCurrent: boolean;
+    imagen: string;
     personaId: number;
 }
   
@@ -43,15 +45,44 @@ export interface EducItem extends EducItemPost{
 
 export interface SkillItemPost {
     titulo: string;
-    descripcion: string;
     valor: number;
-    etiqueta: string;
+    tipo: string;
     personaId: number;
+
+    //descripcion: string; 
+    //etiqueta: string;   
 }
   
 export interface SkillItem extends SkillItemPost{
     id: number;
 } 
+
+export interface SkillItemPost {
+    titulo: string;
+    valor: number;
+    tipo: string;
+    personaId: number;
+
+    //descripcion: string; 
+    //etiqueta: string;   
+}
+  
+export interface SkillItem extends SkillItemPost{
+    id: number;
+} 
+
+export interface ProyectoItemPost{
+    titulo: string;
+    descripcion: string;
+    fecha: Date;
+    link: string;
+    imagen: string;
+    personaId: number;
+}
+
+export interface ProyectoItem extends ProyectoItemPost {
+    id: number
+}
 
 export interface Credenciales {
     username: string;
@@ -61,6 +92,7 @@ export interface Credenciales {
 export interface AuthResponse {
     successful: boolean;
     accessToken: string;
+    refreshToken:string;
     roles: Array<string>;
   }
   

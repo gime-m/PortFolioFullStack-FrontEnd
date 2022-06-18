@@ -1,29 +1,67 @@
 @import '~@angular/cdk/overlay-prebuilt.css';
 
-/*html,body{
-    overflow-x: hidden;
-}*/
-
 /*colores*/
 :root{
-    --main-color: rgb(0, 98, 13)    ;  /*rgb(120, 47, 172);*/
-    --back-color: whitesmoke;
-    --shadow-color: black;
-    --light-text-color: rgb(59, 59, 59);
-    --lighter-text-color: dimgray;
-    --input-color: rgb(206, 206, 206);
+    --main-color: rgb(218, 207, 141);
+    --main-color-darker: rgb(86, 74, 62);
+    --main-color-dark: rgb(151, 118, 81);
+    --main-color-low-opacity: rgba(255, 246, 194, 0.633);
+
+    --back-color: rgb(9, 9, 9);
+    --text-color: whitesmoke;
+    --shadow-color: rgb(158, 152, 118);
+
+    --low-opacty-black: rgba(0, 0, 0, 0.797);
+    --low-opacity-white: rgba(255, 255, 255, 0.727);
+    --lighter-color: rgb(231, 231, 231);
+    --input-color: rgb(144, 153, 143);
+    --gray-color: rgb(60, 60, 60);
+    
+
+    --header-color: rgb(0, 0, 0);
+    --dropdown-header-item-opacity: rgba(255, 242, 167, 0.608);
+
+    --back-color-low-opacity: rgba(9, 9, 9, 0.432);
+    --edit-button-color: whitesmoke;
+}
+
+
+p, h6, h5 {
+    color: var(--text-color);
+}
+
+body {
+    background-color:var(--back-color);
+    height: 100%;
+}
+
+hr{
+    color: var(--shadow-color);
 }
 
 /*botones*/
+
 .my-button{
     color: var(--main-color);
     border-color: var(--main-color);
     margin-right: 3%;
     display: flex;
-    border-width: 2px;
-    font-weight: 600;
+    border-width: 1px;
+    font-weight: 400;
     height: 46px;
     align-content: center;
+    white-space: nowrap; 
+    text-overflow: ellipsis; 
+    /*overflow: hidden; */
+}
+
+.my-button:hover{
+    color:var(--main-color)
+}
+
+.my-button:focus{
+    outline: none;
+    box-shadow: none;
 }
 
 .button-icon{
@@ -32,170 +70,32 @@
 
 .button-text{
     margin:auto;
+    color: currentColor;
 }
 
 .edit-button{
     margin: 0;
+    padding: 0;
     height: 16px;
     display: flex;
     align-content: center;
     justify-content: center;
     align-items: center;
-    color: dimgray;
+    color: var(--edit-button-color);
+    transition: transform .2s ease-in-out; 
 }
 
-/*Overlay*/
-
-.editing-overlay{
-    width: 100vw; 
-    height: 100vh; 
-    background-color: rgba(43, 38, 46, 0.75);
-    backdrop-filter: blur(5px);
-    z-index: 500; 
-    position: fixed; 
-    top: 0;
-    left: 0;
+.edit-button:hover { 
+    transform: scale(1.4); 
+    color:var(--main-color)
 }
 
-.overlay-container{
-    background-color: var(--back-color);
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 50vw;
-    /*border-radius: 16px;*/
-    padding: 32px;
-    box-shadow: 0px 0px 10px  var(--shadow-color);
-    max-height: 90vh;
+.edit-button:focus{
+    outline: none;
+    box-shadow: none;
 }
 
-.overlay-title{
-    text-align: center; 
-    color: var(--main-color);
-    font-weight: 500;
-    background-color: transparent;
-    border: 0;
-    margin: 0;
-}
-
-.overlay-hr{
-    color: var(--main-color); 
-    opacity: 100%;
-}
-
-.overlay-form{
-    display: flex; 
-    flex-direction: column; 
-    height: 70vh;
-}
-
-.overlay-scrollable-inputs{
-    overflow-y: scroll;
-}
-
-.overlay-text{
-    color: var(--light-text-color);
-    font-weight: 500;
-    background-color: transparent;
-    border: 0;
-}
-
-.overlay-alerts-buttons-container{
-    display: flex;
-    justify-content: space-between;
-    margin-top: 24px;
-}
-
-.overlay-buttons-container{
-    display: flex;
-    flex-direction: row-reverse;
-}
-
-.overlay-alert-text{
-    font-size: small;
-    color: var(--main-color);
-    margin: 0;
-    
-}
-
-.overlay-alerts-container{
-    min-height: 48px;
-    align-content: center;
-    padding: 0;
-    padding-right: 12px;
-}
-
-.overlay-input{
-    border-width: 0;
-    background-color: var(--input-color);
-    padding: 10px;
-    width: 100%;
-    min-width: max-content;
-    border-bottom-width: 2px;
-    border-color: lightslategrey;
-}
-
-.overlay-input:focus{
-    outline:none;
-    background-color: var(--input-color);
-    border-color: var(--main-color);
-}
-
-@media screen and (max-width: 575px) {
-    .overlay-container{
-        padding: 16px 16px;
-    }
-}
-
-@media screen and (max-width: 800px) {
-    .overlay-container{
-        width: 90vw;
-    }
-}
-
-/*Cards*/
-
-.my-card{
-    border-width: 1px;
-    border-color: rgb(196, 196, 196);
-    background-color: var(--background-color);
-    text-align: justify;
-    width: 100%;
-    height: 100%;
-}
-
-.my-card-title{
-    text-align: left;
-    font-size: large;
-    color:var(--main-color);
-}
-
-.card-descripcion{
-    color: var(--light-text-color);
-}
-
-.card-footer-header-text{
-    color: var(--light-text-color);
-    text-align: left;
-    margin:0;
-    font-size: small;
-}
-
-.card-header-footer {
-    background-color: var(--input-color);
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.card-butttons-container{
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: right;
-    align-content: center;
-    align-items: center;
-}
+/*otros*/ 
 
 .component-header{
     display: flex;
@@ -214,4 +114,3 @@
     align-items: center;
     flex-direction: row;
 }
-

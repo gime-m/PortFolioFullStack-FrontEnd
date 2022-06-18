@@ -8,14 +8,6 @@ import { ScreenSizeService } from 'src/app/services/screen-size.service';
 })
 export class BaseComponent implements OnInit{
 
-  private _overlayOpen: boolean = false;
-  public get overlayOpen(): boolean {
-    return this._overlayOpen;
-  }
-  public set overlayOpen(value: boolean) {
-    this._overlayOpen = value;
-  } 
-
   //Tamaño de pantalla 
   private _smallScreen: boolean = this.screenService.smallScreen;
   public get smallScreen(): boolean {

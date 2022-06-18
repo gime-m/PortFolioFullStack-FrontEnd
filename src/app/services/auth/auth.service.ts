@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
 import { Router } from '@angular/router';
 import { AuthResponse, Credenciales } from '../model-interfaces';
+import { LoginService } from '../login.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,8 @@ import { AuthResponse, Credenciales } from '../model-interfaces';
 
 export class AuthService {
 
-  authURL="http://localhost:8080/login"
+  authURL="http://localhost:8080/login";
+  refreshURL="http://localhost:8080/refresh";
   wrongAuth: boolean = false;
   failedAuth: boolean = false;
 
@@ -21,6 +23,7 @@ export class AuthService {
       next: data => {        
         if (data.successful) {
           sessionStorage.setItem('accessToken', data.accessToken);
+          sessionStorage.setItem('refreshToken', data.refreshToken);
           console.log("Autenticación exitosa.");
 
           sessionStorage.setItem('username',cred.username);
@@ -31,7 +34,7 @@ export class AuthService {
           this.router.navigate(['/portfolio']);
           
         } else {
-          console.log("Autenticaión realizada. Usuario o contraseña incorrectos.");
+          console.log("Autenticación realizada. Usuario o contraseña incorrectos.");
           this.wrongAuth = true;
         }
       },
@@ -44,13 +47,21 @@ export class AuthService {
 
   cerrarSesion(): void{
     sessionStorage.removeItem('accessToken');
+    sessionStorage.removeItem('refreshToken');
     sessionStorage.removeItem('username');
     sessionStorage.removeItem('isAdmin');
+    this.login.editando = false
     this.router.navigate(['/login']);
   }
 
-  constructor(private http: HttpClient, private router:Router){
+  constructor(private http: HttpClient, private router:Router, private login: LoginService){
   }
+
+  refreshToken() {
+    let header = new HttpHeaders().set('Authorization', "Bearer "+ sessionStorage.getItem('refreshToken')?.toString());
+    return this.http.get<AuthResponse>(this.refreshURL, {'headers': header})
+  }
+
 
   /*
   authURL="https://localhost:8080/auth/login";

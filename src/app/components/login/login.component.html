@@ -1,5 +1,7 @@
-<div class="this-background" [ngStyle]="{'background-image': 'url(' + backgroundImages[random] + ')'}">
+<div class="this-background">
     
+    <img [src]="backgroundImages[random]" class="background-image">
+
     <div class="overlay-container">
         
         <!--Título-->
@@ -8,14 +10,16 @@
 
         <!--Formulario-->
         <form [formGroup]="componentForm" (ngSubmit)="submitForm()">
-            <div>
+            <div class="input-container">
                 <label for="user-id" class="overlay-text">Usuario: </label>
                 <input id="user-id" type="text" formControlName="username" class="overlay-input">   
+                <span class="focus-border-input"></span>
             </div>
             <br>
-            <div>
+            <div class="input-container">
                 <label for="password-id" class="overlay-text">Constraseña: </label>
                 <input id="password-id" type="password" formControlName="password" class="overlay-input">
+                <span class="focus-border-input"></span>
             </div>  
         
             <div class="overlay-alerts-buttons-container"> 
@@ -37,19 +41,15 @@
 
                 <!--Botones-->
                 <div class="overlay-buttons-container">
-                    <button type="submit" class="btn btn-outline my-button" [disabled]="!componentForm.valid" (click)="submitForm()">
-                        <p *ngIf="!smallScreen" class="button-text">Guardar</p>
-                        <svg *ngIf="smallScreen" class="bi bi-check-lg button-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"  viewBox="0 0 16 16">
+                    <button type="submit" class="btn my-button" [disabled]="!componentForm.valid" (click)="submitForm()">
+                        <p *ngIf="!smallScreen" class="button-text">Iniciar sesión</p>
+                        <svg *ngIf="smallScreen" class="button-icon" width="16" height="16" fill="currentColor"  viewBox="0 0 16 16">
                             <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
                         </svg>
                     </button>
-    
-                    <button type="button" class="btn btn-outline my-button" (click)="cancelForm()">
-                        <p *ngIf="!smallScreen" class="button-text">Cancelar</p>
-                        <svg *ngIf="smallScreen" class="button-icon bi bi-x-lg" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
-                            <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"/>
-                        </svg>
+                    <button type="button" class="btn my-button" (click)="invitado()">
+                        <p *ngIf="!smallScreen" class="button-text">Ingresa como invitado</p>
+                        <p *ngIf="smallScreen" class="button-text">Invitado</p>
                     </button>
                 </div>
             </div>

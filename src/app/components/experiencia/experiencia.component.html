@@ -9,92 +9,10 @@
     </div>
     
     <div class="row">
-        <div class="col-4" *ngFor="let item of service.items" style="padding: 12px;">
-            <app-experiencia-item [expObject]="item"></app-experiencia-item>
+        <div class="col-sm-4 col-12" *ngFor="let item of service.items" style="padding: 12px;">
+            <app-experiencia-item [object]="item"></app-experiencia-item>
         </div>
     </div>    
 </div>
 
-
-<!--Overlay para la edición-->
-<div class="editing-overlay" *ngIf="overlayOpen">
-    
-    <div class="overlay-container">
-        
-        <!--Título-->
-        <p class="overlay-title">Ingresa un nuevo ítem.</p>
-        <hr class="overlay-hr">
-
-        <!--Formulario-->
-        <form [formGroup]="componentForm" (ngSubmit)="submitForm()" class="overlay-form">
-            
-            <div class="overlay-scrollable-inputs">
-                <div>
-                    <label for="title-id" class="overlay-text">Título: </label>
-                    <input id="title-id" type="text" formControlName="titulo" class="overlay-input">   
-                </div>
-                <br>
-                <div>
-                    <label for="text-id" class="overlay-text">Descripción (opcional): </label>
-                    <input id="text-id" type="text" formControlName="descripcion" class="overlay-input">
-                </div>    
-                <br>
-                <div>
-                    <label for="place-id" class="overlay-text">Lugar (opcional): </label>
-                    <input id="place-id" type="text" formControlName="lugar" class="overlay-input">
-                </div>    
-                    <br>
-                <div>
-                    <label for="start-date-id" class="overlay-text">Fecha de inicio (opcional): </label>
-                    <input id="start-date-id" type="date" formControlName="fechaInicio" class="overlay-input">
-                </div>          
-                <br>
-                <div>
-                    <label for="end-date-id" class="overlay-text">Fecha de finalización (opcional): </label>
-                    <input id="end-date-id" type="date" formControlName="fechaFin" class="overlay-input">
-                </div> 
-                <br>
-                <div>
-                    <label for="current-id" class="overlay-text">Es tu trabajo actual?: </label>
-                    <input id="current-id" type="checkbox" formControlName="isCurrent">
-                </div>        
-            </div>
-        
-            <div class="overlay-alerts-buttons-container"> 
-                <!--Alertas-->
-                <div class="overlay-alerts-container">
-                    <div *ngIf="titulo?.errors?.['required']  && (titulo?.dirty || titulo?.touched)">
-                        <p class="overlay-alert-text">Escribe un título para el ítem.</p>
-                    </div>
-                    <div *ngIf="titulo?.errors?.['maxLenght']  && (titulo?.dirty || titulo?.touched)">
-                        <p class="overlay-alert-text">El título no puede superar los 60 caracteres.</p>
-                    </div>
-                    <div *ngIf="descripcion?.errors?.['maxLenght']  && (descripcion?.dirty || descripcion?.touched)">
-                        <p class="overlay-alert-text">La descripción no puede superar los 250 caracteres.</p>
-                    </div>
-                    <div *ngIf="lugar?.errors?.['maxLenght']  && (lugar?.dirty || lugar?.touched)">
-                        <p class="overlay-alert-text">El lugar no puede superar los 50 caracteres.</p>
-                    </div>
-                </div>
-
-                <!--Botones-->
-                <div class="overlay-buttons-container">
-                    <button type="submit" class="btn btn-outline my-button" [disabled]="!componentForm.valid" (click)="submitForm()">
-                        <p *ngIf="!smallScreen" class="button-text">Guardar</p>
-                        <svg *ngIf="smallScreen" class="bi bi-check-lg button-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"  viewBox="0 0 16 16">
-                            <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
-                        </svg>
-                    </button>
-    
-                    <button type="button" class="btn btn-outline my-button" (click)="cancelForm()">
-                        <p *ngIf="!smallScreen" class="button-text">Cancelar</p>
-                        <svg *ngIf="smallScreen" class="button-icon bi bi-x-lg" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
-                            <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"/>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
+<app-experiencia-form [isNewItem]="true"  (overlayOpenEvent)="changeOverlayOpen($event)" *ngIf="overlayOpen"></app-experiencia-form>

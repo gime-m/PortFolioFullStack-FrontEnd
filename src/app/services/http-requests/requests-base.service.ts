@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject } from '@angular/core';
-import { EducItem, EducItemPost, ExpItem, ExpItemPost, Persona, SkillItem, SkillItemPost } from '../model-interfaces';
+import { EducItem, EducItemPost, ExpItem, ExpItemPost, Persona, ProyectoItem, ProyectoItemPost, SkillItem, SkillItemPost } from '../model-interfaces';
 
-export class RequestsBaseService<T extends EducItem|ExpItem|SkillItem|Persona, Tpost extends EducItemPost|ExpItemPost|SkillItemPost|undefined> {
+export class RequestsBaseService<T extends EducItem|ExpItem|SkillItem|ProyectoItem|Persona, Tpost extends EducItemPost|ExpItemPost|SkillItemPost|ProyectoItemPost|undefined> {
 
   //Id de persona
   private _personaId: number = 1;
@@ -29,11 +29,11 @@ export class RequestsBaseService<T extends EducItem|ExpItem|SkillItem|Persona, T
     this._items = value;
   }
   
-  
+
   //Metodos get, put, post, delete.
 
   public getJSON(): void{ 
-    let url: string = this.originURL + this.component + this.getUrl;
+    let url: string = this.originURL + this.component + this.getUrl + this.personaId;
     this.http.get<any>(url).subscribe({
       next: (data: T[] | undefined) => {
         this.items=data; 
@@ -54,7 +54,7 @@ export class RequestsBaseService<T extends EducItem|ExpItem|SkillItem|Persona, T
         error: (error: any) => {console.error("Error en solicitud PUT",error,objectPut)}
       })
     } else {
-      console.error("La lista de experiencias es indefinida. No se realizó solicitud PUT.")
+      console.error("La lista es indefinida. No se realizó solicitud PUT.")
     }   
   }
 
@@ -63,7 +63,8 @@ export class RequestsBaseService<T extends EducItem|ExpItem|SkillItem|Persona, T
     this.http.post<T>(url, objectPost)
     .subscribe({
       next: (data: T) => {
-        this.items?.push(data);        
+        this.items?.push(data);
+        console.log(data.id)        
       },
       error: (error: any) => {console.error("Error en solicitud POST",error,objectPost)}
     });
@@ -80,14 +81,11 @@ export class RequestsBaseService<T extends EducItem|ExpItem|SkillItem|Persona, T
         error: (error: any) => {console.error("Error en solicitud DELETE",error)}
       });
     } else {
-      console.error("La lista de experiencias es indefinida. No se realizó solicitud DELETE.")
+      console.error("La lista es indefinida. No se realizó solicitud DELETE.")
     }    
   }
 
-  constructor(
-    public http: HttpClient,
-    @Inject('component') public component: string,
-    ){
+  constructor(public http: HttpClient, @Inject('component') public component: string){
       this.component = component
   }
 }

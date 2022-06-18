@@ -1,0 +1,19 @@
+<div class="container-lg">
+
+    <div class="component-header">
+        <h5>Proyectos</h5>
+
+        <div class="col-4 component-header-buttons">
+            <app-add-button (click)="overlayOpen=true" [style.visibility]="(login.isAdmin() && login.editando)? 'visible': 'hidden'"></app-add-button>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-4 col-12" *ngFor="let item of service.items">
+            <app-proyecto-item [object]="item"></app-proyecto-item>
+        </div>
+    </div>
+</div>
+
+<app-proyecto-form [isNewItem]="true" (overlayOpenEvent)="changeOverlayOpen($event)" *ngIf="overlayOpen"></app-proyecto-form>

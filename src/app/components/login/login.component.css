@@ -1,16 +1,37 @@
 .this-background{
-    background-color: rgb(240, 218, 255);
+    background-color: black;
+}
+
+.background-image{
     width: 100vw; 
-    height: 100vh; 
-    position: fixed; 
-    top: 0;
-    left: 0;
-    background-position:  50% 50%;
-    background-size: cover;
-    background-repeat: no-repeat;
+    height: 100vh;
+    object-fit: cover;
 }
 
 .overlay-container{
-    border-radius: 12px;
-    background-color: rgba(245, 245, 245, 0.834);
+    background-color: var(--low-opacty-black);
+    z-index: 200;
 }
+
+.overlay-text, .overlay-hr, .overlay-alert-text{
+    color: var(--lighter-color);
+    font-weight: 300;
+}
+
+.overlay-title{
+    color: var(--lighter-color);
+}
+
+.my-button{
+    color: var(--lighter-color);
+    border-color: var(--lighter-color);
+}
+
+.overlay-input{
+    color: var(--text-color);
+}
+
+
+
+
+

@@ -4,11 +4,11 @@
     margin-bottom: 5px;
     margin-left: 0;
     text-align: left;
+    font-weight: 600;
 }
 
 .name{
     font-size:x-large;
-    font-weight: 600;
     margin: 0;
     align-self:center; 
 }
@@ -26,7 +26,10 @@
 }
 
 @media screen and (max-width: 575px) {
-    .me-container{
+    .me{
         text-align: center; 
+    }
+    .name-container{
+        justify-content: center;
     }
 }

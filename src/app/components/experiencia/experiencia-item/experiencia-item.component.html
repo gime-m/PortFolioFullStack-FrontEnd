@@ -1,115 +1,56 @@
-<div class="card my-card">
+<div class="item-container-outside" (clickOutside)="verDescripcion=false">
+  <div class="item-container">
 
-  <div class="card-header card-header-footer">
-    <p class="card-footer-header-text">{{expObject?.lugar}}</p>
+
+    <div class="item-logo-container">
+      <img [src]="service.imagenes[object.id]" class="item-logo" *ngIf="service.imagenes[object.id]" alt="Logo de experiencia" [style.filter]="(login.isAdmin() && login.editando)? ' contrast(70%) brightness(50%)': 'none'" >
+
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-briefcase-fill" viewBox="0 0 16 16" *ngIf="!service.imagenes[object.id] && !login.editando">
+        <path d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v1.384l7.614 2.03a1.5 1.5 0 0 0 .772 0L16 5.884V4.5A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1h-3zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5z"/>
+        <path d="M0 12.5A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5V6.85L8.129 8.947a.5.5 0 0 1-.258 0L0 6.85v5.65z"/>
+      </svg>
+      
+      <button  type="button" class="btn edit-button edit-button-logo" [style.visibility]="(login.isAdmin() && login.editando)? 'visible': 'hidden'" (click)="overlayOpenImagen = true">
+          <svg width="25px" height="25px" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+          </svg>
+      </button>
+    </div> 
+  
+    <h5 class="item-titulo">{{object?.titulo}}</h5>
     
-    <div class="card-butttons-container" [style.visibility]="(login.isAdmin() && login.editando)? 'visible': 'hidden'">
-        <app-edit-button class="edit-button" (click)="overlayOpen=true"></app-edit-button>
-        <app-delete-button (click)="deleteCard()"></app-delete-button>
+    <p>{{object?.lugar}}</p>
+  
+    <p  *ngIf="(object?.fechaInicio != null)&&(object?.fechaFin != null)&&(object?.isCurrent==false)">{{object?.fechaInicio|date:'mediumDate'}} - {{object?.fechaFin | date:'mediumDate'}}</p>
+  
+    <p *ngIf="(object?.fechaInicio != null)&&(object?.isCurrent==true)">{{object?.fechaInicio | date:'mediumDate'}} - presente</p>
+  
+    <p *ngIf="(object?.fechaInicio != null)&&(object?.fechaFin == null)&&(object?.isCurrent==false)">{{object?.fechaInicio | date:'mediumDate'}}</p>
+  
+    <p *ngIf="(object?.fechaInicio == null)&&(object?.isCurrent==true)">Actualmente</p>
+  
+    <p *ngIf="(object?.fechaInicio == null)&&(object?.fechaFin != null)&&(object?.isCurrent==false)">{{object?.fechaFin | date:'mediumDate'}}</p>
+  
+    <svg (click)="verDescripcion=true" *ngIf="!login.editando" [style.visibility]="object?.descripcion? 'visible': 'hidden'" width="16" height="16" fill="currentColor" class="edit-button description-button" viewBox="0 0 16 16">
+      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+    </svg>
+  
+    <div class="item-buttons-container" *ngIf="(login.isAdmin() && login.editando)">
+      <app-edit-button class="edit-button" (click)="overlayOpen=true"></app-edit-button>
+      <app-delete-button (click)="deleteItem()"></app-delete-button>
     </div>
+  </div>
+  
+  <div *ngIf="verDescripcion" class="item-container descripcion-container" >
     
-  </div>
+    <p>{{object?.descripcion}}</p>
 
-  <div class="card-body">
-       <h5 class="card-title my-card-title">{{expObject?.titulo}}</h5>
-       <p class="card-text card-descripcion">{{expObject?.descripcion}}</p>
-  </div>
-
-  <div class="card-footer card-header-footer">
-
-    <p class="card-footer-header-text" *ngIf="(expObject?.fechaInicio != null)&&(expObject?.fechaFin != null)&&(expObject?.isCurrent==false)">{{expObject?.fechaInicio|date:'mediumDate'}} - {{expObject?.fechaFin | date:'mediumDate'}}</p>
-
-    <p class="card-footer-header-text" *ngIf="(expObject?.fechaInicio != null)&&(expObject?.isCurrent==true)">{{expObject?.fechaInicio | date:'mediumDate'}} - presente</p>
-
-    <p class="card-footer-header-text" *ngIf="(expObject?.fechaInicio != null)&&(expObject?.fechaFin == null)&&(expObject?.isCurrent==false)">{{expObject?.fechaInicio | date:'mediumDate'}}</p>
-
-    <p class="card-footer-header-text" *ngIf="(expObject?.fechaInicio == null)&&(expObject?.isCurrent==true)">Actualmente</p>
-
-    <p class="card-footer-header-text"*ngIf="(expObject?.fechaInicio == null)&&(expObject?.fechaFin != null)&&(expObject?.isCurrent==false)">{{expObject?.fechaFin | date:'mediumDate'}}</p>
-
+    <svg (click)="verDescripcion = false" width="16" height="16" fill="currentColor" class="edit-button" viewBox="0 0 16 16">
+      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7z"/>
+    </svg>
   </div>
 </div>
 
+<app-experiencia-form [isNewItem]="false" [object]="object"  (overlayOpenEvent)="changeOverlayOpen($event)" *ngIf="overlayOpen"></app-experiencia-form>
 
-<!--Overlay para la edición-->
-<div class="editing-overlay" *ngIf="overlayOpen">
-    
-  <div class="overlay-container">
-      
-      <!--Título-->
-      <p class="overlay-title">Edita este ítem.</p>
-      <hr class="overlay-hr">
-
-      <!--Formulario-->
-      <form [formGroup]="componentForm" (ngSubmit)="submitForm()"  class="overlay-form">
-          
-        <div class="overlay-scrollable-inputs">
-            <div>
-                <label for="title-id" class="overlay-text">Título: </label>
-                <input id="title-id" type="text" formControlName="titulo" class="overlay-input">   
-            </div>
-            <br>
-            <div>
-                <label for="text-id" class="overlay-text">Descripción (opcional): </label>
-                <input id="text-id" type="text" formControlName="descripcion" class="overlay-input">
-            </div>    
-            <br>
-            <div>
-                <label for="place-id" class="overlay-text">Lugar (opcional): </label>
-                <input id="place-id" type="text" formControlName="lugar" class="overlay-input">
-            </div>    
-            <br>
-            <div>
-                <label for="start-date-id" class="overlay-text">Fecha de inicio (opcional): </label>
-                <input id="start-date-id" type="date" formControlName="fechaInicio" class="overlay-input">
-            </div>          
-            <br>
-            <div>
-                <label for="end-date-id" class="overlay-text">Fecha de finalización (opcional): </label>
-                <input id="end-date-id" type="date" formControlName="fechaFin" class="overlay-input">
-            </div> 
-            <br>
-            <div>
-                <label for="current-id" class="overlay-text">Es tu trabajo actual?: </label>
-                <input id="current-id" type="checkbox" formControlName="isCurrent">
-            </div> 
-        </div>
-      
-          <div class="overlay-alerts-buttons-container"> 
-              <!--Alertas-->
-              <div class="overlay-alerts-container">
-                  <div *ngIf="titulo?.errors?.['required']  && (titulo?.dirty || titulo?.touched)">
-                      <p class="overlay-alert-text">Escribe un título para el ítem.</p>
-                  </div>
-                  <div *ngIf="titulo?.errors?.['maxLenght']  && (titulo?.dirty || titulo?.touched)">
-                      <p class="overlay-alert-text">El título no puede superar los 60 caracteres.</p>
-                  </div>
-                  <div *ngIf="descripcion?.errors?.['maxLenght']  && (descripcion?.dirty || descripcion?.touched)">
-                      <p class="overlay-alert-text">La descripción no puede superar los 250 caracteres.</p>
-                  </div>
-                  <div *ngIf="lugar?.errors?.['maxLenght']  && (lugar?.dirty || lugar?.touched)">
-                      <p class="overlay-alert-text">El lugar no puede superar los 50 caracteres.</p>
-                  </div>
-              </div>
-
-              <!--Botones-->
-              <div class="overlay-buttons-container">
-                <button type="submit" class="btn btn-outline my-button" [disabled]="!componentForm.valid" (click)="submitForm()">
-                    <p *ngIf="!smallScreen" class="button-text">Guardar</p>
-                    <svg *ngIf="smallScreen" class="bi bi-check-lg button-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"  viewBox="0 0 16 16">
-                        <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
-                    </svg>
-                </button>
-
-                <button type="button" class="btn btn-outline my-button" (click)="cancelForm()">
-                    <p *ngIf="!smallScreen" class="button-text">Cancelar</p>
-                    <svg *ngIf="smallScreen" class="button-icon bi bi-x-lg" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
-                        <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"/>
-                    </svg>
-                </button>
-              </div>
-          </div>
-      </form>
-  </div>
-</div>
+<app-experiencia-imagen-form  [id]="object.id" (overlayOpenEvent)="changeOverlayOpenImagen($event)" *ngIf="overlayOpenImagen"></app-experiencia-imagen-form>

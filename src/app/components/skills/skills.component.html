@@ -3,95 +3,38 @@
     <div class="component-header">
         <h5>Skills</h5>
 
-        <div class="col-4 component-header-buttons">
+        <div class="component-header-buttons">
             <app-add-button (click)="overlayOpen=true" [style.visibility]="(login.isAdmin() && login.editando)? 'visible': 'hidden'"></app-add-button>
         </div>
     </div>
     
-    <div *ngFor="let item of service.items">
-            <app-skill-item [skillObject]="item"></app-skill-item>
+    <div class="row">
+        <div class="col-sm-4 col-12" >
+            <h6>Hard skills</h6>
+            <div *ngFor="let item of service.items">
+                <app-skill-item *ngIf="item.tipo == 'hard'" [object]="item"></app-skill-item>
+            </div>
+        </div>
+
+        <div class="col-sm-4 col-12" >
+            <h6>Soft skills</h6>
+            <div *ngFor="let item of service.items">
+                <app-skill-item *ngIf="item.tipo == 'soft'" [object]="item"></app-skill-item>
+            </div>
+        </div>
+
+        <div class="col-sm-4 col-12">
+            <h6>Idiomas</h6>
+            <div *ngFor="let item of service.items">
+                <app-skill-item *ngIf="item.tipo == 'idioma'" [object]="item"></app-skill-item>
+            </div>
+        </div>
     </div>  
 </div>
 
 
-<!--Overlay para la edición-->
-<div class="editing-overlay" *ngIf="overlayOpen">
-    
-    <div class="overlay-container">
-        
-        <!--Título-->
-        <p class="overlay-title">Ingresa un nuevo ítem.</p>
-        <hr class="overlay-hr">
 
-        <!--Formulario-->
-        <form [formGroup]="componentForm" (ngSubmit)="submitForm()" class="overlay-form">
-            
-            <div class="overlay-scrollable-inputs">
-                <div>
-                    <label for="title-id" class="overlay-text">Título: </label>
-                    <input id="title-id" type="text" formControlName="titulo" class="overlay-input">   
-                </div>
-                <br>
-                <div>
-                    <label for="description-id" class="overlay-text">Descripción (opcional): </label>
-                    <input id="description-id" type="text" formControlName="descripcion" class="overlay-input">
-                </div>    
-                <br>
-                <div>
-                    <label for="value-id" class="overlay-text">Valor (entre 0 y 100): </label>
-                    <input id="value-id" type="number" formControlName="valor" class="overlay-input">
-                </div>    
-                    <br>
-                <div>
-                    <label for="label-id" class="overlay-text">Etiqueta (omitir para utilizar el porcentaje): </label>
-                    <input id="label-id" type="text" formControlName="etiqueta" class="overlay-input">
-                </div>                
-            </div>
-        
-            <div class="overlay-alerts-buttons-container"> 
-                <!--Alertas-->
-                <div class="overlay-alerts-container">
-                    <div *ngIf="titulo?.errors?.['required']  && (titulo?.dirty || titulo?.touched)">
-                        <p class="overlay-alert-text">Escribe un título para el ítem.</p>
-                    </div>
-                    <div *ngIf="titulo?.errors?.['maxLenght']  && (titulo?.dirty || titulo?.touched)">
-                        <p class="overlay-alert-text">El título no puede superar los 25 caracteres.</p>
-                    </div>
-                    
-                    <div *ngIf="descripcion?.errors?.['maxLenght']  && (descripcion?.dirty || descripcion?.touched)">
-                        <p class="overlay-alert-text">La descripción no puede superar los 150 caracteres.</p>
-                    </div>
-                    <div *ngIf="etiqueta?.errors?.['maxLenght']  && (etiqueta?.dirty || etiqueta?.touched)">
-                        <p class="overlay-alert-text">La etiqueta no puede superar los 25 caracteres.</p>
-                    </div>
+<app-skill-form [isNewItem]="true"  (overlayOpenEvent)="changeOverlayOpen($event)" *ngIf="overlayOpen"></app-skill-form>
 
-                    <div *ngIf="valor?.errors?.['required']  && (valor?.dirty || valor?.touched)">
-                        <p class="overlay-alert-text">Ingresa un valor.</p>
-                    </div>
-                    <div *ngIf="(valor?.errors?.['max'] || valor?.errors?.['min'])  && (valor?.dirty || valor?.touched)">
-                        <p class="overlay-alert-text">El valor debe hallarse entre 0 y 100.</p>
-                    </div>
-                </div>
 
-                <!--Botones-->
-                <div class="overlay-buttons-container">
-                    <button type="submit" class="btn btn-outline my-button" [disabled]="!componentForm.valid" (click)="submitForm()">
-                        <p *ngIf="!smallScreen" class="button-text">Guardar</p>
-                        <svg *ngIf="smallScreen" class="bi bi-check-lg button-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"  viewBox="0 0 16 16">
-                            <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
-                        </svg>
-                    </button>
-    
-                    <button type="button" class="btn btn-outline my-button" (click)="cancelForm()">
-                        <p *ngIf="!smallScreen" class="button-text">Cancelar</p>
-                        <svg *ngIf="smallScreen" class="button-icon bi bi-x-lg" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
-                            <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"/>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
 

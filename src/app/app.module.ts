@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { registerLocaleData } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ClickOutsideModule } from 'ng-click-outside';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -28,13 +29,28 @@ import { EditButtonComponent } from './components/subcomponents/edit-button/edit
 import { EducacionItemComponent } from './components/educacion/educacion-item/educacion-item.component';
 import { SkillItemComponent } from './components/skills/skill-item/skill-item.component';
 import { AddButtonComponent } from './components/subcomponents/add-button/add-button.component';
-import { DoneButtonComponent } from './components/subcomponents/done-button/done-button.component';
 import { DeleteButtonComponent } from './components/subcomponents/delete-button/delete-button.component';
 
 import localeEs from '@angular/common/locales/es';
 import { InterceptorService } from './services/auth/interceptor.service';
-import { BaseFormComponent } from './components/base-form/base-form.component';
-import { BannerImageBaseComponent } from './components/banner/banner-image-base/banner-image-base.component';
+import { ImageFormComponent } from './components/banner/image-form/image-form.component';
+import { BaseFormPersonaComponent } from './components/base/base-form-persona/base-form-persona.component';
+import { EducacionFormComponent } from './components/educacion/educacion-form/educacion-form.component';
+import { BaseFormItemComponent } from './components/base/base-form-item/base-form-item.component';
+import { BaseItemComponent } from './components/base/base-item/base-item.component';
+import { ExperienciaFormComponent } from './components/experiencia/experiencia-form/experiencia-form.component';
+import { SkillFormComponent } from './components/skills/skill-form/skill-form.component';
+import { ImagenItemFormComponent } from './components/base/imagen-item-form/imagen-item-form.component';
+import { ExperienciaImagenFormComponent } from './components/experiencia/experiencia-imagen-form/experiencia-imagen-form.component';
+import { EducacionImagenFormComponent } from './components/educacion/educacion-imagen-form/educacion-imagen-form.component';
+import { ProyectoComponent } from './components/proyecto/proyecto.component';
+import { ProyectoItemComponent } from './components/proyecto/proyecto-item/proyecto-item.component';
+import { ProyectoFormComponent } from './components/proyecto/proyecto-form/proyecto-form.component';
+import { ProyectoImagenFormComponent } from './components/proyecto/proyecto-imagen-form/proyecto-imagen-form.component';
+import { ProyectoImagenGrandeComponent } from './components/proyecto/proyecto-imagen-grande/proyecto-imagen-grande.component';
+import { LoadingComponent } from './components/loading/loading.component';
+import { LoadingInterceptorService } from './services/loading/loading-interceptor.service';
+import { ImgLoadedDirective } from './services/loading/imagen-loading.directive';
 registerLocaleData(localeEs, 'es')
 
 
@@ -58,12 +74,26 @@ registerLocaleData(localeEs, 'es')
     SkillsComponent,
     SkillItemComponent,
     AddButtonComponent,
-    DoneButtonComponent,
     DeleteButtonComponent,
     LoginComponent,
     PortfolioComponent,
-    BaseFormComponent,
-    BannerImageBaseComponent,
+    ImageFormComponent,
+    BaseFormPersonaComponent,
+    EducacionFormComponent,
+    BaseFormItemComponent,
+    BaseItemComponent,
+    ExperienciaFormComponent,
+    SkillFormComponent,
+    ImagenItemFormComponent,
+    ExperienciaImagenFormComponent,
+    EducacionImagenFormComponent,
+    ProyectoComponent,
+    ProyectoItemComponent,
+    ProyectoFormComponent,
+    ProyectoImagenFormComponent,
+    ProyectoImagenGrandeComponent,
+    LoadingComponent,
+    ImgLoadedDirective
   ],
   imports: [
     BrowserModule,
@@ -71,11 +101,13 @@ registerLocaleData(localeEs, 'es')
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ClickOutsideModule
   ],
   providers: [
     {provide: LOCALE_ID, useValue: "es"},
-    {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptorService, multi:true}
   ],
   bootstrap: [AppComponent]
 })

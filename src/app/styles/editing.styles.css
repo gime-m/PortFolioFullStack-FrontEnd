@@ -1,0 +1,182 @@
+.editing-overlay{
+    width: 100vw; 
+    height: 100vh; 
+    background-color: var(--low-opacty-black);
+    backdrop-filter: blur(5px);
+    z-index: 500; 
+    position: fixed; 
+    top: 0;
+    left: 0;
+}
+
+.overlay-container{
+    background-color: var(--low-opacity-white);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50vw;
+    padding: 32px;
+    max-height: 90vh;
+    border-radius: 6px;
+}
+
+.overlay-title{
+    text-align: center; 
+    color: var(--main-color-darker);
+    font-weight: 500;
+    background-color: transparent;
+    border: 0;
+    margin: 0;
+}
+
+.overlay-hr{
+    color: var(--main-color-darker);
+    opacity: 100%;
+}
+
+.overlay-form{
+    display: flex; 
+    flex-direction: column; 
+    max-height: 70vh;
+}
+
+
+/*Inputs*/
+
+.overlay-scrollable-inputs{
+    overflow-y: scroll;
+}
+
+.overlay-text{
+    color: var(--gray-color);
+    font-weight: 350;
+    background-color: transparent;
+    border: 0;
+}
+
+.input-container{
+    position: relative;
+}
+
+.overlay-input{
+    border-width: 0;
+    background-color: transparent;
+    padding: 10px;
+    width: 100%;
+    min-width: max-content;
+    border-bottom-width: 2px;
+    border-color: var(--input-color);
+}
+
+.overlay-input:focus{
+    outline:none;
+    background-color: transparent;
+    box-shadow: none;
+    /*border-color: var( --main-color);*/
+}
+
+.overlay-input~.focus-border-input {
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	width: 0;
+	height: 2px;
+	background-color: var( --main-color);;
+	transition: 0.3s;
+}
+ 
+.overlay-input:focus~.focus-border-input {
+	width: 100%;
+	transition: 0.3s;
+	left: 0;
+}
+
+.form-check-input{
+    margin-left: 6px;
+    background-color: transparent;
+    border-color: dimgray;
+    border-width: 2px;
+    height: 20px;
+    width: 20px;
+    transition: background-color 0.3s;
+}
+
+.form-check-input:hover{
+    outline: none;
+    box-shadow: none;
+    border-color: dimgray;
+    background-color: var(--main-color);
+}
+
+.form-check-input:focus{
+    outline: none;
+    box-shadow: none;
+}
+
+.form-check-input:checked{
+    background-image:url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='dimgray' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3E%3C/svg%3E");
+    background-position: center;
+    background-size: 12px;
+}
+
+textarea {
+    resize: none;
+}
+
+.select-option{
+    background-color: whitesmoke;
+}
+
+/*Botones y alertas*/
+
+.overlay-alerts-buttons-container{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 24px;
+}
+
+.overlay-buttons-container{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.overlay-alert-text{
+    font-size: small;
+    color: var(--main-color-darker);
+    margin: 0;
+    
+}
+
+.overlay-alerts-container{
+    min-height: 48px;
+    align-content: center;
+    padding: 0;
+    padding-right: 12px;
+}
+
+.my-button{
+    color: var(--main-color-darker);
+    border-color: var(--main-color-darker);
+}
+
+.my-button:hover{
+    background-color: var(--main-color-low-opacity);
+}
+
+
+
+
+/*media*/
+
+@media screen and (max-width: 575px) {
+    .overlay-container{
+        padding: 16px 16px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .overlay-container{
+        width: 90vw;
+    }
+}

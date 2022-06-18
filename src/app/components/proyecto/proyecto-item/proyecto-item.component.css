@@ -1,0 +1,92 @@
+.card{
+    width: 80%;
+    border-radius: 12px;
+    background-color: var(--low-opacity-white);
+    border-color: var(--text-color);
+    border-width: 1px;
+    position: relative;
+    margin: auto;
+    margin-top: 16px;
+}
+
+.card-img-top{
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-zoom-icon{
+    z-index: 50;
+    color: whitesmoke !important;
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    height: 30px !important;
+    width: 30px;
+    background-color: black;
+
+}
+
+.card-title{
+    color: var(--main-color-darker);
+}
+
+.card-link-container{
+    height: 20px;
+}
+
+.card-link{
+    color: var(--main-color-dark);
+    text-decoration: none;
+}
+
+.card-date{
+    color: var(--gray-color);
+    align-self: center;
+    font-size: small;
+    padding: 0;
+    margin: 0;
+}
+
+.this-card-footer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    justify-content: space-between;
+    height: 20px;
+}
+
+.edit-button{
+    color: var(--main-color-darker);
+}
+
+
+.card-description{
+    z-index: 50;
+    position: absolute;
+    top: 0;
+    padding: 16px;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    padding-bottom: auto;
+}
+
+.hide-description-button{
+    justify-self: flex-end;
+    align-self: flex-end;
+}
+
+.description-text{
+    color: black;
+    flex: 1 1 0;
+}
+
+.edit-buttons-container{
+    display: flex;
+    color: var(--main-color-darker);
+    width: 50px;
+    justify-content: space-between;
+}

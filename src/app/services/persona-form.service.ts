@@ -20,7 +20,7 @@ export class PersonaFormService {
     telefono: new FormControl(this.pers.persona?.telefono, [Validators.required, Validators.maxLength(25), Validators.pattern("^[+]?[0-9()-\\s]+$"),]),
     imagenPerfil: new FormControl(this.pers.persona?.imagenPerfil),
     banner: new FormControl(this.pers.persona?.banner),
-    github: new FormControl(this.pers.persona?.github),
+    github: new FormControl(this.pers.persona?.github, [Validators.required, Validators.maxLength(60)]),
   })
 
   //Form getter

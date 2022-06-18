@@ -8,7 +8,7 @@ import { BaseComponent } from '../base/base.component';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['../../styles/editing.styles.css', './login.component.css']
 })
 export class LoginComponent extends BaseComponent implements OnInit{
   
@@ -28,10 +28,16 @@ export class LoginComponent extends BaseComponent implements OnInit{
   //Form methods
   submitForm() {
     this.auth.iniciarSesion(this.componentForm.value);
-    this.componentForm.reset()  
+    this.componentForm.reset();  
   }
   cancelForm(){
-    this.componentForm.reset()
+    this.componentForm.reset();
+  }
+
+  invitado(){
+    this.username?.setValue("Invitado");
+    this.password?.setValue("1234");
+    this.submitForm();
   }
 
   makeBackgroundImages(){
