@@ -12,9 +12,13 @@ import { BaseComponent } from '../base/base.component';
 export class SkillsComponent extends BaseComponent implements OnInit{
   
   public overlayOpen: boolean = false;
-
   changeOverlayOpen(value: boolean){
     this.overlayOpen = value;
+  }
+
+  public overlayOpenOrder: boolean = false;
+  changeOverlayOpenOrder(value: boolean){
+    this.overlayOpenOrder = value;
   }
 
   constructor(screenService: ScreenSizeService, public service: SkillRequestsService, login: LoginService) {

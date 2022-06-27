@@ -19,6 +19,7 @@ export class SkillFormComponent extends BaseFormItemComponent<SkillItem, SkillRe
         titulo: new FormControl("", [Validators.required, Validators.maxLength(25)]),
         valor: new FormControl(0,[Validators.max(10), Validators.min(0), Validators.required]),
         tipo: new FormControl(0,[Validators.required]),
+        displayOrder: new FormControl(this.newDisplayOrder()),
         personaId: new FormControl (this.service.personaId)
         //etiqueta: new FormControl("", [Validators.maxLength(25)]),
         //descripcion: new FormControl("",[Validators.maxLength(150)]),        
@@ -29,6 +30,7 @@ export class SkillFormComponent extends BaseFormItemComponent<SkillItem, SkillRe
         titulo: new FormControl(this.object?.titulo, [Validators.required, Validators.maxLength(25)]),
         valor: new FormControl(this.object?.valor,[Validators.max(10), Validators.min(0), Validators.required]),
         tipo: new FormControl(this.object?.tipo,[Validators.required]),
+        displayOrder: new FormControl(this.object?.displayOrder),
         personaId: new FormControl(this.object?.personaId)
         //descripcion: new FormControl("",[Validators.maxLength(150)]),
         //etiqueta: new FormControl("", [Validators.maxLength(25)]),

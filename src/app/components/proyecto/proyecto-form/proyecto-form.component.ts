@@ -21,7 +21,8 @@ export class ProyectoFormComponent extends BaseFormItemComponent<ProyectoItem, P
         fecha: new FormControl(null),
         link: new FormControl(""),
         personaId: new FormControl(this.service.personaId),
-        imagen: new FormControl(this.object?.imagen)
+        imagen: new FormControl(this.object?.imagen),
+        displayOrder: new FormControl(this.newDisplayOrder())
       })
     } else {
       this.componentForm = new FormGroup({
@@ -31,7 +32,8 @@ export class ProyectoFormComponent extends BaseFormItemComponent<ProyectoItem, P
         fecha: new FormControl(this.object?.fecha),
         link: new FormControl(this.object?.link, [Validators.maxLength(60)]),
         personaId: new FormControl(this.object?.personaId),
-        imagen: new FormControl(this.object?.imagen)
+        imagen: new FormControl(this.object?.imagen),
+        displayOrder: new FormControl(this.object?.displayOrder)
       })
     }
   }

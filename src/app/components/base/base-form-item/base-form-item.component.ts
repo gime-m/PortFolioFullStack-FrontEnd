@@ -23,6 +23,14 @@ export class BaseFormItemComponent<T extends EducItem|ExpItem|SkillItem|Proyecto
 
   makeComponentForm(){}
 
+  newDisplayOrder(){
+    if (this.service.items){
+      return Math.max(...this.service.items.map(o => o.displayOrder)) + 1;
+    } else {
+      return 1;
+    }
+  }
+
   submitForm() {
     if (this.isNewItem){
       this.service.postJSON(this.componentForm.value);

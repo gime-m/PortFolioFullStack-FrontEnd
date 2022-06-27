@@ -5,6 +5,7 @@
 
         <div class="col-4 component-header-buttons">
             <app-add-button (click)="overlayOpen=true" [style.visibility]="(login.isAdmin() && login.editando)? 'visible': 'hidden'"></app-add-button>
+            <app-drag-button (click)="overlayOpenOrder=true" [style.visibility]="(login.isAdmin() && login.editando)? 'visible': 'hidden'"></app-drag-button>
         </div>
     </div>
     
@@ -16,3 +17,4 @@
 </div>
 
 <app-experiencia-form [isNewItem]="true"  (overlayOpenEvent)="changeOverlayOpen($event)" *ngIf="overlayOpen"></app-experiencia-form>
+<app-experiencia-order-form (overlayOpenEvent)="changeOverlayOpenOrder($event)" *ngIf="overlayOpenOrder"></app-experiencia-order-form>

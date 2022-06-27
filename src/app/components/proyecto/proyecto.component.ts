@@ -16,6 +16,11 @@ export class ProyectoComponent extends BaseComponent implements OnInit {
     this.overlayOpen = value;
   }
 
+  public overlayOpenOrder: boolean = false;
+  changeOverlayOpenOrder(value: boolean){
+    this.overlayOpenOrder = value;
+  }
+
   //Constructor
   constructor(screenService: ScreenSizeService, public service: ProyectoRequestsService, login: LoginService) {
     super(screenService, login);

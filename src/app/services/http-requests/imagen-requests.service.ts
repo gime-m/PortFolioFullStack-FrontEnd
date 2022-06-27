@@ -76,21 +76,14 @@ export class ImagenRequestsService<T extends EducItem|ExpItem|ProyectoItem, Tpos
   }
 
   public override getJSON(): void{ 
-    let url: string = this.originURL + this.component + this.getUrl + this.personaId;
-    this.http.get<any>(url).subscribe({
-      next: (data: T[] | undefined) => {
-        this.items=data; 
-
-        if (data != undefined){
-          for (let i=0; i < data.length; i++ ){
-            if (data[i]) {
-              this.getImagen(data[i].id, data[i].imagen);
-            }
-          }
+    super.getJSON();
+    if (this.items){
+      for (let i=0; i < this.items.length; i++ ){
+        if (this.items[i]) {
+          this.getImagen(this.items[i].id, this.items[i].imagen);
         }
-      },
-      error: (error: any) => {console.error("Error en solicitud GET", error);}
-    });
+      }
+    }
   }
 
   constructor( http: HttpClient, @Inject('component') public comp: string) {

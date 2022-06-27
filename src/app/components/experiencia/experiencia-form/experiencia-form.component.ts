@@ -23,7 +23,8 @@ export class ExperienciaFormComponent extends BaseFormItemComponent<ExpItem, Exp
         fechaFin: new FormControl(null),
         isCurrent: new FormControl(false),
         personaId: new FormControl(this.service.personaId),
-        imagen:  new FormControl("")
+        imagen:  new FormControl(""),
+        displayOrder: new FormControl(this.newDisplayOrder())
       })
     } else {
       this.componentForm = new FormGroup({
@@ -35,7 +36,8 @@ export class ExperienciaFormComponent extends BaseFormItemComponent<ExpItem, Exp
         fechaFin: new FormControl(null),
         isCurrent: new FormControl(this.object?.isCurrent),
         personaId: new FormControl(this.object?.personaId),
-        imagen:  new FormControl(this.object?.imagen)
+        imagen:  new FormControl(this.object?.imagen),
+        displayOrder: new FormControl(this.object?.displayOrder)
       })
     }
   }

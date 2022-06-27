@@ -5,25 +5,26 @@
 
         <div class="component-header-buttons">
             <app-add-button (click)="overlayOpen=true" [style.visibility]="(login.isAdmin() && login.editando)? 'visible': 'hidden'"></app-add-button>
+            <app-drag-button (click)="overlayOpenOrder=true" [style.visibility]="(login.isAdmin() && login.editando)? 'visible': 'hidden'"></app-drag-button>
         </div>
     </div>
     
     <div class="row">
-        <div class="col-sm-4 col-12" >
+        <div class="col-md-6 col-12" >
             <h6>Hard skills</h6>
             <div *ngFor="let item of service.items">
                 <app-skill-item *ngIf="item.tipo == 'hard'" [object]="item"></app-skill-item>
             </div>
         </div>
 
-        <div class="col-sm-4 col-12" >
+        <div class="col-md-6 col-12" >
             <h6>Soft skills</h6>
             <div *ngFor="let item of service.items">
                 <app-skill-item *ngIf="item.tipo == 'soft'" [object]="item"></app-skill-item>
             </div>
         </div>
 
-        <div class="col-sm-4 col-12">
+        <div class="col-12">
             <h6>Idiomas</h6>
             <div *ngFor="let item of service.items">
                 <app-skill-item *ngIf="item.tipo == 'idioma'" [object]="item"></app-skill-item>
@@ -33,8 +34,8 @@
 </div>
 
 
-
 <app-skill-form [isNewItem]="true"  (overlayOpenEvent)="changeOverlayOpen($event)" *ngIf="overlayOpen"></app-skill-form>
+<app-skill-order-form (overlayOpenEvent)="changeOverlayOpenOrder($event)" *ngIf="overlayOpenOrder"></app-skill-order-form>
 
 
 

@@ -22,6 +22,7 @@ export interface ExpItemPost {
     isCurrent: boolean;
     imagen: string;
     personaId: number;
+    displayOrder: number;
 }
   
 export interface ExpItem extends ExpItemPost{
@@ -37,6 +38,7 @@ export interface EducItemPost {
     isCurrent: boolean;
     imagen: string;
     personaId: number;
+    displayOrder: number;
 }
   
 export interface EducItem extends EducItemPost{
@@ -48,6 +50,7 @@ export interface SkillItemPost {
     valor: number;
     tipo: string;
     personaId: number;
+    displayOrder: number;
 
     //descripcion: string; 
     //etiqueta: string;   
@@ -78,6 +81,7 @@ export interface ProyectoItemPost{
     link: string;
     imagen: string;
     personaId: number;
+    displayOrder: number;
 }
 
 export interface ProyectoItem extends ProyectoItemPost {
@@ -94,5 +98,15 @@ export interface AuthResponse {
     accessToken: string;
     refreshToken:string;
     roles: Array<string>;
-  }
+}
+
+export class OrderDTO {
+    id?: number;
+    displayOrder?: number;
+  
+    constructor(id: number, disOr: number){
+      this.id=id;
+      this.displayOrder=disOr;
+    }
+}
   

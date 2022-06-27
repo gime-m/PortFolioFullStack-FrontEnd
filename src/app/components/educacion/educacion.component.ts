@@ -16,6 +16,11 @@ export class EducacionComponent extends BaseComponent implements OnInit {
     this.overlayOpen = value;
   }
 
+  public overlayOpenOrder: boolean = false;
+  changeOverlayOpenOrder(value: boolean){
+    this.overlayOpenOrder = value;
+  }
+
   //Constructor
   constructor(screenService: ScreenSizeService, public service: EducacionRequestsService, login: LoginService) {
     super(screenService, login);

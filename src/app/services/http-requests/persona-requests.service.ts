@@ -1,15 +1,23 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Persona } from '../model-interfaces';
-import { RequestsBaseService } from './requests-base.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PersonaRequestsService extends RequestsBaseService<Persona,undefined> {
+export class PersonaRequestsService {
 
-  public override getUrl: string = this.originURL +'persona?id='+this.personaId;
-  public override putUrl: string = this.originURL+'persona/editar';
+  private _personaId: number = 1;
+  public get personaId(): number {
+    return this._personaId;
+  }
+  public set personaId(value: number) {
+    this._personaId = value;
+  }
+
+  public originURL: string = 'http://localhost:8080/';
+  public getUrl: string = this.originURL +'persona?id='+this.personaId;
+  public putUrl: string = this.originURL+'persona/editar';
   public putImagenPerfilUrl: string = this.originURL+'subir-imagen/perfil';
   public deleteImagenPerfilUrl: string = this.originURL + 'borrar-imagen/perfil/'+this.personaId;
   public putImagenBannerUrl: string = this.originURL+'subir-imagen/banner';
@@ -115,7 +123,7 @@ export class PersonaRequestsService extends RequestsBaseService<Persona,undefine
 
   // Persona
 
-  public override getJSON(): void {
+  public getJSON(): void {
     this.http.get<Persona>(this.getUrl).subscribe({
       next: data => {
         this.persona=data; 
@@ -124,7 +132,7 @@ export class PersonaRequestsService extends RequestsBaseService<Persona,undefine
     });
   }
 
-  public override putJSON(): void{
+  public putJSON(): void{
     this.http.put<any>(this.putUrl, this.persona)
     .subscribe({
       next: () => {},
@@ -132,8 +140,7 @@ export class PersonaRequestsService extends RequestsBaseService<Persona,undefine
     })
   } 
 
-  constructor(http: HttpClient) {
-    super(http,"persona");
+  constructor(public http: HttpClient){
     this.getJSON();
   }
 }

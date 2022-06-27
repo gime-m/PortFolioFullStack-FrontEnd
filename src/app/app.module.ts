@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { registerLocaleData } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ClickOutsideModule } from 'ng-click-outside';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -51,6 +52,12 @@ import { ProyectoImagenGrandeComponent } from './components/proyecto/proyecto-im
 import { LoadingComponent } from './components/loading/loading.component';
 import { LoadingInterceptorService } from './services/loading/loading-interceptor.service';
 import { ImgLoadedDirective } from './services/loading/imagen-loading.directive';
+import { OrderFormBaseComponent } from './components/base/order-form-base/order-form-base.component';
+import { DragButtonComponent } from './components/subcomponents/drag-button/drag-button.component';
+import { ExperienciaOrderFormComponent } from './components/experiencia/experiencia-order-form/experiencia-order-form.component';
+import { EducacionOrderFormComponent } from './components/educacion/educacion-order-form/educacion-order-form.component';
+import { ProyectoOrderFormComponent } from './components/proyecto/proyecto-order-form/proyecto-order-form.component';
+import { SkillOrderFormComponent } from './components/skills/skill-order-form/skill-order-form.component';
 registerLocaleData(localeEs, 'es')
 
 
@@ -93,7 +100,13 @@ registerLocaleData(localeEs, 'es')
     ProyectoImagenFormComponent,
     ProyectoImagenGrandeComponent,
     LoadingComponent,
-    ImgLoadedDirective
+    ImgLoadedDirective,
+    OrderFormBaseComponent,
+    DragButtonComponent,
+    ExperienciaOrderFormComponent,
+    EducacionOrderFormComponent,
+    ProyectoOrderFormComponent,
+    SkillOrderFormComponent
   ],
   imports: [
     BrowserModule,
@@ -102,7 +115,8 @@ registerLocaleData(localeEs, 'es')
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    ClickOutsideModule
+    ClickOutsideModule,
+    DragDropModule
   ],
   providers: [
     {provide: LOCALE_ID, useValue: "es"},

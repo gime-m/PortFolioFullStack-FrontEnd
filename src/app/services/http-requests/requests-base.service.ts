@@ -1,8 +1,9 @@
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { HttpClient } from '@angular/common/http';
 import { Inject } from '@angular/core';
-import { EducItem, EducItemPost, ExpItem, ExpItemPost, Persona, ProyectoItem, ProyectoItemPost, SkillItem, SkillItemPost } from '../model-interfaces';
+import { EducItem, EducItemPost, ExpItem, ExpItemPost, OrderDTO, ProyectoItem, ProyectoItemPost, SkillItem, SkillItemPost } from '../model-interfaces';
 
-export class RequestsBaseService<T extends EducItem|ExpItem|SkillItem|ProyectoItem|Persona, Tpost extends EducItemPost|ExpItemPost|SkillItemPost|ProyectoItemPost|undefined> {
+export class RequestsBaseService<T extends EducItem|ExpItem|SkillItem|ProyectoItem, Tpost extends EducItemPost|ExpItemPost|SkillItemPost|ProyectoItemPost> {
 
   //Id de persona
   private _personaId: number = 1;
@@ -19,6 +20,7 @@ export class RequestsBaseService<T extends EducItem|ExpItem|SkillItem|ProyectoIt
   public putUrl: string ='/editar';
   public postUrl: string = '/crear';
   public deleteByIdUrl: string = '/eliminar?id=';
+  public putOrderUrl:string = '/ordenar';
 
   //Lista de Objetos
   private _items?: T[] | undefined;
@@ -36,7 +38,7 @@ export class RequestsBaseService<T extends EducItem|ExpItem|SkillItem|ProyectoIt
     let url: string = this.originURL + this.component + this.getUrl + this.personaId;
     this.http.get<any>(url).subscribe({
       next: (data: T[] | undefined) => {
-        this.items=data; 
+        this.items=data?.sort((a, b) => {return a.displayOrder - b.displayOrder}); 
       },
       error: (error: any) => {console.error("Error en solicitud GET", error);}
     });
@@ -85,7 +87,22 @@ export class RequestsBaseService<T extends EducItem|ExpItem|SkillItem|ProyectoIt
     }    
   }
 
+  public putJSONorder(lista: T[]): void{
+    let url: string = this.originURL + this.component + this.putOrderUrl;
+    if (lista){
+      let order = lista.map((x, ind) => new OrderDTO(x.id,ind+1));
+      this.items = lista;
+
+      this.http.put<any>(url, order)
+      .subscribe({
+        error: (error: any) => {console.error("Error en solicitud PUT",error)}
+      })
+    } else {
+      console.error("La lista es indefinida. No se realizó solicitud PUT.")
+    }   
+  }
+
   constructor(public http: HttpClient, @Inject('component') public component: string){
-      this.component = component
+    this.component = component
   }
 }
