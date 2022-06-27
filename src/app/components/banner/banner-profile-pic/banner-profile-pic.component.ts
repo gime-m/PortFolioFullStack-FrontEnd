@@ -12,7 +12,6 @@ import { BaseComponent } from '../../base/base.component';
 export class BannerProfilePicComponent extends BaseComponent implements OnInit {
 
   public overlayOpen: boolean = false;
-
   changeOverlayOpen(value: boolean){
     this.overlayOpen = value;
   }

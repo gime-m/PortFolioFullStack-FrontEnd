@@ -61,27 +61,6 @@ export class AuthService {
     let header = new HttpHeaders().set('Authorization', "Bearer "+ sessionStorage.getItem('refreshToken')?.toString());
     return this.http.get<AuthResponse>(this.refreshURL, {'headers': header})
   }
-
-
-  /*
-  authURL="https://localhost:8080/auth/login";
-  currentUserSubject: BehaviorSubject<any>
-
-  IniciarSesion(cred: Credenciales): Observable<any> {
-    return this.http.post(this.authURL, cred).pipe(
-      map(data => {
-        console.log(data)
-        sessionStorage.setItem('currentUser', JSON.stringify(data));
-        return data;
-      })
-    )
-  }
-
-  constructor(private http: HttpClient){
-    this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(sessionStorage.getItem('currentUser') || '{}'))
-  }
-  */
-
 }
 
 

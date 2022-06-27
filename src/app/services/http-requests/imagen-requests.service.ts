@@ -8,7 +8,6 @@ import { RequestsBaseService } from './requests-base.service';
 })
 export class ImagenRequestsService<T extends EducItem|ExpItem|ProyectoItem, Tpost extends EducItemPost|ExpItemPost|ProyectoItemPost> extends RequestsBaseService<T,Tpost>{
   
-  //Lista de imagenes
   private _imagenes: any[] = []
   public get imagenes(): any[] {
     return this._imagenes;
@@ -16,8 +15,6 @@ export class ImagenRequestsService<T extends EducItem|ExpItem|ProyectoItem, Tpos
   public set imagenes(value:any[]) {
     this._imagenes = value;
   }
-
-  //Metodos para imagenes
 
   public getImagen(id: number, imgPath: string): void{ 
     let url: string = this.originURL + imgPath;

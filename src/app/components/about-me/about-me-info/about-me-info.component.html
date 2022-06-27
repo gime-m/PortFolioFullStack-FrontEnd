@@ -1,4 +1,3 @@
-<!--Información personal-->
 <div class="personal-info">
         
     <div class="personal-info-item">
@@ -37,7 +36,7 @@
         <a [href]="pers.persona?.github" class="personal-info-text" target="_blank">{{pers.persona?.github}}</a>
     </div>
 
-    <app-edit-button [style.visibility]="(login.isAdmin() && login.editando)? 'visible': 'hidden'" (click)="clickEditButton()" class="edit-button-here"></app-edit-button>
+    <app-edit-button [style.visibility]="(login.isAdmin() && login.editando)? 'visible': 'hidden'" (click)="this.overlayOpen=true;" class="edit-button-here"></app-edit-button>
 </div>
 
-<app-base-form-persona componente="info" titulo="Ingresa los siguientes datos personales." (overlayOpenEvent)="changeOverlayOpen($event)" *ngIf="overlayOpen"></app-base-form-persona>
+<app-about-me-info-form (overlayOpenEvent)="changeOverlayOpen($event)" *ngIf="overlayOpen"></app-about-me-info-form>

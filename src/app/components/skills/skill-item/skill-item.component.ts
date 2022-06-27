@@ -13,20 +13,11 @@ import { BaseItemComponent } from '../../base/base-item/base-item.component';
 export class SkillItemComponent extends BaseItemComponent<SkillItem,SkillRequestsService> implements OnInit {
 
   skillWidth : string = ""
-  //usedLabel?: string = this.object?.etiqueta
     
   numberToPercentage(n: number): string{
     let a: number = n/100;
     return a.toLocaleString('en-US',{style:'percent'});
   }
-
-  /*defaultLabel (): void{
-    if (this.object?.etiqueta==""){
-      this.usedLabel = this.skillWidth;
-    } else {
-      this.usedLabel = this.object?.etiqueta;
-    };
-  }*/
 
   constructor(screenService: ScreenSizeService, service: SkillRequestsService, login: LoginService) {
     super(service, screenService, login);

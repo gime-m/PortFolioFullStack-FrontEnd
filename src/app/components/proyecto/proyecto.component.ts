@@ -6,8 +6,7 @@ import { BaseComponent } from '../base/base.component';
 
 @Component({
   selector: 'app-proyecto',
-  templateUrl: './proyecto.component.html',
-  styleUrls: ['./proyecto.component.css']
+  templateUrl: './proyecto.component.html'
 })
 export class ProyectoComponent extends BaseComponent implements OnInit {
   
@@ -21,7 +20,6 @@ export class ProyectoComponent extends BaseComponent implements OnInit {
     this.overlayOpenOrder = value;
   }
 
-  //Constructor
   constructor(screenService: ScreenSizeService, public service: ProyectoRequestsService, login: LoginService) {
     super(screenService, login);
   }

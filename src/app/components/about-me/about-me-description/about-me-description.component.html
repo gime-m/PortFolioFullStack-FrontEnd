@@ -1,13 +1,9 @@
 <div >
-
-    <!--Título + Botón de editar-->
     <div class="about-header">
         <h6 class="about-title"> Acerca de mí</h6>
-        <app-edit-button [style.visibility]="(login.isAdmin() && login.editando)? 'visible': 'hidden'"  (click)="clickEditButton()"></app-edit-button>
+        <app-edit-button [style.visibility]="(login.isAdmin() && login.editando)? 'visible': 'hidden'"  (click)="this.overlayOpen=true"></app-edit-button>
     </div>
-    
-    <!--Texto sobre mí-->
     <p class="info">{{pers.persona?.descripcion}}</p>  
 </div>
 
-<app-base-form-persona componente="description" titulo="Escribe una breve descripción sobre tí." (overlayOpenEvent)="changeOverlayOpen($event)" *ngIf="overlayOpen"></app-base-form-persona>
+<app-about-me-descripcion-form (overlayOpenEvent)="changeOverlayOpen($event)" *ngIf="overlayOpen"></app-about-me-descripcion-form>

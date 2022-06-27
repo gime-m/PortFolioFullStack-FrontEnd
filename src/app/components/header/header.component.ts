@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { LoadingService } from 'src/app/services/loading/loading.service';
 import { LoginService } from 'src/app/services/login.service';
 import { ScreenSizeService } from 'src/app/services/screen-size.service';
 import { BaseComponent } from '../base/base.component';

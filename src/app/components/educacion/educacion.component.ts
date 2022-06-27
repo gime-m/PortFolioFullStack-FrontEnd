@@ -6,8 +6,7 @@ import { EducacionRequestsService } from 'src/app/services/http-requests/educaci
 
 @Component({
   selector: 'app-educacion',
-  templateUrl: './educacion.component.html',
-  styleUrls: ['./educacion.component.css']
+  templateUrl: './educacion.component.html'
 })
 export class EducacionComponent extends BaseComponent implements OnInit {
   
@@ -21,7 +20,6 @@ export class EducacionComponent extends BaseComponent implements OnInit {
     this.overlayOpenOrder = value;
   }
 
-  //Constructor
   constructor(screenService: ScreenSizeService, public service: EducacionRequestsService, login: LoginService) {
     super(screenService, login);
   }

@@ -1,4 +1,3 @@
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { HttpClient } from '@angular/common/http';
 import { Inject } from '@angular/core';
 import { EducItem, EducItemPost, ExpItem, ExpItemPost, OrderDTO, ProyectoItem, ProyectoItemPost, SkillItem, SkillItemPost } from '../model-interfaces';
@@ -31,7 +30,6 @@ export class RequestsBaseService<T extends EducItem|ExpItem|SkillItem|ProyectoIt
     this._items = value;
   }
   
-
   //Metodos get, put, post, delete.
 
   public getJSON(): void{ 

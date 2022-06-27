@@ -1,0 +1,78 @@
+<!--Overlay para la edición-->
+<div class="editing-overlay">
+    
+    <div class="overlay-container">
+        
+        <!--Título-->
+        <p class="overlay-title">Ingresa los siguientes datos personales.</p>
+        <hr class="overlay-hr">
+
+        <!--Formulario-->
+        <form [formGroup]="componentForm" (ngSubmit)="submitForm()">
+            
+            <div class="overlay-scrollable-inputs">
+                <div class="input-container">
+                    <label for="nombre-id" class="overlay-text">Nombre: </label>
+                    <input id="nombre-id" type="text" formControlName="nombre" class="overlay-input">
+                    <span class="focus-border-input"></span>  
+                </div>
+                <br>
+                <div class="input-container">
+                    <label for="apellido-id" class="overlay-text">Apellido: </label>
+                    <input id="apellido-id" type="text" formControlName="apellido" class="overlay-input">
+                    <span class="focus-border-input"></span>
+                </div> 
+                <br>
+                <div class="input-container">
+                    <label for="trabajo-id" class="overlay-text">Ocupación: </label>
+                    <input id="trabajo-id" type="text" formControlName="ocupacion" class="overlay-input">
+                    <span class="focus-border-input"></span>
+                </div>
+            </div>
+        
+            <div class="overlay-alerts-buttons-container" > 
+
+                <!--Alertas-->
+                <div class="overlay-alerts-container">
+                    <div *ngIf="nombre?.errors?.['required']  && (nombre?.dirty || nombre?.touched)">
+                        <p class="overlay-alert-text">El nombre es obligatorio.</p>
+                    </div>
+                    <div *ngIf="apellido?.errors?.['required']  && (apellido?.dirty || apellido?.touched)">
+                        <p class="overlay-alert-text">El apellido es obligatorio.</p>
+                    </div>
+                    <div *ngIf="ocupacion?.errors?.['required']  && (ocupacion?.dirty || ocupacion?.touched)">
+                        <p class="overlay-alert-text">La ocupación es obligatoria.</p>
+                    </div>
+            
+                    <div *ngIf="nombre?.errors?.['maxlength']  && (nombre?.dirty || nombre?.touched)">
+                        <p class="overlay-alert-text">El nombre no puede superar los 25 caracteres.</p>
+                    </div>
+                    <div *ngIf="apellido?.errors?.['maxlength']  && (apellido?.dirty || apellido?.touched)">
+                        <p class="overlay-alert-text">El apellido no puede superar los 25 caracteres.</p>
+                    </div>
+                    <div *ngIf="ocupacion?.errors?.['maxlength']  && (ocupacion?.dirty || ocupacion?.touched)">
+                        <p class="overlay-alert-text">La ocupación no puede superar los 60 caracteres.</p>
+                    </div>
+                </div>
+
+                <!--Botones-->
+                <div class="overlay-buttons-container">
+                    <button type="submit" class="btn my-button" [disabled]="!componentForm.valid" (click)="submitForm()">
+                        <p *ngIf="!smallScreen" class="button-text">Guardar</p>
+                        <svg *ngIf="smallScreen" class="button-icon" width="16" height="16" fill="currentColor"  viewBox="0 0 16 16">
+                            <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
+                        </svg>
+                    </button>
+
+                    <button type="button" class="btn my-button" (click)="cancelForm()">
+                        <p *ngIf="!smallScreen" class="button-text">Cancelar</p>
+                        <svg *ngIf="smallScreen" class="button-icon"  width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
+                            <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

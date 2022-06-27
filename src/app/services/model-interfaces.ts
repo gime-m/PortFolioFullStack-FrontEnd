@@ -50,24 +50,7 @@ export interface SkillItemPost {
     valor: number;
     tipo: string;
     personaId: number;
-    displayOrder: number;
-
-    //descripcion: string; 
-    //etiqueta: string;   
-}
-  
-export interface SkillItem extends SkillItemPost{
-    id: number;
-} 
-
-export interface SkillItemPost {
-    titulo: string;
-    valor: number;
-    tipo: string;
-    personaId: number;
-
-    //descripcion: string; 
-    //etiqueta: string;   
+    displayOrder: number; 
 }
   
 export interface SkillItem extends SkillItemPost{

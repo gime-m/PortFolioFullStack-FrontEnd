@@ -1,7 +1,3 @@
-<app-educacion-form [isNewItem]="false" [object]="object"  (overlayOpenEvent)="changeOverlayOpen($event)" *ngIf="overlayOpen"></app-educacion-form>
-
-<app-educacion-imagen-form  [id]="object.id" (overlayOpenEvent)="changeOverlayOpenImagen($event)" *ngIf="overlayOpenImagen"></app-educacion-imagen-form>
-
 <div class="item-container-outside" (clickOutside)="verDescripcion=false">
   <div class="item-container"  >
 
@@ -52,3 +48,6 @@
     </svg>
   </div>
 </div>
+
+<app-educacion-form [isNewItem]="false" [object]="object"  (overlayOpenEvent)="changeOverlayOpen($event)" *ngIf="overlayOpen"></app-educacion-form>
+<app-educacion-imagen-form  [id]="object.id" (overlayOpenEvent)="changeOverlayOpenImagen($event)" *ngIf="overlayOpenImagen"></app-educacion-imagen-form>

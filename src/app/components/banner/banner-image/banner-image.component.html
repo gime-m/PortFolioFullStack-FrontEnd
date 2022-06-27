@@ -1,4 +1,3 @@
-<!--Banner-->
 <div class="container-fluid banner" [ngStyle]="{'background-image': 'url(' + pers.imagenBanner + ')'}">
     <button  type="button" class="btn edit-button" [style.visibility]="(login.isAdmin() && login.editando)? 'visible': 'hidden'" (click)="overlayOpen = true">
         <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">

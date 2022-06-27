@@ -8,15 +8,12 @@ import { LoadingService } from './loading.service';
 export class ImgLoadedDirective {
   constructor(private el: ElementRef,
     private loadServ: LoadingService) {
-
-    //loadServ.imageLoading(el.nativeElement);
   }
 
   ngOnInit() {
     fromEvent(this.el.nativeElement, 'load')
       .pipe(first())
       .subscribe(() => this.loadServ.imagesLoading--)
-    
     this.loadServ.imagesLoading++;
   }
 } 

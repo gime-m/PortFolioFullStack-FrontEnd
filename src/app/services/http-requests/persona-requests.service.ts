@@ -17,7 +17,7 @@ export class PersonaRequestsService {
 
   public originURL: string = 'http://localhost:8080/';
   public getUrl: string = this.originURL +'persona?id='+this.personaId;
-  public putUrl: string = this.originURL+'persona/editar';
+  public putUrl: string = this.originURL+'persona/editar/';
   public putImagenPerfilUrl: string = this.originURL+'subir-imagen/perfil';
   public deleteImagenPerfilUrl: string = this.originURL + 'borrar-imagen/perfil/'+this.personaId;
   public putImagenBannerUrl: string = this.originURL+'subir-imagen/banner';
@@ -121,8 +121,6 @@ export class PersonaRequestsService {
   });  
 }
 
-  // Persona
-
   public getJSON(): void {
     this.http.get<Persona>(this.getUrl).subscribe({
       next: data => {
@@ -132,8 +130,9 @@ export class PersonaRequestsService {
     });
   }
 
-  public putJSON(): void{
-    this.http.put<any>(this.putUrl, this.persona)
+  public putJSON(comp: string, dto: any): void{
+    dto.id = this.personaId
+    this.http.put<any>(this.putUrl + comp, dto)
     .subscribe({
       next: () => {},
       error: error => {console.error("Error en solicitud PUT",error)}
@@ -143,4 +142,12 @@ export class PersonaRequestsService {
   constructor(public http: HttpClient){
     this.getJSON();
   }
+
+  /*public putJSON(): void{
+    this.http.put<any>(this.putUrl, this.persona)
+    .subscribe({
+      next: () => {},
+      error: error => {console.error("Error en solicitud PUT",error)}
+    })
+  } */
 }

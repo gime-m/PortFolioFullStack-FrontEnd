@@ -15,17 +15,14 @@ export class LoginComponent extends BaseComponent implements OnInit{
   backgroundImages: String[] = [] ;
   random: number = 0;
 
-  //Form
   componentForm = new FormGroup({
     username: new FormControl("", [Validators.required]),
     password: new FormControl("", [Validators.required]),
   })
 
-  //Form getter
   get username() { return this.componentForm.get('username'); }
   get password() { return this.componentForm.get('password');}
 
-  //Form methods
   submitForm() {
     this.auth.iniciarSesion(this.componentForm.value);
     this.componentForm.reset();  
@@ -46,7 +43,6 @@ export class LoginComponent extends BaseComponent implements OnInit{
     }
   }
 
-  //Constructor
   constructor(screenService: ScreenSizeService, login: LoginService, public auth: AuthService) {
     super(screenService, login);
     this.makeBackgroundImages();

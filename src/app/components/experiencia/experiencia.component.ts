@@ -7,8 +7,7 @@ import { ExperienciaRequestsService } from 'src/app/services/http-requests/exper
 
 @Component({
   selector: 'app-experiencia',
-  templateUrl: './experiencia.component.html',
-  styleUrls: ['./experiencia.component.css']
+  templateUrl: './experiencia.component.html'
 })
 export class ExperienciaComponent extends BaseComponent implements OnInit {
   

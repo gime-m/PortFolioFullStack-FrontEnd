@@ -53,7 +53,5 @@
 </div>
 
 <app-proyecto-form [isNewItem]="false" [object]="object"  (overlayOpenEvent)="changeOverlayOpen($event)" *ngIf="overlayOpen"></app-proyecto-form>
-
 <app-proyecto-imagen-form  [id]="object.id" (overlayOpenEvent)="changeOverlayOpenImagen($event)" *ngIf="overlayOpenImagen"></app-proyecto-imagen-form>
-
 <app-proyecto-imagen-grande [imagen]="service.imagenes[object.id]" (imagenGrandeEvent)="changeImagenGrande($event)" *ngIf="imagenGrande"></app-proyecto-imagen-grande>

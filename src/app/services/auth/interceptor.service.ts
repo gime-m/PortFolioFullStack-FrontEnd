@@ -31,11 +31,7 @@ export class InterceptorService implements HttpInterceptor {
   
       return next.handle(req).pipe(catchError(
         error => {
-          
-          /*if(req.url.includes('login') || req.url.includes('refresh')){
-            return throwError(() => new Error(error));
-          }*/
-  
+ 
           if (error.status !== 401 && error.status !== 403){
             return throwError(() => new Error(error));
           }
