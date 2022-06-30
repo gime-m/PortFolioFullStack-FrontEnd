@@ -24,22 +24,18 @@ export class AuthService {
         if (data.successful) {
           sessionStorage.setItem('accessToken', data.accessToken);
           sessionStorage.setItem('refreshToken', data.refreshToken);
-          console.log("Autenticación exitosa.");
-
           sessionStorage.setItem('username',cred.username);
           if (data.roles.includes("ADMIN")){
             sessionStorage.setItem('isAdmin', "ADMIN");
           }    
-         
-          this.router.navigate(['/portfolio']);
-          
+          this.router.navigate(['/portfolio']); 
         } else {
-          console.log("Autenticación realizada. Usuario o contraseña incorrectos.");
+          console.info("Autenticación realizada. Usuario o contraseña incorrectos.");
           this.wrongAuth = true;
         }
       },
       error: error => {
-        console.log("Error en autenticacion", error);
+        console.error("Error en autenticacion", error);
         this.failedAuth = true;
       }
     });

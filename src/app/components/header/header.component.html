@@ -15,6 +15,10 @@
             <button role="button" class="btn my-button" *ngIf="login.editando && !smallScreen" (click)="login.editando = false">
                 <p class="d-none d-sm-inline button-text icon-button-text">Terminar edición</p>
             </button>
+
+            <button role="button" class="btn my-button" *ngIf="login.editando && !smallScreen" (click)="showModal = true">
+                <p class="d-none d-sm-inline button-text icon-button-text">Más opciones</p>
+            </button>
         </div>
     </div>
 </div>
@@ -31,5 +35,7 @@
         <p class="offcanvas-item" (click)="auth.cerrarSesion()">Cerrar sesión</p>
     </div>
 </div>
+
+<app-tema-form *ngIf="showModal" (showModalEvent)="changeShowModal($event)"></app-tema-form>
   
 

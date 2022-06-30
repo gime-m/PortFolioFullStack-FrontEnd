@@ -33,7 +33,7 @@ export class LoginComponent extends BaseComponent implements OnInit{
 
   invitado(){
     this.username?.setValue("Invitado");
-    this.password?.setValue("1234");
+    this.password?.setValue("0000");
     this.submitForm();
   }
 

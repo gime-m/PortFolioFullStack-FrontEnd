@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Persona } from '../model-interfaces';
+import { TemaService } from '../tema.service';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,7 @@ export class PersonaRequestsService {
   imagenBanner: any;
 
   //Objeto
-  private _persona?: Persona | undefined;
+  private _persona?: Persona;
   public get persona(): Persona | undefined {
     return this._persona;
   }
@@ -94,7 +95,7 @@ export class PersonaRequestsService {
       complete: () => {
         this.getJSON();
       },
-      error: (error: any) => {console.error("Error en solicitud PUT",error, form)}
+      error: (error: any) => {console.error("Error en solicitud PUT de imagen (persona)",error, form)}
     });    
   }
 
@@ -113,11 +114,11 @@ export class PersonaRequestsService {
 
     this.http.delete<any>(path).subscribe({
     complete: () => {
-      if (this.persona != undefined){
+      if (this.persona){
         this.getJSON();
       }
     },
-    error: (error: any) => {console.error("Error en solicitud DELETE",error)}
+    error: (error: any) => {console.error("Error en solicitud DELETE de imagen (persona)",error)}
   });  
 }
 
@@ -126,7 +127,9 @@ export class PersonaRequestsService {
       next: data => {
         this.persona=data; 
         this.getImagenPerfil();
-        this.getImagenBanner();}
+        this.getImagenBanner();
+        this.temaServ.getTema(data.temaId);
+      }
     });
   }
 
@@ -135,19 +138,11 @@ export class PersonaRequestsService {
     this.http.put<any>(this.putUrl + comp, dto)
     .subscribe({
       next: () => {},
-      error: error => {console.error("Error en solicitud PUT",error)}
+      error: error => {console.error("Error en solicitud PUT de Persona",error)}
     })
   } 
 
-  constructor(public http: HttpClient){
+  constructor(public http: HttpClient, public temaServ: TemaService){
     this.getJSON();
   }
-
-  /*public putJSON(): void{
-    this.http.put<any>(this.putUrl, this.persona)
-    .subscribe({
-      next: () => {},
-      error: error => {console.error("Error en solicitud PUT",error)}
-    })
-  } */
 }

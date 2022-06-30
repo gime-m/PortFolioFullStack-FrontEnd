@@ -15,7 +15,7 @@ import { BaseComponent } from '../../base/base.component';
 export class ImagenItemFormComponent<T extends ExperienciaRequestsService|EducacionRequestsService|ProyectoRequestsService> extends BaseComponent implements OnInit {
 
   @Input()   id: number = 0;
-  @Output() overlayOpenEvent = new EventEmitter<boolean>();
+  @Output() showModalEvent = new EventEmitter<boolean>();
 
   componentForm = new FormGroup({
     imagen: new FormControl(""),
@@ -27,16 +27,16 @@ export class ImagenItemFormComponent<T extends ExperienciaRequestsService|Educac
   submitForm() {
     this.service.putImagen(this.fileSource?.value, this.id);
     this.componentForm.reset();
-    this.overlayOpenEvent.emit(false);
+    this.showModalEvent.emit(false);
   }
   cancelForm(){
     this.componentForm.reset();
-    this.overlayOpenEvent.emit(false);
+    this.showModalEvent.emit(false);
   }
 
   imagenPorDefecto(){
     this.service.deleteImagen(this.id);
-    this.overlayOpenEvent.emit(false);
+    this.showModalEvent.emit(false);
 
   }
   

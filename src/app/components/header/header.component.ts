@@ -21,6 +21,11 @@ export class HeaderComponent extends BaseComponent implements OnInit {
     return this._linkGitHub;
   }
 
+  public showModal: boolean = false;
+  changeShowModal(value: boolean){
+    this.showModal = value;
+  }
+
   constructor (login: LoginService, sc: ScreenSizeService, public auth: AuthService) {
     super(sc,login);
   }

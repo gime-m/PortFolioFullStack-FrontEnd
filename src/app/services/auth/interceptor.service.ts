@@ -65,14 +65,14 @@ export class InterceptorService implements HttpInterceptor {
                    return next.handle(req);
   
                 } else {
-                  console.log("No se pudo utilizar Refresh Token1.");
+                  console.info("No se pudo utilizar Refresh Token.");
                   this.authServ.cerrarSesion();
                   return throwError(() => new Error(error));
                 }
               }),
               catchError( (err) => {
                 this.refreshTokenInProgress = false;
-                console.log("No se pudo utilizar Refresh Token.", err);
+                console.error("No se pudo utilizar Refresh Token.", err);
                 this.authServ.cerrarSesion();
                 return throwError(() => new Error(error));
               })

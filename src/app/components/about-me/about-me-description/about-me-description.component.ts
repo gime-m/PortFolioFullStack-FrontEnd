@@ -13,9 +13,9 @@ import { PersonaRequestsService } from 'src/app/services/http-requests/persona-r
 
 export class AboutMeDescriptionComponent extends BaseComponent implements OnInit {
 
-  public overlayOpen: boolean = false;
-  changeOverlayOpen(value: boolean){
-    this.overlayOpen = value;
+  public showModal: boolean = false;
+  changeShowModal(value: boolean){
+    this.showModal = value;
   }
 
   constructor(screenService: ScreenSizeService, login: LoginService, public pers: PersonaRequestsService) {

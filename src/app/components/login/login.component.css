@@ -8,17 +8,17 @@
     object-fit: cover;
 }
 
-.overlay-container{
+.modal-container{
     background-color: var(--low-opacty-black);
     z-index: 200;
 }
 
-.overlay-text, .overlay-hr, .overlay-alert-text{
+.modal-text, .modal-hr, .modal-alert-text{
     color: var(--lighter-color);
     font-weight: 300;
 }
 
-.overlay-title{
+.modal-title{
     color: var(--lighter-color);
 }
 
@@ -27,7 +27,7 @@
     border-color: var(--lighter-color);
 }
 
-.overlay-input{
+.modal-input{
     color: var(--text-color);
 }
 

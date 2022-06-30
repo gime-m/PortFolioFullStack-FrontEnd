@@ -24,7 +24,7 @@ export class SkillItemComponent extends BaseItemComponent<SkillItem,SkillRequest
   }
 
   override ngOnInit(): void {
-    if (this.object != undefined){
+    if (this.object){
       this.skillWidth = this.numberToPercentage(this.object?.valor);
     } 
   }

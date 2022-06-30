@@ -1,4 +1,4 @@
-.editing-overlay{
+.editing-modal{
     width: 100vw; 
     height: 100vh; 
     background-color: var(--low-opacty-black);
@@ -9,7 +9,7 @@
     left: 0;
 }
 
-.overlay-container{
+.modal-container{
     background-color: var(--low-opacity-white);
     position: fixed;
     top: 50%;
@@ -21,7 +21,7 @@
     border-radius: 6px;
 }
 
-.overlay-title{
+.modal-title{
     text-align: center; 
     color: var(--main-color-darker);
     font-weight: 500;
@@ -30,12 +30,12 @@
     margin: 0;
 }
 
-.overlay-hr{
+.modal-hr{
     color: var(--main-color-darker);
     opacity: 100%;
 }
 
-.overlay-form{
+.modal-form{
     display: flex; 
     flex-direction: column; 
     max-height: 70vh;
@@ -44,22 +44,22 @@
 
 /*Inputs*/
 
-.overlay-scrollable-inputs{
+.modal-scrollable-inputs{
     overflow-y: auto;
 }
 
-.overlay-text{
+.modal-text{
     color: var(--gray-color);
-    font-weight: 350;
+    font-weight: 400;
     background-color: transparent;
     border: 0;
 }
 
-.input-container{
+.modal-input-container{
     position: relative;
 }
 
-.overlay-input{
+.modal-input{
     border-width: 0;
     background-color: transparent;
     padding: 10px;
@@ -69,24 +69,24 @@
     border-color: var(--input-color);
 }
 
-.overlay-input:focus{
+.modal-input:focus{
     outline:none;
     background-color: transparent;
     box-shadow: none;
     /*border-color: var( --main-color);*/
 }
 
-.overlay-input~.focus-border-input {
+.modal-input~.focus-border-input {
 	position: absolute;
 	bottom: 0;
 	left: 50%;
 	width: 0;
 	height: 2px;
-	background-color: var( --main-color);;
+	background-color: var( --main-color-dark);;
 	transition: 0.3s;
 }
  
-.overlay-input:focus~.focus-border-input {
+.modal-input:focus~.focus-border-input {
 	width: 100%;
 	transition: 0.3s;
 	left: 0;
@@ -130,25 +130,25 @@ textarea {
 
 /*Botones y alertas*/
 
-.overlay-alerts-buttons-container{
+.modal-alerts-buttons-container{
     display: flex;
     justify-content: space-between;
     margin-top: 24px;
 }
 
-.overlay-buttons-container{
+.modal-buttons-container{
     display: flex;
     flex-direction: row-reverse;
 }
 
-.overlay-alert-text{
+.modal-alert-text{
     font-size: small;
     color: var(--main-color-darker);
     margin: 0;
     
 }
 
-.overlay-alerts-container{
+.modal-alerts-container{
     min-height: 48px;
     align-content: center;
     padding: 0;
@@ -170,13 +170,13 @@ textarea {
 /*media*/
 
 @media screen and (max-width: 575px) {
-    .overlay-container{
+    .modal-container{
         padding: 16px 16px;
     }
 }
 
 @media screen and (max-width: 800px) {
-    .overlay-container{
+    .modal-container{
         width: 90vw;
     }
 }

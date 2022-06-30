@@ -11,9 +11,9 @@ import { PersonaRequestsService} from 'src/app/services/http-requests/persona-re
 })
 export class BannerNameComponent extends BaseComponent implements OnInit {
 
-  public overlayOpen: boolean = false;
-  changeOverlayOpen(value: boolean){
-    this.overlayOpen = value;
+  public showModal: boolean = false;
+  changeShowModal(value: boolean){
+    this.showModal = value;
   }
 
   //Constructor

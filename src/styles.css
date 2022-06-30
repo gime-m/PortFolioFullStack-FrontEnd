@@ -1,15 +1,16 @@
-@import '~@angular/cdk/overlay-prebuilt.css';
+/*@import '~@angular/cdk/overlay-prebuilt.css';*/
 
 /*colores*/
 :root{
-    --main-color: rgb(218, 207, 141);
-    --main-color-darker: rgb(86, 74, 62);
-    --main-color-dark: rgb(151, 118, 81);
-    --main-color-low-opacity: rgba(255, 246, 194, 0.633);
+    --main-color: rgb(97, 226, 255);
+    --main-color-darker: rgb(3, 92, 97);
+    --main-color-dark: rgb(35, 142, 152);
+    --main-color-low-opacity: rgba(160, 242, 255, 0.711);
+    --shadow-color:rgba(115, 197, 205, 1);
 
     --back-color: rgb(9, 9, 9);
     --text-color: whitesmoke;
-    --shadow-color: rgb(158, 152, 118);
+    --back-color-low-opacity: rgba(9, 9, 9, 0.432);
 
     --low-opacty-black: rgba(0, 0, 0, 0.797);
     --low-opacity-white: rgba(255, 255, 255, 0.727);
@@ -17,11 +18,7 @@
     --input-color: rgb(144, 153, 143);
     --gray-color: rgb(60, 60, 60);
     
-
     --header-color: rgb(0, 0, 0);
-    --dropdown-header-item-opacity: rgba(255, 242, 167, 0.608);
-
-    --back-color-low-opacity: rgba(9, 9, 9, 0.432);
     --edit-button-color: whitesmoke;
 }
 
@@ -48,7 +45,7 @@ hr{
 }
 
 ::-webkit-scrollbar-thumb {
-    background: linear-gradient(to bottom, transparent , var(--main-color) 10% 90%, transparent);
+    background: linear-gradient(to bottom, transparent , var(--main-color-dark) 10% 90%, transparent);
 }
 
 /*botones*/

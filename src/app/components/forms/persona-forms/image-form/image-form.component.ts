@@ -13,7 +13,7 @@ import { BaseComponent } from '../../../base/base.component';
 export class ImageFormComponent extends BaseComponent implements OnInit {
   
   @Input()   propiedad: string = "";
-  @Output() overlayOpenEvent = new EventEmitter<boolean>();
+  @Output() showModalEvent = new EventEmitter<boolean>();
 
   componentForm = new FormGroup({
     imagen: new FormControl(""),
@@ -25,16 +25,16 @@ export class ImageFormComponent extends BaseComponent implements OnInit {
   submitForm() {
     this.pers.putImagen(this.fileSource?.value,this.propiedad)
     this.componentForm.reset()
-    this.overlayOpenEvent.emit(false)
+    this.showModalEvent.emit(false)
   }
   cancelForm(){
     this.componentForm.reset()
-    this.overlayOpenEvent.emit(false)
+    this.showModalEvent.emit(false)
   }
 
   imagenPorDefecto(){
     this.pers.deleteImagen(this.propiedad);
-    this.overlayOpenEvent.emit(false)
+    this.showModalEvent.emit(false)
 
   }
   

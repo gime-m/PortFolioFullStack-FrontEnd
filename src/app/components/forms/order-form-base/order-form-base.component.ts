@@ -15,7 +15,7 @@ import { BaseComponent } from '../../base/base.component';
 })
 export class OrderFormBaseComponent<T extends ExperienciaRequestsService|EducacionRequestsService|SkillRequestsService|ProyectoRequestsService> extends BaseComponent implements OnInit {
 
-  @Output() overlayOpenEvent = new EventEmitter<boolean>();
+  @Output() showModalEvent = new EventEmitter<boolean>();
 
   list: any[] = [];
 
@@ -34,7 +34,7 @@ export class OrderFormBaseComponent<T extends ExperienciaRequestsService|Educaci
     if(this.list.map(x => x.id).toString() !== this.service.items?.map(x => x.id).toString()){
       this.service.putJSONorder(this.list);
     }
-    this.overlayOpenEvent.emit(false);
+    this.showModalEvent.emit(false);
   }
 
 }

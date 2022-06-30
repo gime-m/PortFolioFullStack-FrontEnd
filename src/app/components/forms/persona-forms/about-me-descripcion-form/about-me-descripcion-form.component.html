@@ -1,38 +1,37 @@
-<!--Overlay para la edición-->
-<div class="editing-overlay">
+<div class="editing-modal">
     
-    <div class="overlay-container">
+    <div class="modal-container">
         
         <!--Título-->
-        <p class="overlay-title">Escribe una breve descripcion sobre tí.</p>
-        <hr class="overlay-hr">
+        <p class="modal-title">Escribe una breve descripcion sobre tí.</p>
+        <hr class="modal-hr">
 
         <!--Formulario-->
         <form [formGroup]="componentForm" (ngSubmit)="submitForm()">
             
-            <div class="input-container">
-                <label for="about-me-id" class="form-control overlay-text" hidden>Escribe una breve descripción sobre tí: </label> 
-                <textarea  id="about-me-id" [rows]="smallScreen ? '16' : '10'" type="text" class="form-control overlay-input"  formControlName="descripcion"></textarea>
+            <div class="modal-input-container">
+                <label for="about-me-id" class="form-control modal-text" hidden>Escribe una breve descripción sobre tí: </label> 
+                <textarea  id="about-me-id" [rows]="smallScreen ? '16' : '10'" type="text" class="form-control modal-input"  formControlName="descripcion"></textarea>
                 <span class="focus-border-input"></span>
             </div>
 
-            <div class="overlay-alerts-buttons-container" > 
+            <div class="modal-alerts-buttons-container" > 
 
                 <!--Alertas-->
-                <div class="overlay-alerts-container">
+                <div class="modal-alerts-container">
                     <div *ngIf="descripcion?.errors?.['required']  && (descripcion?.dirty || descripcion?.touched)">
-                        <p class="overlay-alert-text">La descripción es obligatoria.</p>
+                        <p class="modal-alert-text">La descripción es obligatoria.</p>
                     </div>
                     <div *ngIf="descripcion?.errors?.['minlength']  && (descripcion?.dirty || descripcion?.touched)">
-                        <p class="overlay-alert-text">Escribe una descripción de al menos 100 carateres.</p>
+                        <p class="modal-alert-text">Escribe una descripción de al menos 100 carateres.</p>
                     </div>
                     <div *ngIf="descripcion?.errors?.['maxlength']  && (descripcion?.dirty || descripcion?.touched)">
-                        <p class="overlay-alert-text">Tu descripción no puede superar los 600 carateres.</p>
+                        <p class="modal-alert-text">Tu descripción no puede superar los 600 carateres.</p>
                     </div>
                 </div>
 
                 <!--Botones-->
-                <div class="overlay-buttons-container">
+                <div class="modal-buttons-container">
                     <button type="submit" class="btn my-button" [disabled]="!componentForm.valid" (click)="submitForm()">
                         <p *ngIf="!smallScreen" class="button-text">Guardar</p>
                         <svg *ngIf="smallScreen" class="button-icon" width="16" height="16" fill="currentColor"  viewBox="0 0 16 16">

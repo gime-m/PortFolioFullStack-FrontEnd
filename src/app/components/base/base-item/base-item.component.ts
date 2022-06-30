@@ -18,20 +18,20 @@ export class BaseItemComponent<T extends EducItem|ExpItem|SkillItem|ProyectoItem
   datepipe: any;
   verDescripcion: boolean = false;
 
-  public overlayOpen: boolean = false;
-  public overlayOpenImagen: boolean = false;
-  changeOverlayOpen(value: boolean){
-    this.overlayOpen = value;
+  public showModal: boolean = false;
+  public showModalImagen: boolean = false;
+  changeShowModal(value: boolean){
+    this.showModal = value;
   }
-  changeOverlayOpenImagen(value: boolean){
-    this.overlayOpenImagen = value;
+  changeShowModalImagen(value: boolean){
+    this.showModalImagen = value;
   }
 
   deleteItem(){
-    if (this.object != undefined){
+    if (this.object){
       this.service.deleteJSON(this.object?.id); 
     } else {
-      console.error("Error en solicitud DELETE: objeto indefinido");
+      console.error("Error en solicitud DELETE de item: objeto indefinido");
     }
   }
   

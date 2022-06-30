@@ -11,28 +11,26 @@ import { BaseComponent } from '../../../base/base.component';
 })
 export class BaseFormPersonaComponent extends BaseComponent implements OnInit {
 
-  @Output() overlayOpenEvent = new EventEmitter<boolean>();
+  @Output() showModalEvent = new EventEmitter<boolean>();
   
   component: string
   componentForm = new FormGroup({})
   
   submitForm() {
-    if (this.pers.persona != undefined) {
+    if (this.pers.persona) {
       this.pers.persona = Object.assign(this.pers.persona, this.componentForm.value)
     }
     this.pers.putJSON(this.component,this.componentForm.value); 
-    this.overlayOpenEvent.emit(false);
+    this.showModalEvent.emit(false);
   }
   cancelForm(){
     //this.defaultForm();
-    this.overlayOpenEvent.emit(false);
+    this.showModalEvent.emit(false);
   }
 
   /* defaultForm() {
-    if (this.pers.persona != undefined) {
+    if (this.pers.persona) {
       this.componentForm.setValue(this.pers.persona);
-    } else {
-      console.error("Persona no válida");
     }
   }*/
 

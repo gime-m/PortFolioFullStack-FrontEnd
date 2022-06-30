@@ -1,10 +1,10 @@
-<div class="editing-overlay">
+<div class="editing-modal">
     
-    <div class="overlay-container">
+    <div class="modal-container">
         
         <!--Título-->
-        <label for="img-id" class="overlay-title">Sube una imagen: </label>
-        <hr class="overlay-hr">
+        <label for="img-id" class="modal-title">Sube una imagen: </label>
+        <hr class="modal-hr">
 
         <!--Formulario-->
         <form [formGroup]="componentForm" (ngSubmit)="submitForm()">
@@ -12,13 +12,13 @@
                 <input id="img-id" type="file" accept="image/*" formControlName="imagen" class="form-control"  (change)="onFileChange($event)" >   
             </div>          
         
-            <div class="overlay-alerts-buttons-container"> 
+            <div class="modal-alerts-buttons-container"> 
                 <!--Alertas-->
-                <div class="overlay-alerts-container">
+                <div class="modal-alerts-container">
                 </div>
 
                 <!--Botones-->
-                <div class="overlay-buttons-container">
+                <div class="modal-buttons-container">
                     <button type="submit" class="btn my-button" [disabled]="!componentForm.valid" (click)="submitForm()">
                         <p *ngIf="!smallScreen" class="button-text">Guardar</p>
                         <svg *ngIf="smallScreen" class="button-icon" width="16" height="16" fill="currentColor"  viewBox="0 0 16 16">

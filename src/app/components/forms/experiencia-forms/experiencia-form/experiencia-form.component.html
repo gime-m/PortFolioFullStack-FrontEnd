@@ -1,71 +1,71 @@
-<div class="editing-overlay">
+<div class="editing-modal">
     
-    <div class="overlay-container">
+    <div class="modal-container">
         
         <!--Título-->
-        <p class="overlay-title" *ngIf="isNewItem">Ingresa un nuevo ítem de Experiencia.</p>
-        <p class="overlay-title" *ngIf="!isNewItem">Edita este ítem de Experiencia.</p>
-        <hr class="overlay-hr">
+        <p class="modal-title" *ngIf="isNewItem">Ingresa un nuevo ítem de Experiencia.</p>
+        <p class="modal-title" *ngIf="!isNewItem">Edita este ítem de Experiencia.</p>
+        <hr class="modal-hr">
 
         <!--Formulario-->
-        <form [formGroup]="componentForm" (ngSubmit)="submitForm()" class="overlay-form">
+        <form [formGroup]="componentForm" (ngSubmit)="submitForm()" class="modal-form">
             
-            <div class="overlay-scrollable-inputs">
-                <div class="input-container">
-                    <label for="title-id" class="overlay-text">Título: </label>
-                    <input id="title-id" type="text" formControlName="titulo" class="overlay-input">   
+            <div class="modal-scrollable-inputs">
+                <div class="modal-input-container">
+                    <label for="title-id" class="modal-text">Título: </label>
+                    <input id="title-id" type="text" formControlName="titulo" class="modal-input">   
                     <span class="focus-border-input"></span>   
                 </div>
                 <br>
-                <div class="input-container">
-                    <label for="text-id" class="overlay-text">Descripción (opcional): </label>
-                    <input id="text-id" type="text" formControlName="descripcion" class="overlay-input">   
+                <div class="modal-input-container">
+                    <label for="text-id" class="modal-text">Descripción (opcional): </label>
+                    <input id="text-id" type="text" formControlName="descripcion" class="modal-input">   
                     <span class="focus-border-input"></span>
                 </div>    
                 <br>
-                <div class="input-container">
-                    <label for="place-id" class="overlay-text">Lugar (opcional): </label>
-                    <input id="place-id" type="text" formControlName="lugar" class="overlay-input">   
+                <div class="modal-input-container">
+                    <label for="place-id" class="modal-text">Lugar (opcional): </label>
+                    <input id="place-id" type="text" formControlName="lugar" class="modal-input">   
                     <span class="focus-border-input"></span>
                 </div>    
                     <br>
-                <div class="input-container">
-                    <label for="start-date-id" class="overlay-text">Fecha de inicio (opcional): </label>
-                    <input id="start-date-id" type="date" formControlName="fechaInicio" class="overlay-input">   
+                <div class="modal-input-container">
+                    <label for="start-date-id" class="modal-text">Fecha de inicio (opcional): </label>
+                    <input id="start-date-id" type="date" formControlName="fechaInicio" class="modal-input">   
                     <span class="focus-border-input"></span>
                 </div>          
                 <br>
-                <div class="input-container">
-                    <label for="end-date-id" class="overlay-text">Fecha de finalización (opcional): </label>
-                    <input id="end-date-id" type="date" formControlName="fechaFin" class="overlay-input">   
+                <div class="modal-input-container">
+                    <label for="end-date-id" class="modal-text">Fecha de finalización (opcional): </label>
+                    <input id="end-date-id" type="date" formControlName="fechaFin" class="modal-input">   
                     <span class="focus-border-input"></span>
                 </div> 
                 <br>
-                <div class="input-container">
-                    <label for="current-id" class="overlay-text">Es tu trabajo actual? </label>
+                <div class="modal-input-container">
+                    <label for="current-id" class="modal-text">Es tu trabajo actual? </label>
                     <input id="current-id" type="checkbox" formControlName="isCurrent"  class="form-check-input">
                 </div>        
             </div>
         
-            <div class="overlay-alerts-buttons-container"> 
+            <div class="modal-alerts-buttons-container"> 
                 <!--Alertas-->
-                <div class="overlay-alerts-container">
+                <div class="modal-alerts-container">
                     <div *ngIf="titulo?.errors?.['required']  && (titulo?.dirty || titulo?.touched)">
-                        <p class="overlay-alert-text">Escribe un título para el ítem.</p>
+                        <p class="modal-alert-text">Escribe un título para el ítem.</p>
                     </div>
                     <div *ngIf="titulo?.errors?.['maxlength']  && (titulo?.dirty || titulo?.touched)">
-                        <p class="overlay-alert-text">El título no puede superar los 60 caracteres.</p>
+                        <p class="modal-alert-text">El título no puede superar los 60 caracteres.</p>
                     </div>
                     <div *ngIf="descripcion?.errors?.['maxlength']  && (descripcion?.dirty || descripcion?.touched)">
-                        <p class="overlay-alert-text">La descripción no puede superar los 250 caracteres.</p>
+                        <p class="modal-alert-text">La descripción no puede superar los 250 caracteres.</p>
                     </div>
                     <div *ngIf="lugar?.errors?.['maxlength']  && (lugar?.dirty || lugar?.touched)">
-                        <p class="overlay-alert-text">El lugar no puede superar los 50 caracteres.</p>
+                        <p class="modal-alert-text">El lugar no puede superar los 50 caracteres.</p>
                     </div>
                 </div>
 
                 <!--Botones-->
-                <div class="overlay-buttons-container">
+                <div class="modal-buttons-container">
                     <button type="submit" class="btn my-button" [disabled]="!componentForm.valid" (click)="submitForm()">
                         <p *ngIf="!smallScreen" class="button-text">Guardar</p>
                         <svg *ngIf="smallScreen" class="button-icon" width="16" height="16" fill="currentColor"  viewBox="0 0 16 16">

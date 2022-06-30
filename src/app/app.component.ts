@@ -15,19 +15,20 @@ export class AppComponent implements OnInit {
 
   constructor(private router: Router, public loading: LoadingService) {
     this.router.events.subscribe((e : RouterEvent) => {
-      this.navigationInterceptor(e);
-    })
+      setTimeout(() => {
+        this.navigationInterceptor(e);
+      })})
   }
 
   navigationInterceptor(event: RouterEvent): void {
     if (event instanceof NavigationStart) {
-      this.loading.isLoading = true
+      this.loading.isLoading = true;
     }
     if (event instanceof NavigationEnd) {
-      this.loading.isLoading = false
+      this.loading.isLoading = false;
     }
     if (event instanceof NavigationCancel) {
-      this.loading.isLoading = false
+      this.loading.isLoading = false;
     }
   }
 }

@@ -3,23 +3,34 @@
     <div class="modal-container">
         
         <!--Título-->
-        <label for="img-id" class="modal-title">Sube un logo para este ítem. </label>
+        <p class="modal-title">Personaliza el aspecto de la página.</p>
         <hr class="modal-hr">
 
         <!--Formulario-->
         <form [formGroup]="componentForm" (ngSubmit)="submitForm()">
-            <div>
-                <input id="img-id" type="file" accept="image/*" formControlName="imagen" class="form-control"  (change)="onFileChange($event)" >   
-            </div>          
+
+            <p class="modal-text">Elije un color:</p>
+            <div class="row colores-container">
+                <div class="col-3 color-container" *ngFor="let tema of temaServ.listaTemas">
+                    <button 
+                    type="button"
+                    class='circulo-color' 
+                    [ngStyle]="{'background-color': 'rgb(' + tema.mainColor + ')'}"
+                    [id]="tema.id == temaSeleccionado ? 'selected' : ''"
+                    (click)="temaSeleccionado = tema.id"
+                    ></button>
+                </div>
+            </div>
         
-            <div class="modal-alerts-buttons-container"> 
+            <div class="modal-alerts-buttons-container" > 
+
                 <!--Alertas-->
                 <div class="modal-alerts-container">
                 </div>
 
                 <!--Botones-->
                 <div class="modal-buttons-container">
-                    <button type="submit" class="btn my-button" [disabled]="!componentForm.valid" (click)="submitForm()">
+                    <button type="button" class="btn my-button" [disabled]="!componentForm.valid" (click)="submitForm()">
                         <p *ngIf="!smallScreen" class="button-text">Guardar</p>
                         <svg *ngIf="smallScreen" class="button-icon" width="16" height="16" fill="currentColor"  viewBox="0 0 16 16">
                             <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
@@ -28,16 +39,19 @@
 
                     <button type="button" class="btn my-button" (click)="cancelForm()">
                         <p *ngIf="!smallScreen" class="button-text">Cancelar</p>
-                        <svg *ngIf="smallScreen" class="button-icon" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <svg *ngIf="smallScreen" class="button-icon"  width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
                             <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"/>
                         </svg>
-                    </button>
-                    <button type="button" class="btn my-button" (click)="imagenPorDefecto()">
-                        <p class="button-text">Eliminar logo</p>
                     </button>
                 </div>
             </div>
         </form>
     </div>
 </div>
+
+<ng-template #circulo>
+    <svg width="40" height="40" fill="currentColor" viewBox="0 0 16 16" class="circulo-color">
+        <circle cx="8" cy="8" r="8"/>
+    </svg>
+</ng-template>

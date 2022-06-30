@@ -1,32 +1,31 @@
-<!--Overlay para la edición-->
-<div class="editing-overlay">
+<div class="editing-modal">
     
-    <div class="overlay-container">
+    <div class="modal-container">
         
         <!--Título-->
-        <p class="overlay-title" *ngIf="isNewItem">Ingresa un nuevo ítem.</p>
-        <p class="overlay-title" *ngIf="!isNewItem">Edita este ítem.</p>
-        <hr class="overlay-hr">
+        <p class="modal-title" *ngIf="isNewItem">Ingresa un nuevo ítem.</p>
+        <p class="modal-title" *ngIf="!isNewItem">Edita este ítem.</p>
+        <hr class="modal-hr">
 
         <!--Formulario-->
-        <form [formGroup]="componentForm" (ngSubmit)="submitForm()" class="overlay-form">
+        <form [formGroup]="componentForm" (ngSubmit)="submitForm()" class="modal-form">
             
-            <div class="overlay-scrollable-inputs">
-                <div class="input-container">
-                    <label for="title-id" class="overlay-text">Título: </label>
-                    <input id="title-id" type="text" formControlName="titulo" class="overlay-input">
+            <div class="modal-scrollable-inputs">
+                <div class="modal-input-container">
+                    <label for="title-id" class="modal-text">Título: </label>
+                    <input id="title-id" type="text" formControlName="titulo" class="modal-input">
                     <span class="focus-border-input"></span>   
                 </div>  
                 <br>
-                <div class="input-container">
-                    <label for="value-id" class="overlay-text">Valor (entre 0 y 10): </label>
-                    <input id="value-id" type="number" formControlName="valor" class="overlay-input">
+                <div class="modal-input-container">
+                    <label for="value-id" class="modal-text">Valor (entre 0 y 10): </label>
+                    <input id="value-id" type="number" formControlName="valor" class="modal-input">
                     <span class="focus-border-input"></span>
                 </div>
                 <br>
-                <div class="input-container">
-                    <label for="tipo-id" class="overlay-text">Tipo: </label>
-                    <select id="tipo-id" formControlName="tipo" class="overlay-input">
+                <div class="modal-input-container">
+                    <label for="tipo-id" class="modal-text">Tipo: </label>
+                    <select id="tipo-id" formControlName="tipo" class="modal-input">
                         <option value="hard" class="select-option">Hard</option>
                         <option value="soft" class="select-option">Soft</option>
                         <option value="idioma" class="select-option">Idioma</option>
@@ -35,25 +34,25 @@
                 </div> 
             </div>
         
-            <div class="overlay-alerts-buttons-container"> 
+            <div class="modal-alerts-buttons-container"> 
                 <!--Alertas-->
-                <div class="overlay-alerts-container">
+                <div class="modal-alerts-container">
                     <div *ngIf="titulo?.errors?.['required']  && (titulo?.dirty || titulo?.touched)">
-                        <p class="overlay-alert-text">Escribe un título para el ítem.</p>
+                        <p class="modal-alert-text">Escribe un título para el ítem.</p>
                     </div>
                     <div *ngIf="titulo?.errors?.['maxlength']  && (titulo?.dirty || titulo?.touched)">
-                        <p class="overlay-alert-text">El título no puede superar los 25 caracteres.</p>
+                        <p class="modal-alert-text">El título no puede superar los 25 caracteres.</p>
                     </div>
                     <div *ngIf="valor?.errors?.['required']  && (valor?.dirty || valor?.touched)">
-                        <p class="overlay-alert-text">Ingresa un valor.</p>
+                        <p class="modal-alert-text">Ingresa un valor.</p>
                     </div>
                     <div *ngIf="(valor?.errors?.['max'] || valor?.errors?.['min'])  && (valor?.dirty || valor?.touched)">
-                        <p class="overlay-alert-text">El valor debe hallarse entre 0 y 10.</p>
+                        <p class="modal-alert-text">El valor debe hallarse entre 0 y 10.</p>
                     </div>
                 </div>
 
                 <!--Botones-->
-                <div class="overlay-buttons-container">
+                <div class="modal-buttons-container">
                     <button type="submit" class="btn my-button" [disabled]="!componentForm.valid" (click)="submitForm()">
                         <p *ngIf="!smallScreen" class="button-text">Guardar</p>
                         <svg *ngIf="smallScreen" class="button-icon" width="16" height="16" fill="currentColor"  viewBox="0 0 16 16">

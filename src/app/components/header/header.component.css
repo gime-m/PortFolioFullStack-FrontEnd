@@ -47,11 +47,11 @@
 }
 
 .offcanvas-item:hover{
-    background-color: var(--dropdown-header-item-opacity);
+    background-color: var(--main-color-low-opacity);
 }
 
 .offcanvas-item:active{
-    background-color: var(--dropdown-header-item-opacity);
+    background-color: var(--main-color-low-opacity);
 }
 
 

@@ -2,45 +2,45 @@
     
     <img [src]="backgroundImages[random]" class="background-image">
 
-    <div class="overlay-container">
+    <div class="modal-container">
         
         <!--Título-->
-        <p class="overlay-title">Inicia sesión</p>
-        <hr class="overlay-hr">
+        <p class="modal-title">Inicia sesión</p>
+        <hr class="modal-hr">
 
         <!--Formulario-->
         <form [formGroup]="componentForm" (ngSubmit)="submitForm()">
-            <div class="input-container">
-                <label for="user-id" class="overlay-text">Usuario: </label>
-                <input id="user-id" type="text" formControlName="username" class="overlay-input">   
+            <div class="modal-input-container">
+                <label for="user-id" class="modal-text">Usuario: </label>
+                <input id="user-id" type="text" formControlName="username" class="modal-input">   
                 <span class="focus-border-input"></span>
             </div>
             <br>
-            <div class="input-container">
-                <label for="password-id" class="overlay-text">Constraseña: </label>
-                <input id="password-id" type="password" formControlName="password" class="overlay-input">
+            <div class="modal-input-container">
+                <label for="password-id" class="modal-text">Constraseña: </label>
+                <input id="password-id" type="password" formControlName="password" class="modal-input">
                 <span class="focus-border-input"></span>
             </div>  
         
-            <div class="overlay-alerts-buttons-container"> 
+            <div class="modal-alerts-buttons-container"> 
                 <!--Alertas-->
-                <div class="overlay-alerts-container">
+                <div class="modal-alerts-container">
                     <div *ngIf="username?.errors?.['required']  && (username?.dirty || username?.touched)">
-                        <p class="overlay-alert-text">Ingresa tu usuario.</p>
+                        <p class="modal-alert-text">Ingresa tu usuario.</p>
                     </div>
                     <div *ngIf="password?.errors?.['required']  && (password?.dirty || password?.touched)">
-                        <p class="overlay-alert-text">Ingresa tu contraseña.</p>
+                        <p class="modal-alert-text">Ingresa tu contraseña.</p>
                     </div>
                     <div *ngIf="auth.wrongAuth">
-                        <p class="overlay-alert-text">Usuario o contraseña incorrectos.</p>
+                        <p class="modal-alert-text">Usuario o contraseña incorrectos.</p>
                     </div>
                     <div *ngIf="auth.failedAuth">
-                        <p class="overlay-alert-text">Error al autenticar. Intenta de nuevo.</p>
+                        <p class="modal-alert-text">Error al autenticar. Intenta de nuevo.</p>
                     </div>
                 </div>
 
                 <!--Botones-->
-                <div class="overlay-buttons-container">
+                <div class="modal-buttons-container">
                     <button type="submit" class="btn my-button" [disabled]="!componentForm.valid" (click)="submitForm()">
                         <p *ngIf="!smallScreen" class="button-text">Iniciar sesión</p>
                         <svg *ngIf="smallScreen" class="button-icon" width="16" height="16" fill="currentColor"  viewBox="0 0 16 16">

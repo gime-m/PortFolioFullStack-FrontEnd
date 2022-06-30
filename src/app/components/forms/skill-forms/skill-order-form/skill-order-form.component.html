@@ -1,36 +1,36 @@
-<div class="editing-overlay"> 
-    <div class="overlay-container">
+<div class="editing-modal"> 
+    <div class="modal-container">
         
         <!--Título-->
-        <p class="overlay-title">Cambia el orden de los items. </p>
-        <hr class="overlay-hr">
+        <p class="modal-title">Cambia el orden de los items. </p>
+        <hr class="modal-hr">
 
         <!--Lista-->
 
         <div class="scroll-items">
-            <p class="overlay-text">Hard skills</p>
+            <p class="modal-text">Hard skills</p>
             <div cdkDropList class="order-list" (cdkDropListDropped)="changeOrderSkill($event,listHard)">
                 <div *ngFor="let i of listHard" cdkDrag class="order-item">{{i.titulo}}</div>
             </div>
     
-            <p class="overlay-text">Soft skills</p>
+            <p class="modal-text">Soft skills</p>
             <div cdkDropList class="order-list" (cdkDropListDropped)="changeOrderSkill($event,listSoft)">
                 <div *ngFor="let i of listSoft" cdkDrag class="order-item">{{i.titulo}}</div>
             </div>
     
-            <p class="overlay-text">Idiomas</p>
+            <p class="modal-text">Idiomas</p>
             <div cdkDropList class="order-list" (cdkDropListDropped)="changeOrderSkill($event,listIdioma)">
                 <div *ngFor="let i of listIdioma" cdkDrag class="order-item">{{i.titulo}}</div>
             </div>
         </div>
         
 
-        <div class="overlay-alerts-buttons-container"> 
+        <div class="modal-alerts-buttons-container"> 
             <!--Alertas-->
-            <div class="overlay-alerts-container"></div>
+            <div class="modal-alerts-container"></div>
 
             <!--Boton-->
-            <div class="overlay-buttons-container">
+            <div class="modal-buttons-container">
                 <button type="submit" class="btn my-button" (click)="submitOrder()">
                     <p *ngIf="!smallScreen" class="button-text">Listo</p>
                     <svg *ngIf="smallScreen" class="button-icon" width="16" height="16" fill="currentColor"  viewBox="0 0 16 16">

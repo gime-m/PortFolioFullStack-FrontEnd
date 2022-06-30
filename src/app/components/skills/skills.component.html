@@ -3,8 +3,8 @@
         <h5>Skills</h5>
 
         <div class="component-header-buttons">
-            <app-add-button (click)="overlayOpen=true" [style.visibility]="(login.isAdmin() && login.editando)? 'visible': 'hidden'"></app-add-button>
-            <app-drag-button (click)="overlayOpenOrder=true" [style.visibility]="(login.isAdmin() && login.editando)? 'visible': 'hidden'"></app-drag-button>
+            <app-add-button (click)="showModal=true" [style.visibility]="(login.isAdmin() && login.editando)? 'visible': 'hidden'"></app-add-button>
+            <app-drag-button (click)="showModalOrder=true" [style.visibility]="(login.isAdmin() && login.editando)? 'visible': 'hidden'"></app-drag-button>
         </div>
     </div>
     
@@ -32,8 +32,8 @@
     </div>  
 </div>
 
-<app-skill-form [isNewItem]="true"  (overlayOpenEvent)="changeOverlayOpen($event)" *ngIf="overlayOpen"></app-skill-form>
-<app-skill-order-form (overlayOpenEvent)="changeOverlayOpenOrder($event)" *ngIf="overlayOpenOrder"></app-skill-order-form>
+<app-skill-form [isNewItem]="true"  (showModalEvent)="changeShowModal($event)" *ngIf="showModal"></app-skill-form>
+<app-skill-order-form (showModalEvent)="changeShowModalOrder($event)" *ngIf="showModalOrder"></app-skill-order-form>
 
 
 

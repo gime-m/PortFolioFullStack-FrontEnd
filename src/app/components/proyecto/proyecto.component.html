@@ -3,8 +3,8 @@
         <h5>Proyectos</h5>
 
         <div class="col-4 component-header-buttons">
-            <app-add-button (click)="overlayOpen=true" [style.visibility]="(login.isAdmin() && login.editando)? 'visible': 'hidden'"></app-add-button>
-            <app-drag-button (click)="overlayOpenOrder=true" [style.visibility]="(login.isAdmin() && login.editando)? 'visible': 'hidden'"></app-drag-button>
+            <app-add-button (click)="showModal=true" [style.visibility]="(login.isAdmin() && login.editando)? 'visible': 'hidden'"></app-add-button>
+            <app-drag-button (click)="showModalOrder=true" [style.visibility]="(login.isAdmin() && login.editando)? 'visible': 'hidden'"></app-drag-button>
         </div>
     </div>
 
@@ -15,5 +15,5 @@
     </div>
 </div>
 
-<app-proyecto-form [isNewItem]="true" (overlayOpenEvent)="changeOverlayOpen($event)" *ngIf="overlayOpen"></app-proyecto-form>
-<app-proyecto-order-form (overlayOpenEvent)="changeOverlayOpenOrder($event)" *ngIf="overlayOpenOrder"></app-proyecto-order-form>
+<app-proyecto-form [isNewItem]="true" (showModalEvent)="changeShowModal($event)" *ngIf="showModal"></app-proyecto-form>
+<app-proyecto-order-form (showModalEvent)="changeShowModalOrder($event)" *ngIf="showModalOrder"></app-proyecto-order-form>

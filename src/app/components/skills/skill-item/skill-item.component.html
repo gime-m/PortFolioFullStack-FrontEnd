@@ -12,7 +12,7 @@
     </div>
 
     <div class="item-buttons-container" [style.visibility]="(login.isAdmin() && login.editando)? 'visible': 'hidden'">
-        <app-edit-button (click)="overlayOpen=true"></app-edit-button>
+        <app-edit-button (click)="showModal=true"></app-edit-button>
         <app-delete-button (click)="deleteItem()"></app-delete-button>
     </div>    
 </div>
@@ -23,7 +23,7 @@
     </svg>
 </ng-template>
 
-<app-skill-form [isNewItem]="false" [object]="object"  (overlayOpenEvent)="changeOverlayOpen($event)" *ngIf="overlayOpen"></app-skill-form>
+<app-skill-form [isNewItem]="false" [object]="object"  (showModalEvent)="changeShowModal($event)" *ngIf="showModal"></app-skill-form>
 
 
 

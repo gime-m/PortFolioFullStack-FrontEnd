@@ -1,92 +1,91 @@
-<!--Overlay para la edición-->
-<div class="editing-overlay">
+<div class="editing-modal">
     
-    <div class="overlay-container">
+    <div class="modal-container">
         
         <!--Título-->
-        <p class="overlay-title">Ingresa los siguienes datos personales.</p>
-        <hr class="overlay-hr">
+        <p class="modal-title">Ingresa los siguienes datos personales.</p>
+        <hr class="modal-hr">
 
         <!--Formulario-->
         <form [formGroup]="componentForm" (ngSubmit)="submitForm()">
             
-            <div  class="overlay-scrollable-inputs">
-                <div class="input-container">
-                    <label for="location-id" class="overlay-text">Ubicación: </label>
-                    <input id="location-id" type="text" formControlName="ubicacion" class="overlay-input">
+            <div  class="modal-scrollable-inputs">
+                <div class="modal-input-container">
+                    <label for="location-id" class="modal-text">Ubicación: </label>
+                    <input id="location-id" type="text" formControlName="ubicacion" class="modal-input">
                     <span class="focus-border-input"></span>   
                 </div>
                 <br>
-                <div class="input-container">
-                    <label for="workplace-id" class="overlay-text">Lugar de trabajo/estudio: </label>
-                    <input id="workplace-id" type="text" formControlName="lugarTrabajo" class="overlay-input">
+                <div class="modal-input-container">
+                    <label for="workplace-id" class="modal-text">Lugar de trabajo/estudio: </label>
+                    <input id="workplace-id" type="text" formControlName="lugarTrabajo" class="modal-input">
                     <span class="focus-border-input"></span>
                 </div>  
                 <br>        
-                <div class="input-container">
-                    <label for="email-id" class="overlay-text">Dirección de e-mail: </label>
-                    <input id="email-id" type="text" formControlName="email" class="overlay-input">
+                <div class="modal-input-container">
+                    <label for="email-id" class="modal-text">Dirección de e-mail: </label>
+                    <input id="email-id" type="text" formControlName="email" class="modal-input">
                     <span class="focus-border-input"></span>
                 </div> 
                 <br>
-                <div class="input-container">
-                    <label for="phone-id" class="overlay-text">Número de teléfono: </label>
-                    <input id="phone-id" type="text" formControlName="telefono" class="overlay-input">
+                <div class="modal-input-container">
+                    <label for="phone-id" class="modal-text">Número de teléfono: </label>
+                    <input id="phone-id" type="text" formControlName="telefono" class="modal-input">
                     <span class="focus-border-input"></span>
                 </div>
                 <br>
-                <div class="input-container">
-                    <label for="github-id" class="overlay-text">Link a cuenta de github: </label>
-                    <input id="github-id" type="text" formControlName="github" class="overlay-input">
+                <div class="modal-input-container">
+                    <label for="github-id" class="modal-text">Link a cuenta de github: </label>
+                    <input id="github-id" type="text" formControlName="github" class="modal-input">
                     <span class="focus-border-input"></span>
                 </div>  
             </div>
             
-            <div class="overlay-alerts-buttons-container" > 
+            <div class="modal-alerts-buttons-container" > 
 
                 <!--Alertas-->
-                <div class="overlay-alerts-container">
+                <div class="modal-alerts-container">
                     <div *ngIf="ubicacion?.errors?.['required']  && (ubicacion?.dirty || ubicacion?.touched)">
-                        <p class="overlay-alert-text">Escribe tu ubicación.</p>
+                        <p class="modal-alert-text">Escribe tu ubicación.</p>
                     </div>
                     <div *ngIf="lugarTrabajo?.errors?.['required']  && (lugarTrabajo?.dirty || lugarTrabajo?.touched)">
-                        <p class="overlay-alert-text">Escribe tu lugar de trabajo.</p>
+                        <p class="modal-alert-text">Escribe tu lugar de trabajo.</p>
                     </div>
                     <div *ngIf="email?.errors?.['required']  && (email?.dirty || email?.touched)">
-                        <p class="overlay-alert-text">Escribe tu dirección de e-mail.</p>
+                        <p class="modal-alert-text">Escribe tu dirección de e-mail.</p>
                     </div>
                     <div *ngIf="telefono?.errors?.['required']  && (telefono?.dirty || telefono?.touched)">
-                        <p class="overlay-alert-text">Escribe tu número de teléfono.</p>
+                        <p class="modal-alert-text">Escribe tu número de teléfono.</p>
                     </div>
                     <div *ngIf="email?.errors?.['email']  && (email?.dirty || email?.touched)">
-                        <p class="overlay-alert-text">Escribe una dirección de e-mail válida.</p>
+                        <p class="modal-alert-text">Escribe una dirección de e-mail válida.</p>
                     </div>
                     <div *ngIf="telefono?.errors?.['pattern']  && (telefono?.dirty || telefono?.touched)">
-                        <p class="overlay-alert-text">Escribe un número de teléfono válido.</p>
+                        <p class="modal-alert-text">Escribe un número de teléfono válido.</p>
                     </div>
                     <div *ngIf="github?.errors?.['required']  && (github?.dirty || github?.touched)">
-                        <p class="overlay-alert-text">Escribe tu cuenta de github.</p>
+                        <p class="modal-alert-text">Escribe tu cuenta de github.</p>
                     </div>
                 
                     <div *ngIf="ubicacion?.errors?.['maxlength']  && (ubicacion?.dirty || ubicacion?.touched)">
-                        <p class="overlay-alert-text">Tu ubicación no puede tener más de 60 caracteres.</p>
+                        <p class="modal-alert-text">Tu ubicación no puede tener más de 60 caracteres.</p>
                     </div>
                     <div *ngIf="lugarTrabajo?.errors?.['maxlength']  && (lugarTrabajo?.dirty || lugarTrabajo?.touched)">
-                        <p class="overlay-alert-text">Tu lugar de trabajo no puede tener más de 60 caracteres.</p>
+                        <p class="modal-alert-text">Tu lugar de trabajo no puede tener más de 60 caracteres.</p>
                     </div>
                     <div *ngIf="email?.errors?.['maxlength']  && (email?.dirty || email?.touched)">
-                        <p class="overlay-alert-text">Tu dirección de e-mail no puede tener más de 60 caracteres.</p>
+                        <p class="modal-alert-text">Tu dirección de e-mail no puede tener más de 60 caracteres.</p>
                     </div>
                     <div *ngIf="telefono?.errors?.['maxlength']  && (telefono?.dirty || telefono?.touched)">
-                        <p class="overlay-alert-text">Tu número de teléfono no puede tener más de 25 caracteres.</p>
+                        <p class="modal-alert-text">Tu número de teléfono no puede tener más de 25 caracteres.</p>
                     </div> 
                     <div *ngIf="github?.errors?.['maxlength']  && (github?.dirty || github?.touched)">
-                        <p class="overlay-alert-text">Tu cuenta de github no puede tener más de 60 caracteres.</p>
+                        <p class="modal-alert-text">Tu cuenta de github no puede tener más de 60 caracteres.</p>
                     </div>
                 </div>
 
                 <!--Botones-->
-                <div class="overlay-buttons-container">
+                <div class="modal-buttons-container">
                     <button type="submit" class="btn my-button" [disabled]="!componentForm.valid" (click)="submitForm()">
                         <p *ngIf="!smallScreen" class="button-text">Guardar</p>
                         <svg *ngIf="smallScreen" class="button-icon" width="16" height="16" fill="currentColor"  viewBox="0 0 16 16">

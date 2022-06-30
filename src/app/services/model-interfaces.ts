@@ -8,9 +8,10 @@ export interface Persona{
     lugarTrabajo: string;
     email: string;
     telefono: string;
+    github: string;
     imagenPerfil: string;
     banner: string;
-    github: string;
+    temaId: number;
 }
 
 export interface ExpItemPost {
@@ -71,6 +72,32 @@ export interface ProyectoItem extends ProyectoItemPost {
     id: number
 }
 
+export class OrderDTO {
+    id?: number;
+    displayOrder?: number;
+  
+    constructor(id: number, disOr: number){
+      this.id=id;
+      this.displayOrder=disOr;
+    }
+}
+
+export interface Tema {
+    id: number;
+    mainColor: string;
+    mainColorDark: string;
+    mainColorDarker: string;
+    mainColorLowOpacity: string;
+    shadowColor: string;
+    nombre: string;
+}
+  
+export interface TemaCorto {
+    id: number;
+    mainColor: string;
+    nombre: string;
+}
+
 export interface Credenciales {
     username: string;
     password: string;
@@ -82,14 +109,3 @@ export interface AuthResponse {
     refreshToken:string;
     roles: Array<string>;
 }
-
-export class OrderDTO {
-    id?: number;
-    displayOrder?: number;
-  
-    constructor(id: number, disOr: number){
-      this.id=id;
-      this.displayOrder=disOr;
-    }
-}
-  

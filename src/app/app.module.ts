@@ -61,6 +61,7 @@ import { SkillOrderFormComponent } from './components/forms/skill-forms/skill-or
 import { BannerNameFormComponent } from './components/forms/persona-forms/banner-name-form/banner-name-form.component';
 import { AboutMeDescripcionFormComponent } from './components/forms/persona-forms/about-me-descripcion-form/about-me-descripcion-form.component';
 import { AboutMeInfoFormComponent } from './components/forms/persona-forms/about-me-info-form/about-me-info-form.component';
+import { TemaFormComponent } from './components/forms/tema-form/tema-form.component';
 registerLocaleData(localeEs, 'es')
 
 
@@ -112,7 +113,8 @@ registerLocaleData(localeEs, 'es')
     SkillOrderFormComponent,
     BannerNameFormComponent,
     AboutMeDescripcionFormComponent,
-    AboutMeInfoFormComponent
+    AboutMeInfoFormComponent,
+    TemaFormComponent
   ],
   imports: [
     BrowserModule,

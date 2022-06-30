@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BannerImageBaseComponent } from './banner-image-base.component';
+import { TemaFormComponent } from './tema-form.component';
 
-describe('BannerImageBaseComponent', () => {
-  let component: BannerImageBaseComponent;
-  let fixture: ComponentFixture<BannerImageBaseComponent>;
+describe('TemaFormComponent', () => {
+  let component: TemaFormComponent;
+  let fixture: ComponentFixture<TemaFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BannerImageBaseComponent ]
+      declarations: [ TemaFormComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BannerImageBaseComponent);
+    fixture = TestBed.createComponent(TemaFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

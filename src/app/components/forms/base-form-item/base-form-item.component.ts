@@ -17,7 +17,7 @@ export class BaseFormItemComponent<T extends EducItem|ExpItem|SkillItem|Proyecto
   
   @Input() isNewItem: boolean = true;
   @Input() object?: T;
-  @Output() overlayOpenEvent = new EventEmitter<boolean>();
+  @Output() showModalEvent = new EventEmitter<boolean>();
 
   componentForm = new FormGroup({});
 
@@ -38,7 +38,7 @@ export class BaseFormItemComponent<T extends EducItem|ExpItem|SkillItem|Proyecto
     } else {
       this.service.putJSON(this.componentForm.value);
     }
-    this.overlayOpenEvent.emit(false)
+    this.showModalEvent.emit(false)
   }
 
   cancelForm(){
@@ -47,15 +47,13 @@ export class BaseFormItemComponent<T extends EducItem|ExpItem|SkillItem|Proyecto
     } else {
       this.setFormDefault();
     }
-    this.overlayOpenEvent.emit(false)
+    this.showModalEvent.emit(false)
   }
 
   setFormDefault(){
     if (!this.isNewItem){
-      if (this.object != undefined){
+      if (this.object){
         this.componentForm.setValue(this.object);
-      } else {
-        console.error("Error: Item indefinido");
       }
     }
   }
