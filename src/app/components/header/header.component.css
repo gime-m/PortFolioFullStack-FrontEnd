@@ -19,10 +19,6 @@
     flex-direction: row-reverse;
 }
 
-.icon-button-text{
-    padding-left: 5px;
-}
-
 .offcanvas-button{
     color: var(--main-color);
     border-width: 0;

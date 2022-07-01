@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PersonaRequestsService } from 'src/app/services/http-requests/persona-requests.service';
 
 @Component({
   selector: 'app-portfolio',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PortfolioComponent implements OnInit {
 
-  constructor() { }
+  constructor(public persServ: PersonaRequestsService) { }
 
   ngOnInit(): void {
   }

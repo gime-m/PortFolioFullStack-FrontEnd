@@ -1,7 +1,7 @@
 <div class="card" (clickOutside)="verDescripcion = false">
   <div [style.visibility]="!verDescripcion? 'visible': 'hidden'">
      
-    <img class="card-img-top" [src]="object.imagen? service.imagenes[object.id] : 'assets/images/default-proyecto.jpg' " alt="Imagen de proyecto">
+    <img class="card-img-top" [src]="object.imagen? service.imagenes[object.id] : 'assets/images/default-proyecto.png' " alt="Imagen de proyecto">
     
     <button type="button" class="btn edit-button card-zoom-icon" *ngIf="object.imagen">
       <svg *ngIf="!login.editando" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" (click)="imagenGrande = true">

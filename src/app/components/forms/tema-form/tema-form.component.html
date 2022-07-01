@@ -21,6 +21,11 @@
                     ></button>
                 </div>
             </div>
+
+            <label for="img-id" class="modal-text">Sube una imagen de fondo: </label>
+            <div>
+                <input id="img-id" type="file" accept="image/*" formControlName="imagen" class="form-control"  (change)="onFileChange($event)" >   
+            </div>
         
             <div class="modal-alerts-buttons-container" > 
 
@@ -43,6 +48,10 @@
                             <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
                             <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"/>
                         </svg>
+                    </button>
+
+                    <button type="button" class="btn my-button" (click)="imagenPorDefecto()">
+                        <p class="button-text">Imagen por defecto</p>
                     </button>
                 </div>
             </div>

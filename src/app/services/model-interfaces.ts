@@ -11,6 +11,7 @@ export interface Persona{
     github: string;
     imagenPerfil: string;
     banner: string;
+    imagenFondo: string;
     temaId: number;
 }
 

@@ -13,11 +13,11 @@
             </button>
 
             <button role="button" class="btn my-button" *ngIf="login.editando && !smallScreen" (click)="login.editando = false">
-                <p class="d-none d-sm-inline button-text icon-button-text">Terminar edición</p>
+                <p class="d-none d-sm-inline button-text">Terminar edición</p>
             </button>
 
-            <button role="button" class="btn my-button" *ngIf="login.editando && !smallScreen" (click)="showModal = true">
-                <p class="d-none d-sm-inline button-text icon-button-text">Más opciones</p>
+            <button role="button" class="btn my-button" *ngIf="login.editando" (click)="showModal = true">
+                <p class="button-text">Aspecto</p>
             </button>
         </div>
     </div>
@@ -36,6 +36,6 @@
     </div>
 </div>
 
-<app-tema-form *ngIf="showModal" (showModalEvent)="changeShowModal($event)"></app-tema-form>
+<app-tema-form *ngIf="showModal" (showModalEvent)="changeShowModal($event)" propiedad="imagenFondo"></app-tema-form>
   
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Persona } from '../model-interfaces';
-import { TemaService } from '../tema.service';
+import { TemaService } from './tema.service';
 
 @Injectable({
   providedIn: 'root'
@@ -22,10 +22,14 @@ export class PersonaRequestsService {
   public putImagenPerfilUrl: string = this.originURL+'subir-imagen/perfil';
   public deleteImagenPerfilUrl: string = this.originURL + 'borrar-imagen/perfil/'+this.personaId;
   public putImagenBannerUrl: string = this.originURL+'subir-imagen/banner';
+  public putImagenFondoUrl: string = this.originURL+'subir-imagen/fondo';
   public deleteImagenBannerUrl: string = this.originURL + 'borrar-imagen/banner/'+this.personaId;
+  public deleteImagenFondoUrl: string = this.originURL + 'borrar-imagen/fondo/'+this.personaId;
+  
 
   imagenPerfil: any;
   imagenBanner: any;
+  imagenFondo: any
 
   //Objeto
   private _persona?: Persona;
@@ -36,19 +40,43 @@ export class PersonaRequestsService {
     this._persona = value;
   }
 
-  // Imagen
+  //Datos de Persona 
+
+  public getJSON(): void {
+    this.http.get<Persona>(this.getUrl).subscribe({
+      next: data => {
+        this.persona=data; 
+        this.getImagenPerfil();
+        this.getImagenBanner();
+        this.temaServ.getTema(data.temaId);
+        this.getImagenFondo();
+      }
+    });
+  }
+
+  public putJSON(comp: string, dto: any): void{
+    dto.id = this.personaId
+    this.http.put<any>(this.putUrl + comp, dto)
+    .subscribe({
+      next: () => {},
+      error: error => {console.error("Error en solicitud PUT de Persona",error)}
+    })
+  } 
+
+  // Imagenes
 
   getImagenPerfil(){
     let httpHeaders = new HttpHeaders().set('Accept', "image/webp,*/*");
     let reader = new FileReader;
-    if (this.persona?.imagenPerfil != ""){
+    if (this.persona?.imagenPerfil){
       this.http.get<Blob>(this.originURL + this.persona?.imagenPerfil, {headers: httpHeaders, responseType: 'blob' as 'json'}).subscribe({
         next: result => {
           reader.addEventListener("load", () => {this.imagenPerfil = reader.result;}, false);
           reader.readAsDataURL(result);
         },
-        error: () => {
+        error: (err) => {
           this.imagenPerfil = "assets/images/defaultImagenPerfil.png";
+          console.error("Error en solicitud GET para imagen (persona)", err);
         }
       })
     } else {
@@ -59,18 +87,38 @@ export class PersonaRequestsService {
   getImagenBanner(){
     let httpHeaders = new HttpHeaders().set('Accept', "image/webp,*/*");
     let reader = new FileReader;
-    if (this.persona?.banner != ""){
+    if (this.persona?.banner){
       this.http.get<Blob>(this.originURL + this.persona?.banner, {headers: httpHeaders, responseType: 'blob' as 'json'}).subscribe({
         next: result => {
           reader.addEventListener("load", () => {this.imagenBanner = reader.result;}, false);
           reader.readAsDataURL(result);
         },
-        error: () => {
-          this.imagenBanner =  "assets/images/login-background/4.jpg"
+        error: (err) => {
+          this.imagenBanner =  "/assets/images/default-banner.png";
+          console.error("Error en solicitud GET para imagen (persona)", err);
         }
       })
     } else {
-      this.imagenBanner =  "assets/images/login-background/4.jpg"
+      this.imagenBanner =  "/assets/images/default-banner.png";
+    } 
+  }
+
+  getImagenFondo(){
+    let httpHeaders = new HttpHeaders().set('Accept', "image/webp,*/*");
+    let reader = new FileReader;
+    if (this.persona?.imagenFondo){
+      this.http.get<Blob>(this.originURL + this.persona?.imagenFondo, {headers: httpHeaders, responseType: 'blob' as 'json'}).subscribe({
+        next: result => {
+          reader.addEventListener("load", () => {this.imagenFondo = reader.result;}, false);
+          reader.readAsDataURL(result);
+        },
+        error: (err) => {
+          this.imagenFondo =  "/assets/images/default-background.png";
+          console.error("Error en solicitud GET para imagen (persona)", err);
+        }
+      })
+    } else {
+      this.imagenFondo =  "/assets/images/default-background.png";
     } 
   }
 
@@ -86,6 +134,9 @@ export class PersonaRequestsService {
       case "banner":
         path = this.putImagenBannerUrl;
         break;  
+      case "imagenFondo":
+        path = this.putImagenFondoUrl;
+        break;
       default:
         break;
     }
@@ -108,39 +159,22 @@ export class PersonaRequestsService {
       case "banner":
         path = this.deleteImagenBannerUrl;
         break;  
+      case "imagenFondo":
+        path = this.deleteImagenFondoUrl;
+        break; 
       default:
         break;
     }
 
     this.http.delete<any>(path).subscribe({
-    complete: () => {
-      if (this.persona){
-        this.getJSON();
-      }
-    },
-    error: (error: any) => {console.error("Error en solicitud DELETE de imagen (persona)",error)}
-  });  
-}
-
-  public getJSON(): void {
-    this.http.get<Persona>(this.getUrl).subscribe({
-      next: data => {
-        this.persona=data; 
-        this.getImagenPerfil();
-        this.getImagenBanner();
-        this.temaServ.getTema(data.temaId);
-      }
-    });
+      complete: () => {
+        if (this.persona){
+          this.getJSON();
+        }
+      },
+      error: (error: any) => {console.error("Error en solicitud DELETE de imagen (persona)",error)}
+    });  
   }
-
-  public putJSON(comp: string, dto: any): void{
-    dto.id = this.personaId
-    this.http.put<any>(this.putUrl + comp, dto)
-    .subscribe({
-      next: () => {},
-      error: error => {console.error("Error en solicitud PUT de Persona",error)}
-    })
-  } 
 
   constructor(public http: HttpClient, public temaServ: TemaService){
     this.getJSON();

@@ -2,11 +2,11 @@
 
 /*colores*/
 :root{
-    --main-color: rgb(97, 226, 255);
-    --main-color-darker: rgb(3, 92, 97);
-    --main-color-dark: rgb(35, 142, 152);
-    --main-color-low-opacity: rgba(160, 242, 255, 0.711);
-    --shadow-color:rgba(115, 197, 205, 1);
+    --main-color: rgb(218, 207, 141);
+    --main-color-darker: rgb(86, 74, 62);
+    --main-color-dark: rgb(151, 118, 81);
+    --main-color-low-opacity: rgba(255, 246, 194, 0.633);
+    --shadow-color:rgb(158, 152, 118);
 
     --back-color: rgb(9, 9, 9);
     --text-color: whitesmoke;
