@@ -4,27 +4,17 @@ import { EducacionRequestsService } from 'src/app/services/http-requests/educaci
 import { ExperienciaRequestsService } from 'src/app/services/http-requests/experiencia-requests.service';
 import { ProyectoRequestsService } from 'src/app/services/http-requests/proyecto-requests.service';
 import { SkillRequestsService } from 'src/app/services/http-requests/skill-requests.service';
-import { LoginService } from 'src/app/services/login.service';
-import { ScreenSizeService } from 'src/app/services/screen-size.service';
-import { BaseComponent } from '../../base/base.component';
 
 @Component({
   selector: 'app-order-form-base',
   template: '',
   styleUrls: ['../../../styles/editing.styles.css', './order-form-base.component.css']
 })
-export class OrderFormBaseComponent<T extends ExperienciaRequestsService|EducacionRequestsService|SkillRequestsService|ProyectoRequestsService> extends BaseComponent implements OnInit {
+export class OrderFormBaseComponent<T extends ExperienciaRequestsService|EducacionRequestsService|SkillRequestsService|ProyectoRequestsService> implements OnInit {
 
   @Output() showModalEvent = new EventEmitter<boolean>();
 
   list: any[] = [];
-
-  constructor(screenService: ScreenSizeService, login: LoginService, @Inject('service') public service: T) {
-    super(screenService, login);
-    if (this.service.items) {
-      this.list = JSON.parse(JSON.stringify(this.service.items));
-    }
-  }
 
   changeOrder(event: CdkDragDrop<string[]>){
     moveItemInArray(this.list, event.previousIndex, event.currentIndex);
@@ -37,4 +27,11 @@ export class OrderFormBaseComponent<T extends ExperienciaRequestsService|Educaci
     this.showModalEvent.emit(false);
   }
 
+  constructor(@Inject('service') public service: T) {
+    if (this.service.items) {
+      this.list = JSON.parse(JSON.stringify(this.service.items));
+    }
+  }
+
+  ngOnInit(): void {  }
 }

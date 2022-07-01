@@ -1,16 +1,13 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { PersonaRequestsService } from 'src/app/services/http-requests/persona-requests.service';
-import { LoginService } from 'src/app/services/login.service';
-import { ScreenSizeService } from 'src/app/services/screen-size.service';
-import { BaseComponent } from '../../../base/base.component';
 
 @Component({
   selector: 'app-image-form',
   templateUrl: './image-form.component.html',
   styleUrls: ['../../../../styles/editing.styles.css']
 })
-export class ImageFormComponent extends BaseComponent implements OnInit {
+export class ImageFormComponent implements OnInit {
   
   @Input()   propiedad: string = "";
   @Output() showModalEvent = new EventEmitter<boolean>();
@@ -47,7 +44,8 @@ export class ImageFormComponent extends BaseComponent implements OnInit {
     }
   }
 
-  constructor(screenService: ScreenSizeService, login: LoginService, public pers: PersonaRequestsService) {
-    super(screenService, login);
+  constructor(public pers: PersonaRequestsService) {
   }
+
+  ngOnInit(): void {  }
 }

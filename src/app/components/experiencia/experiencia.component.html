@@ -2,14 +2,14 @@
     <div class="component-header">
         <h5>Experiencia Laboral</h5>
 
-        <div class="col-4 component-header-buttons">
+        <div class="component-header-buttons">
             <app-add-button (click)="showModal=true" [style.visibility]="(login.isAdmin() && login.editando)? 'visible': 'hidden'"></app-add-button>
             <app-drag-button (click)="showModalOrder=true" [style.visibility]="(login.isAdmin() && login.editando)? 'visible': 'hidden'"></app-drag-button>
         </div>
     </div>
     
     <div class="row">
-        <div class="col-sm-4 col-12" *ngFor="let item of service.items" style="padding: 12px;">
+        <div class="col-lg-4 col-md-6 col-12" *ngFor="let item of service.items" style="padding: 12px;">
             <app-experiencia-item [object]="item"></app-experiencia-item>
         </div>
     </div>    

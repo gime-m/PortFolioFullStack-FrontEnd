@@ -1,4 +1,4 @@
-#header-background{
+.header-background{
     background-color: var(--header-color);
     box-shadow: 0px 0px 10px  var(--shadow-color);
     position: sticky;
@@ -6,10 +6,33 @@
     z-index: 300;
 }
 
-#logo-arg{
+.logo-arg{
     height: 60px;
     margin:10px;
     filter: invert();
+}
+
+/*Navegacion grande*/
+
+.nav-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+
+.nav{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+
+.nav-link{
+    color: white;
+}
+.nav-link:hover {
+    color: var(--main-color);
 }
 
 .buttons{
@@ -19,19 +42,56 @@
     flex-direction: row-reverse;
 }
 
-.offcanvas-button{
+.my-button{
+    border: 0px;
+    margin: 6px;
+}
+
+.button-text{
+    font-weight: 500;
+    color: white;
+}
+.button-text:hover {
     color: var(--main-color);
+}
+
+/*Dropdown*/
+
+.dropdown-toggle{
+    display: flex;
+    align-items: center;
+    align-content: center;
+    color: white;
+}
+
+.dropdown-menu{
+    background-color: var(--low-opacty-black);
+    color: white;
+}
+
+/*Offcanvas*/
+
+hr {
+    color: var(--main-color-low-opacity);
+    height: 2px;
+}
+
+.offcanvas-button{
+    color: white;
     border-width: 0;
     background-color: transparent;
+    transition: color 0.2s ease-in-out;
+}
+.offcanvas-button:hover{
+    color: var(--main-color);
 }
 
 .offcanvas{
     background-color: var(--low-opacty-black);
 }
 
-.offcanvas-title{
-    margin-top: 20px;
-    margin-bottom: 20px;
+.offcanvas-header{
+    margin-top: 10px;
 }
 
 .offcanvas-text{
@@ -41,13 +101,9 @@
 .offcanvas-item{
     color: var(--text-color);
 }
-
 .offcanvas-item:hover{
     background-color: var(--main-color-low-opacity);
 }
-
 .offcanvas-item:active{
     background-color: var(--main-color-low-opacity);
 }
-
-

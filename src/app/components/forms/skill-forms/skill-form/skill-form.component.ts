@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SkillRequestsService } from 'src/app/services/http-requests/skill-requests.service';
-import { LoginService } from 'src/app/services/login.service';
 import { SkillItem } from 'src/app/services/model-interfaces';
-import { ScreenSizeService } from 'src/app/services/screen-size.service';
 import { BaseFormItemComponent } from '../../base-form-item/base-form-item.component';
 
 @Component({
@@ -38,7 +36,7 @@ export class SkillFormComponent extends BaseFormItemComponent<SkillItem, SkillRe
   get valor() { return this.componentForm.get('valor'); }
   get tipo() { return this.componentForm.get('tipo'); }
 
-  constructor(screenService: ScreenSizeService, service: SkillRequestsService, login: LoginService) {
-    super(service, screenService, login);
+  constructor(service: SkillRequestsService) {
+    super(service);
   }
 }

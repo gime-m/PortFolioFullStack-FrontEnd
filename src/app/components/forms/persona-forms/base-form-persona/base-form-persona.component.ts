@@ -1,15 +1,12 @@
 import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { PersonaRequestsService } from 'src/app/services/http-requests/persona-requests.service';
-import { LoginService } from 'src/app/services/login.service';
-import { ScreenSizeService } from 'src/app/services/screen-size.service';
-import { BaseComponent } from '../../../base/base.component';
 
 @Component({
   selector: 'app-base-form-persona',
   template: ''
 })
-export class BaseFormPersonaComponent extends BaseComponent implements OnInit {
+export class BaseFormPersonaComponent implements OnInit {
 
   @Output() showModalEvent = new EventEmitter<boolean>();
   
@@ -34,8 +31,9 @@ export class BaseFormPersonaComponent extends BaseComponent implements OnInit {
     }
   }*/
 
-  constructor(screenService: ScreenSizeService,login: LoginService, public pers: PersonaRequestsService, @Inject('component') component:string) {
-    super(screenService, login);
+  constructor(public pers: PersonaRequestsService, @Inject('component') component:string) {
     this.component = component;
   }
+
+  ngOnInit(): void {  }
 }

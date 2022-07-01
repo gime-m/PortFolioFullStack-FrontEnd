@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ScreenSizeService } from 'src/app/services/screen-size.service';
-import { LoginService } from 'src/app/services/login.service';
 import { ExperienciaRequestsService } from 'src/app/services/http-requests/experiencia-requests.service';
+import { LoginService } from 'src/app/services/login.service';
 import { ExpItem } from 'src/app/services/model-interfaces';
-import { BaseItemComponent } from '../../base/base-item/base-item.component';
+import { BaseItemComponent } from '../../base-item/base-item.component';
 
 @Component({
   selector: 'app-experiencia-item',
@@ -12,7 +11,7 @@ import { BaseItemComponent } from '../../base/base-item/base-item.component';
 })
 export class ExperienciaItemComponent extends BaseItemComponent<ExpItem,ExperienciaRequestsService> implements OnInit {
 
-  constructor(service: ExperienciaRequestsService, screenService: ScreenSizeService, login: LoginService) {
-    super(service, screenService, login);
+  constructor(service: ExperienciaRequestsService, login: LoginService) {
+    super(service, login);
   }
 }

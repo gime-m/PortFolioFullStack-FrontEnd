@@ -3,16 +3,13 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { EducacionRequestsService } from 'src/app/services/http-requests/educacion-requests.service';
 import { ExperienciaRequestsService } from 'src/app/services/http-requests/experiencia-requests.service';
 import { ProyectoRequestsService } from 'src/app/services/http-requests/proyecto-requests.service';
-import { LoginService } from 'src/app/services/login.service';
-import { ScreenSizeService } from 'src/app/services/screen-size.service';
-import { BaseComponent } from '../../base/base.component';
 
 @Component({
   selector: 'app-item-imagen-form',
   templateUrl: './imagen-item-form.component.html',
   styleUrls: ['../../../styles/editing.styles.css']
 })
-export class ImagenItemFormComponent<T extends ExperienciaRequestsService|EducacionRequestsService|ProyectoRequestsService> extends BaseComponent implements OnInit {
+export class ImagenItemFormComponent<T extends ExperienciaRequestsService|EducacionRequestsService|ProyectoRequestsService> implements OnInit {
 
   @Input()   id: number = 0;
   @Output() showModalEvent = new EventEmitter<boolean>();
@@ -49,7 +46,8 @@ export class ImagenItemFormComponent<T extends ExperienciaRequestsService|Educac
     }
   }
 
-  constructor(@Inject('service') public service: T, screenService: ScreenSizeService, login: LoginService) {
-    super(screenService, login);
+  constructor(@Inject('service') public service: T) {
   }
+
+  ngOnInit(): void {  }
 }

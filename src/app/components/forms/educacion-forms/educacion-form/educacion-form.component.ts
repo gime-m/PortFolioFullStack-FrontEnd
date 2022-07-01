@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { EducacionRequestsService } from 'src/app/services/http-requests/educacion-requests.service';
-import { LoginService } from 'src/app/services/login.service';
 import { EducItem } from 'src/app/services/model-interfaces';
-import { ScreenSizeService } from 'src/app/services/screen-size.service';
 import { BaseFormItemComponent } from '../../base-form-item/base-form-item.component';
 
 @Component({
@@ -49,7 +47,7 @@ export class EducacionFormComponent extends BaseFormItemComponent<EducItem, Educ
   get fechaFin() { return this.componentForm.get('fechaFin'); }
   get isCurrent() { return this.componentForm.get('isCurrent'); }
 
-  constructor(screenService: ScreenSizeService, service: EducacionRequestsService, login: LoginService) {
-    super(service, screenService, login);
+  constructor(service: EducacionRequestsService) {
+    super(service);
   }
 }

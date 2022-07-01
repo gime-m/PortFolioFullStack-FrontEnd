@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { PersonaRequestsService } from 'src/app/services/http-requests/persona-requests.service';
-import { LoginService } from 'src/app/services/login.service';
-import { ScreenSizeService } from 'src/app/services/screen-size.service';
 import { TemaService } from 'src/app/services/http-requests/tema.service';
 import { ImageFormComponent } from '../persona-forms/image-form/image-form.component';
 
@@ -22,7 +20,7 @@ export class TemaFormComponent extends ImageFormComponent implements OnInit {
     super.submitForm();
   }
 
-  constructor(screenService: ScreenSizeService,login: LoginService, pers: PersonaRequestsService,  public temaServ: TemaService) {
-    super(screenService, login, pers);
+  constructor(pers: PersonaRequestsService,  public temaServ: TemaService) {
+    super(pers);
   }
 }

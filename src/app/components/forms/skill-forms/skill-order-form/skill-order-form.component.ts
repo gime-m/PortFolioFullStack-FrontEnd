@@ -1,8 +1,6 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { SkillRequestsService } from 'src/app/services/http-requests/skill-requests.service';
-import { LoginService } from 'src/app/services/login.service';
-import { ScreenSizeService } from 'src/app/services/screen-size.service';
 import { OrderFormBaseComponent } from '../../order-form-base/order-form-base.component';
 
 @Component({
@@ -43,14 +41,8 @@ export class SkillOrderFormComponent extends OrderFormBaseComponent<SkillRequest
     super.submitOrder();
   }
 
-  constructor(screenService: ScreenSizeService, login: LoginService, service: SkillRequestsService) {
-    super(screenService, login, service);
+  constructor(service: SkillRequestsService) {
+    super(service);
     this.makeLists();
   }
-
-  
-
-
-  
-
 }

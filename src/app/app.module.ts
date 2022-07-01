@@ -10,10 +10,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BaseComponent } from './components/base/base.component';
 import { HeaderComponent } from './components/header/header.component';
-import { BannerComponent } from './components/banner/banner.component';
-import { AboutMeComponent } from './components/about-me/about-me.component';
 import { ExperienciaComponent } from './components/experiencia/experiencia.component';
 import { EducacionComponent } from './components/educacion/educacion.component';
 import { SkillsComponent } from './components/skills/skills.component';
@@ -38,7 +35,7 @@ import { ImageFormComponent } from './components/forms/persona-forms/image-form/
 import { BaseFormPersonaComponent } from './components/forms/persona-forms/base-form-persona/base-form-persona.component';
 import { EducacionFormComponent } from './components/forms/educacion-forms/educacion-form/educacion-form.component';
 import { BaseFormItemComponent } from './components/forms/base-form-item/base-form-item.component';
-import { BaseItemComponent } from './components/base/base-item/base-item.component';
+import { BaseItemComponent } from './components/base-item/base-item.component';
 import { ExperienciaFormComponent } from './components/forms/experiencia-forms/experiencia-form/experiencia-form.component';
 import { SkillFormComponent } from './components/forms/skill-forms/skill-form/skill-form.component';
 import { ImagenItemFormComponent } from './components/forms/imagen-item-form/imagen-item-form.component';
@@ -69,11 +66,8 @@ registerLocaleData(localeEs, 'es')
   declarations: [
     AppComponent,
     HeaderComponent,
-    AboutMeComponent,
     ExperienciaComponent,
-    BannerComponent,
     BannerImageComponent,
-    BaseComponent,
     BannerProfilePicComponent,
     BannerNameComponent,
     AboutMeDescriptionComponent,
@@ -133,4 +127,5 @@ registerLocaleData(localeEs, 'es')
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+}

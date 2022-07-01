@@ -26,6 +26,9 @@
     color: var(--lighter-color);
     border-color: var(--lighter-color);
 }
+.my-button:hover{
+    background-color: rgba(255, 255, 255, 0.286);
+}
 
 .modal-input{
     color: var(--text-color);

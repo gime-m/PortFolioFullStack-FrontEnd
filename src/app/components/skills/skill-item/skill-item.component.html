@@ -2,6 +2,8 @@
     <p class="skill-text">{{object?.titulo}}</p>
     
     <div class="progress-dots">
+        <span class="visually-hidden">Puntos: {{object.valor}} de 10</span>
+
         <div *ngFor="let item of [].constructor(object.valor); let i = index" class="color-dots">
             <ng-container [ngTemplateOutlet]='forma'></ng-container>
         </div>

@@ -1,10 +1,23 @@
 <app-header></app-header>
 
-<app-banner></app-banner>
+<app-banner-image></app-banner-image>
+
+<div class="container-lg">
+    <div class="row">
+        <div class="col-lg-3 col-sm-4 col-12"><app-banner-profile-pic></app-banner-profile-pic></div>
+        <div class="col-lg-9 col-sm-8 col-12"><app-banner-name></app-banner-name></div>
+    </div>
+</div>
 
 <hr>
 
-<app-about-me></app-about-me>
+<div class="container-lg" id="info-personal">
+    <div class="row">
+            <div class="col-lg-3 col-sm-4 col-12"><app-about-me-info></app-about-me-info></div>
+            <hr class="d-inline d-sm-none">
+            <div class="col-lg-9 col-sm-8 col-12"><app-about-me-description></app-about-me-description></div>
+    </div>
+</div>
 
 <hr>
 
@@ -13,19 +26,19 @@
     <img [src]="persServ.imagenFondo" class="background-img">
     <div  class="container-fluid background-fade"></div>
 
-    <app-experiencia></app-experiencia>
+    <app-experiencia id="experiencia"></app-experiencia>
 
     <hr>
         
-    <app-educacion></app-educacion>
+    <app-educacion id="educacion"></app-educacion>
         
     <hr>
         
-    <app-skills></app-skills>
+    <app-skills id="skills"></app-skills>
 
     <hr>
 
-    <app-proyecto></app-proyecto>
+    <app-proyecto id="proyectos"></app-proyecto>
 
     <div style="height:30px"></div>
 </div>

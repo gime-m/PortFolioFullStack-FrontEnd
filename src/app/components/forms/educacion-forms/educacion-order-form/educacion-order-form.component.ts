@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { EducacionRequestsService } from 'src/app/services/http-requests/educacion-requests.service';
-import { LoginService } from 'src/app/services/login.service';
-import { ScreenSizeService } from 'src/app/services/screen-size.service';
 import { OrderFormBaseComponent } from '../../order-form-base/order-form-base.component';
 
 @Component({
@@ -11,7 +9,7 @@ import { OrderFormBaseComponent } from '../../order-form-base/order-form-base.co
 })
 export class EducacionOrderFormComponent extends OrderFormBaseComponent<EducacionRequestsService> implements OnInit {
 
-  constructor(screenService: ScreenSizeService, login: LoginService, service: EducacionRequestsService) {
-    super(screenService, login, service);
+  constructor(service: EducacionRequestsService) {
+    super(service);
   }
 }

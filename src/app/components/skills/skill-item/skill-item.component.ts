@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SkillItem } from 'src/app/services/model-interfaces';
 import { SkillRequestsService } from 'src/app/services/http-requests/skill-requests.service';
+import { BaseItemComponent } from '../../base-item/base-item.component';
 import { LoginService } from 'src/app/services/login.service';
-import { ScreenSizeService } from 'src/app/services/screen-size.service';
-import { BaseItemComponent } from '../../base/base-item/base-item.component';
 
 @Component({
   selector: 'app-skill-item',
@@ -19,8 +18,8 @@ export class SkillItemComponent extends BaseItemComponent<SkillItem,SkillRequest
     return a.toLocaleString('en-US',{style:'percent'});
   }
 
-  constructor(screenService: ScreenSizeService, service: SkillRequestsService, login: LoginService) {
-    super(service, screenService, login);
+  constructor(service: SkillRequestsService, login: LoginService) {
+    super(service, login);
   }
 
   override ngOnInit(): void {

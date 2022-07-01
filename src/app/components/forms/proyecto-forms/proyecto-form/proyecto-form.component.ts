@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProyectoRequestsService } from 'src/app/services/http-requests/proyecto-requests.service';
-import { LoginService } from 'src/app/services/login.service';
 import { ProyectoItem } from 'src/app/services/model-interfaces';
-import { ScreenSizeService } from 'src/app/services/screen-size.service';
 import { BaseFormItemComponent } from '../../base-form-item/base-form-item.component';
 
 @Component({
@@ -43,7 +41,7 @@ export class ProyectoFormComponent extends BaseFormItemComponent<ProyectoItem, P
   get fecha() { return this.componentForm.get('fecha'); }
   get link() { return this.componentForm.get('link'); }
 
-  constructor(screenService: ScreenSizeService, service: ProyectoRequestsService, login: LoginService) {
-    super(service, screenService, login);
+  constructor(service: ProyectoRequestsService) {
+    super(service);
   }
 }

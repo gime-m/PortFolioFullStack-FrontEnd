@@ -27,8 +27,14 @@
 
 @media screen and (max-width: 575px) {
     .me{
-        text-align: center; 
+        text-align: center;
+        margin:auto; 
     }
+
+    .name{
+        margin: auto;
+    }
+
     .name-container{
         justify-content: center;
     }

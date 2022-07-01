@@ -5,14 +5,12 @@ import { ProyectoRequestsService } from 'src/app/services/http-requests/proyecto
 import { SkillRequestsService } from 'src/app/services/http-requests/skill-requests.service';
 import { LoginService } from 'src/app/services/login.service';
 import { EducItem, ExpItem, ProyectoItem, SkillItem } from 'src/app/services/model-interfaces';
-import { ScreenSizeService } from 'src/app/services/screen-size.service';
-import { BaseComponent } from '../base.component';
 
 @Component({
   selector: 'app-base-item',
   template: ''
 })
-export class BaseItemComponent<T extends EducItem|ExpItem|SkillItem|ProyectoItem, Serv extends EducacionRequestsService|ExperienciaRequestsService|SkillRequestsService|ProyectoRequestsService> extends BaseComponent implements OnInit {
+export class BaseItemComponent<T extends EducItem|ExpItem|SkillItem|ProyectoItem, Serv extends EducacionRequestsService|ExperienciaRequestsService|SkillRequestsService|ProyectoRequestsService> implements OnInit {
 
   @Input() object!: T;
   datepipe: any;
@@ -35,8 +33,8 @@ export class BaseItemComponent<T extends EducItem|ExpItem|SkillItem|ProyectoItem
     }
   }
   
-  constructor(@Inject('service') public service: Serv, screenService: ScreenSizeService, login: LoginService) {
-    super(screenService, login);
+  constructor(@Inject('service') public service: Serv, public login: LoginService) {
   }
 
+  ngOnInit(): void {  }
 }

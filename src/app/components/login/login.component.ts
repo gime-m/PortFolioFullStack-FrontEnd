@@ -1,16 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { LoginService } from 'src/app/services/login.service';
-import { ScreenSizeService } from 'src/app/services/screen-size.service';
-import { BaseComponent } from '../base/base.component';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['../../styles/editing.styles.css', './login.component.css']
 })
-export class LoginComponent extends BaseComponent implements OnInit{
+export class LoginComponent implements OnInit{
   
   backgroundImages: String[] = [] ;
   random: number = 0;
@@ -43,9 +40,10 @@ export class LoginComponent extends BaseComponent implements OnInit{
     }
   }
 
-  constructor(screenService: ScreenSizeService, login: LoginService, public auth: AuthService) {
-    super(screenService, login);
+  constructor(public auth: AuthService) {
     this.makeBackgroundImages();
     this.random = Math.floor((Math.random()*(this.backgroundImages.length-1)))
   }
+
+  ngOnInit(): void {  }
 }

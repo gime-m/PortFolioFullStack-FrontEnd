@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BaseFormPersonaComponent } from 'src/app/components/forms/persona-forms/base-form-persona/base-form-persona.component';
 import { PersonaRequestsService } from 'src/app/services/http-requests/persona-requests.service';
-import { LoginService } from 'src/app/services/login.service';
-import { ScreenSizeService } from 'src/app/services/screen-size.service';
 
 @Component({
   selector: 'app-about-me-descripcion-form',
@@ -18,8 +16,8 @@ export class AboutMeDescripcionFormComponent extends BaseFormPersonaComponent im
 
   get descripcion() { return this.componentForm.get('descripcion'); }
 
-  constructor(screenService: ScreenSizeService,login: LoginService, pers: PersonaRequestsService) {
-    super(screenService, login, pers, "desc");
+  constructor(pers: PersonaRequestsService) {
+    super(pers, "desc");
   }
 
 }

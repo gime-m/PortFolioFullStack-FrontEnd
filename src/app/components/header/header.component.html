@@ -1,41 +1,103 @@
-<div class="container-fluid" id="header-background">
+<div class="container-fluid header-background">
     <div class="row"> 
-        <div class="col">
-            <img id="logo-arg" [src]="logoArgSrc" alt="Logo Argentina Programa">    
+        
+        <div class="col-lg-2 col-6">
+            <img class="logo-arg" [src]="logoArgSrc" alt="Logo Argentina Programa">    
         </div>
-               
-        <div class="col buttons"> 
 
-            <button class="offcanvas-button" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-menu" aria-controls="offcanvas-menu-header">
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-                </svg>
+        <div class="col-8 d-none d-lg-flex nav-container" role="navigation">
+            <ul class="nav">
+                <ng-container [ngTemplateOutlet]='navegacion'></ng-container>
+            </ul>
+        </div>
+
+        <div class="col-lg-2 col-6 d-none d-sm-flex buttons">
+
+            <button role="button" class="btn my-button" *ngIf="!login.editando" (click)="auth.cerrarSesion()">
+                <p class="button-text">Cerrar sesión</p>
+            </button> 
+
+            <button role="button" class="btn my-button" *ngIf="login.editando" (click)="login.editando = false">
+                <p class="button-text">Guardar</p>
             </button>
 
-            <button role="button" class="btn my-button" *ngIf="login.editando && !smallScreen" (click)="login.editando = false">
-                <p class="d-none d-sm-inline button-text">Terminar edición</p>
+            <button role="button" class="btn my-button" *ngIf="login.isAdmin() && !login.editando" (click)="login.editando = true">
+                <p class="button-text">Editar</p>
             </button>
 
             <button role="button" class="btn my-button" *ngIf="login.editando" (click)="showModal = true">
                 <p class="button-text">Aspecto</p>
+            </button> 
+
+            <div class="dropdown  d-lg-none">
+                <button class="btn my-button dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <p class="button-text">Navegación</p>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="navMenu">
+                    <ng-container [ngTemplateOutlet]='navegacion'></ng-container>
+                </ul>
+              </div>
+        </div>
+               
+        <div class="col-6 d-flex d-sm-none buttons"> 
+            <button aria-label="Abrir menú" class="offcanvas-button" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-menu" aria-controls="offcanvas-menu-header">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                </svg>
             </button>
         </div>
     </div>
 </div>
   
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas-menu" aria-labelledby="offcanvas-menu-header">
-    <div class="offcanvas-body">
+    <div class="offcanvas-header">
         <h5 class="offcanvas-title">Bienvenido</h5>
-        <p class="offcanvas-text">Has ingresado como: {{login.user()}}</p>
-        <p class="offcanvas-item" (click)="login.editando = true" *ngIf="!login.editando && login.isAdmin()" data-bs-dismiss="offcanvas">Activar edición</p>
-        <p class="offcanvas-item" (click)="login.editando = false" *ngIf="login.editando" data-bs-dismiss="offcanvas">Terminar edición</p>
-        
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar menú"></button>
     </div>
+    <hr>
+
+    <div class="offcanvas-body">
+        <h6>Navegación</h6>
+        <ul>
+            <ng-container [ngTemplateOutlet]='navegacion'></ng-container>
+        </ul>        
+    </div>
+    <hr>
+
     <div class="offcanvas-footer">
-        <p class="offcanvas-item" (click)="auth.cerrarSesion()">Cerrar sesión</p>
+        <button role="button" class="btn my-button" *ngIf="login.editando" (click)="showModal = true" data-bs-dismiss="offcanvas">
+            <p class="button-text">Cambiar aspecto</p>
+        </button> 
+        <button role="button" class="btn my-button" *ngIf="login.editando" (click)="login.editando = false" data-bs-dismiss="offcanvas">
+            <p class="button-text">Terminar edición</p>
+        </button>
+        <button role="button" class="btn my-button" *ngIf="!login.editando && login.isAdmin()" (click)="login.editando = true" data-bs-dismiss="offcanvas">
+            <p class="button-text">Edición</p>
+        </button>
+        <button role="button" class="btn my-button" *ngIf="!login.editando" (click)="auth.cerrarSesion()">
+            <p class="button-text">Cerrar sesión</p>
+        </button> 
     </div>
 </div>
 
 <app-tema-form *ngIf="showModal" (showModalEvent)="changeShowModal($event)" propiedad="imagenFondo"></app-tema-form>
+
+<ng-template #navegacion>
+    <li class="nav-item">
+        <a class="nav-link" role="button" (click)="link('info-personal')" data-bs-dismiss="offcanvas">Info personal</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" role="button" (click)="link('experiencia')" data-bs-dismiss="offcanvas">Experiencia</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" role="button" (click)="link('educacion')" data-bs-dismiss="offcanvas">Educación</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" role="button" (click)="link('skills')" data-bs-dismiss="offcanvas">Skills</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" role="button" (click)="link('proyectos')" data-bs-dismiss="offcanvas">Proyectos</a>
+    </li>
+</ng-template>
   
 

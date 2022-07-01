@@ -9,14 +9,14 @@
     </div>
     
     <div class="row">
-        <div class="col-md-6 col-12" >
+        <div class="col-lg-6 col-12" >
             <h6>Hard skills</h6>
             <div *ngFor="let item of service.items">
                 <app-skill-item *ngIf="item.tipo == 'hard'" [object]="item"></app-skill-item>
             </div>
         </div>
 
-        <div class="col-md-6 col-12" >
+        <div class="col-lg-6 col-12" >
             <h6>Soft skills</h6>
             <div *ngFor="let item of service.items">
                 <app-skill-item *ngIf="item.tipo == 'soft'" [object]="item"></app-skill-item>
