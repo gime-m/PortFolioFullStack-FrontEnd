@@ -3,12 +3,13 @@
     <div class="modal-container">
         
         <!--Título-->
-        <label for="img-id" class="modal-title">Sube un logo para este ítem. </label>
+        <p class="modal-title">Sube un logo para este ítem.</p>
         <hr class="modal-hr">
 
         <!--Formulario-->
         <form [formGroup]="componentForm" (ngSubmit)="submitForm()">
             <div>
+                <label for="img-id" class="visually-hidden">Selecciona una imagen</label>
                 <input id="img-id" type="file" accept="image/*" formControlName="imagen" class="form-control"  (change)="onFileChange($event)" >   
             </div>          
         

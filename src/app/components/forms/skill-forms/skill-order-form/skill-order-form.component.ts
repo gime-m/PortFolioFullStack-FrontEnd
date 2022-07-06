@@ -1,6 +1,7 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { SkillRequestsService } from 'src/app/services/http-requests/skill-requests.service';
+import { SkillItem } from 'src/app/services/model-interfaces';
 import { OrderFormBaseComponent } from '../../order-form-base/order-form-base.component';
 
 @Component({
@@ -10,9 +11,9 @@ import { OrderFormBaseComponent } from '../../order-form-base/order-form-base.co
 })
 export class SkillOrderFormComponent extends OrderFormBaseComponent<SkillRequestsService> implements OnInit {
 
-  listHard: any[] = []
-  listSoft: any[] = []
-  listIdioma: any[] = []
+  listHard: SkillItem[] = []
+  listSoft: SkillItem[] = []
+  listIdioma: SkillItem[] = []
 
   makeLists(){
     for (let i of this.list){
@@ -32,7 +33,7 @@ export class SkillOrderFormComponent extends OrderFormBaseComponent<SkillRequest
     }
   }
 
-  changeOrderSkill(event: CdkDragDrop<string[]>, list: any[]){
+  changeOrderSkill(event: CdkDragDrop<string[]>, list: SkillItem[]){
     moveItemInArray(list, event.previousIndex, event.currentIndex);
   }
 

@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit {
     this.showModal = value;
   }
 
-  link(id: string) {
+  link(id: string): void {
     let element = document.getElementById(id);
 
     if (element) {

@@ -34,11 +34,11 @@ export class RequestsBaseService<T extends EducItem|ExpItem|SkillItem|ProyectoIt
 
   public getJSON(): void{ 
     let url: string = this.originURL + this.component + this.getUrl + this.personaId;
-    this.http.get<any>(url).subscribe({
-      next: (data: T[] | undefined) => {
+    this.http.get<T[] | undefined>(url).subscribe({
+      next: (data) => {
         this.items=data?.sort((a, b) => {return a.displayOrder - b.displayOrder}); 
       },
-      error: (error: any) => {console.error("Error en solicitud GET de item", error);}
+      error: (error) => {console.error("Error en solicitud GET de item", error);}
     });
   }
 
@@ -48,9 +48,9 @@ export class RequestsBaseService<T extends EducItem|ExpItem|SkillItem|ProyectoIt
       let index = this.items.map(x => {return x.id;}).indexOf(objectPut.id) //encuentro elemento con id
       this.items.splice(index,1,objectPut); //reemplazo elemento 
           
-      this.http.put<any>(url, objectPut)
+      this.http.put(url, objectPut)
       .subscribe({
-        error: (error: any) => {console.error("Error en solicitud PUT de item",error,objectPut)}
+        error: (error) => {console.error("Error en solicitud PUT de item",error,objectPut)}
       })
     } 
   }
@@ -62,7 +62,7 @@ export class RequestsBaseService<T extends EducItem|ExpItem|SkillItem|ProyectoIt
       next: (data: T) => {
         this.items?.push(data);
       },
-      error: (error: any) => {console.error("Error en solicitud POST de item",error,objectPost)}
+      error: (error) => {console.error("Error en solicitud POST de item",error,objectPost)}
     });
   }
 
@@ -71,10 +71,10 @@ export class RequestsBaseService<T extends EducItem|ExpItem|SkillItem|ProyectoIt
     if (this.items){
       var index = this.items.map(x => {return x.id;}).indexOf(deleteId);
       this.items.splice(index,1);
-      this.http.delete<any>(url)
+      this.http.delete(url)
       .subscribe({
         next: () => {},
-        error: (error: any) => {console.error("Error en solicitud DELETE de item",error)}
+        error: (error) => {console.error("Error en solicitud DELETE de item",error)}
       });
     }
   }
@@ -85,9 +85,9 @@ export class RequestsBaseService<T extends EducItem|ExpItem|SkillItem|ProyectoIt
       let order = lista.map((x, ind) => new OrderDTO(x.id,ind+1));
       this.items = lista;
 
-      this.http.put<any>(url, order)
+      this.http.put(url, order)
       .subscribe({
-        error: (error: any) => {console.error("Error en solicitud PUT de orden",error)}
+        error: (error) => {console.error("Error en solicitud PUT de orden",error)}
       })
     }   
   }

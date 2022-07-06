@@ -17,7 +17,7 @@ export class ProyectoFormComponent extends BaseFormItemComponent<ProyectoItem, P
         titulo: new FormControl("", [Validators.required, Validators.maxLength(45)]),
         descripcion: new FormControl("",[Validators.maxLength(250)]),
         fecha: new FormControl(null),
-        link: new FormControl(""),
+        link: new FormControl("", [Validators.maxLength(60), Validators.pattern("^(https|http):\/{2}.*$")]),
         personaId: new FormControl(this.service.personaId),
         imagen: new FormControl(this.object?.imagen),
         displayOrder: new FormControl(this.newDisplayOrder())
@@ -28,7 +28,7 @@ export class ProyectoFormComponent extends BaseFormItemComponent<ProyectoItem, P
         titulo: new FormControl(this.object?.titulo, [Validators.required, Validators.maxLength(45)]),
         descripcion: new FormControl(this.object?.descripcion,[Validators.maxLength(250)]),
         fecha: new FormControl(this.object?.fecha),
-        link: new FormControl(this.object?.link, [Validators.maxLength(60)]),
+        link: new FormControl(this.object?.link, [Validators.maxLength(60), Validators.pattern("^(https|http):\/{2}.*$")]),
         personaId: new FormControl(this.object?.personaId),
         imagen: new FormControl(this.object?.imagen),
         displayOrder: new FormControl(this.object?.displayOrder)

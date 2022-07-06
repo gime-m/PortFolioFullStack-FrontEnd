@@ -15,7 +15,7 @@
 
     <div class="item-buttons-container" [style.visibility]="(login.isAdmin() && login.editando)? 'visible': 'hidden'">
         <app-edit-button (click)="showModal=true"></app-edit-button>
-        <app-delete-button (click)="deleteItem()"></app-delete-button>
+        <app-delete-button (click)="showModalDelete = true"></app-delete-button>
     </div>    
 </div>
 
@@ -26,6 +26,7 @@
 </ng-template>
 
 <app-skill-form [isNewItem]="false" [object]="object"  (showModalEvent)="changeShowModal($event)" *ngIf="showModal"></app-skill-form>
+<app-confirmacion-eliminar *ngIf="showModalDelete" (showDeleteModalEvent)="changeShowModalDelete($event)" (confirmDeleteEvent)="deleteItem()"></app-confirmacion-eliminar>
 
 
 

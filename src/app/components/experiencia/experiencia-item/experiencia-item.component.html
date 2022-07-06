@@ -4,7 +4,7 @@
     <div class="item-logo-container">
       <img [src]="service.imagenes[object.id]" class="item-logo" *ngIf="service.imagenes[object.id]" alt="Logo de ítem de experiencia" [style.filter]="(login.isAdmin() && login.editando)? ' contrast(70%) brightness(50%)': 'none'" >
 
-      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-briefcase-fill" viewBox="0 0 16 16" *ngIf="!service.imagenes[object.id] && !login.editando">
+      <svg width="32" height="32" fill="currentColor" viewBox="0 0 16 16" *ngIf="!service.imagenes[object.id] && !login.editando">
         <title>Logo de ítem de experiencia</title>
         <path d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v1.384l7.614 2.03a1.5 1.5 0 0 0 .772 0L16 5.884V4.5A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1h-3zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5z"/>
         <path d="M0 12.5A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5V6.85L8.129 8.947a.5.5 0 0 1-.258 0L0 6.85v5.65z"/>
@@ -41,7 +41,7 @@
   
     <div class="item-buttons-container" *ngIf="(login.isAdmin() && login.editando)">
       <app-edit-button class="edit-button" (click)="showModal=true"></app-edit-button>
-      <app-delete-button (click)="deleteItem()"></app-delete-button>
+      <app-delete-button (click)="showModalDelete = true"></app-delete-button>
     </div>
   </div>
   
@@ -60,3 +60,4 @@
 
 <app-experiencia-form [isNewItem]="false" [object]="object"  (showModalEvent)="changeShowModal($event)" *ngIf="showModal"></app-experiencia-form>
 <app-experiencia-imagen-form  [id]="object.id" (showModalEvent)="changeShowModalImagen($event)" *ngIf="showModalImagen"></app-experiencia-imagen-form>
+<app-confirmacion-eliminar *ngIf="showModalDelete" (showDeleteModalEvent)="changeShowModalDelete($event)" (confirmDeleteEvent)="deleteItem()"></app-confirmacion-eliminar>

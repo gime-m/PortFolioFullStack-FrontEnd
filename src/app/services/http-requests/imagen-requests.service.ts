@@ -8,14 +8,14 @@ import { RequestsBaseService } from './requests-base.service';
 })
 export class ImagenRequestsService<T extends EducItem|ExpItem|ProyectoItem, Tpost extends EducItemPost|ExpItemPost|ProyectoItemPost> extends RequestsBaseService<T,Tpost>{
   
-  private _imagenes: any[] = []
-  public get imagenes(): any[] {
+  private _imagenes: string[] = [];
+  public get imagenes(): string[] {
     return this._imagenes;
   }
-  public set imagenes(value:any[]) {
+  public set imagenes(value: string[]) {
     this._imagenes = value;
   }
-
+  
   public getImagen(id: number, imgPath: string): void{ 
     let url: string = this.originURL + this.component + "/" + imgPath;
     let httpHeaders = new HttpHeaders().set('Accept', "image/webp,*/*");
@@ -25,8 +25,8 @@ export class ImagenRequestsService<T extends EducItem|ExpItem|ProyectoItem, Tpos
       this.http.get<Blob>(url, {headers: httpHeaders, responseType: 'blob' as 'json'}).subscribe({
         next: result => {
           reader.addEventListener("load", () => {
-            if (this.imagenes){
-              this.imagenes[id] = reader.result;
+            if (this.imagenes && reader.result){
+              this.imagenes[id] = reader.result.toString();
             }           
           }, false);
           reader.readAsDataURL(result);
@@ -51,29 +51,29 @@ export class ImagenRequestsService<T extends EducItem|ExpItem|ProyectoItem, Tpos
     form.append('file', file );
     let path: string = this.originURL + this.component + "/" + "subir-imagen/";
 
-    this.http.put<any>(path, form)
+    this.http.put(path, form)
     .subscribe({
       complete: () => {
         this.getJSON();
       },
-      error: (error: any) => {console.error("Error en solicitud PUT de imagen",error)}
+      error: (error): void => {console.error("Error en solicitud PUT de imagen",error)}
     });    
   }
 
   public deleteImagen<T> (id: T){
     let path: string = this.originURL + this.component + "/"+ "borrar-imagen/" + id;
-    this.http.delete<any>(path).subscribe({
+    this.http.delete(path).subscribe({
       complete: () => {
         this.getJSON();
       },
-      error: (error: any) => {console.error("Error en solicitud DELETE de imagen",error)}
+      error: (error) => {console.error("Error en solicitud DELETE de imagen",error)}
     });  
   }
 
   public override getJSON(): void{ 
     let url: string = this.originURL + this.component + this.getUrl + this.personaId;
-    this.http.get<any>(url).subscribe({
-      next: (data: T[] | undefined) => {
+    this.http.get<T[]>(url).subscribe({
+      next: (data: T[]) => {
         this.items=data?.sort((a, b) => {return a.displayOrder - b.displayOrder}); 
         if (this.items){
           for (let i=0; i < this.items.length; i++ ){
@@ -83,7 +83,7 @@ export class ImagenRequestsService<T extends EducItem|ExpItem|ProyectoItem, Tpos
           }
         }
       },
-      error: (error: any) => {console.error("Error en solicitud GET de item", error);}
+      error: (error) => {console.error("Error en solicitud GET de item", error);}
     });
   }
 

@@ -51,6 +51,9 @@
                     <div *ngIf="descripcion?.errors?.['maxlength']  && (descripcion?.dirty || descripcion?.touched)">
                         <p class="modal-alert-text">El lugar no puede superar los 250 caracteres.</p>
                     </div>
+                    <div *ngIf="link?.errors?.['pattern']  && (link?.dirty || link?.touched)">
+                        <p class="modal-alert-text">Ingresa un link válido (por ejemplo, https://github.com/)</p>
+                    </div>
                 </div>
                 
                 <!--Botones-->

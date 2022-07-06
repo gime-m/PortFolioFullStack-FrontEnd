@@ -13,16 +13,20 @@ import { EducItem, ExpItem, ProyectoItem, SkillItem } from 'src/app/services/mod
 export class BaseItemComponent<T extends EducItem|ExpItem|SkillItem|ProyectoItem, Serv extends EducacionRequestsService|ExperienciaRequestsService|SkillRequestsService|ProyectoRequestsService> implements OnInit {
 
   @Input() object!: T;
-  datepipe: any;
   verDescripcion: boolean = false;
 
   public showModal: boolean = false;
   public showModalImagen: boolean = false;
+  public showModalDelete: boolean = false;
+
   changeShowModal(value: boolean){
     this.showModal = value;
   }
   changeShowModalImagen(value: boolean){
     this.showModalImagen = value;
+  }
+  changeShowModalDelete(value: boolean){
+    this.showModalDelete = value;
   }
 
   deleteItem(){

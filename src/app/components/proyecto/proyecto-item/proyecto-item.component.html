@@ -19,7 +19,7 @@
       <h5 class="card-title">{{object.titulo}}</h5>
       
       <div class="card-link-container">
-        <a [href]="object.link" class="card-link">{{object.link}}</a>
+        <a [href]="object.link" class="card-link" target="_blank">{{object.link}}</a>
       </div>
 
       <div class="this-card-footer">
@@ -35,7 +35,7 @@
 
         <div class="edit-buttons-container" *ngIf="(login.isAdmin() && login.editando)">
           
-          <button (click)="deleteItem()" type="button" class="btn edit-button" aria-label="Eliminar ítem de proyecto">
+          <button (click)="showModalDelete = true" type="button" class="btn edit-button" aria-label="Eliminar ítem de proyecto">
             <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
               <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
             </svg>
@@ -64,4 +64,5 @@
 
 <app-proyecto-form [isNewItem]="false" [object]="object"  (showModalEvent)="changeShowModal($event)" *ngIf="showModal"></app-proyecto-form>
 <app-proyecto-imagen-form  [id]="object.id" (showModalEvent)="changeShowModalImagen($event)" *ngIf="showModalImagen"></app-proyecto-imagen-form>
+<app-confirmacion-eliminar *ngIf="showModalDelete" (showDeleteModalEvent)="changeShowModalDelete($event)" (confirmDeleteEvent)="deleteItem()"></app-confirmacion-eliminar>
 <app-proyecto-imagen-grande [imagen]="service.imagenes[object.id]" (imagenGrandeEvent)="changeImagenGrande($event)" *ngIf="imagenGrande"></app-proyecto-imagen-grande>

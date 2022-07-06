@@ -26,10 +26,9 @@ export class PersonaRequestsService {
   public deleteImagenBannerUrl: string = this.originURL + 'borrar-imagen/banner/'+this.personaId;
   public deleteImagenFondoUrl: string = this.originURL + 'borrar-imagen/fondo/'+this.personaId;
   
-
-  imagenPerfil: any;
-  imagenBanner: any;
-  imagenFondo: any
+  imagenPerfil: string = "";
+  imagenBanner: string = "";
+  imagenFondo: string = "";
 
   //Objeto
   private _persona?: Persona;
@@ -71,7 +70,11 @@ export class PersonaRequestsService {
     if (this.persona?.imagenPerfil){
       this.http.get<Blob>(this.originURL + this.persona?.imagenPerfil, {headers: httpHeaders, responseType: 'blob' as 'json'}).subscribe({
         next: result => {
-          reader.addEventListener("load", () => {this.imagenPerfil = reader.result;}, false);
+          reader.addEventListener("load", () => {
+            if(reader.result){
+              this.imagenPerfil = reader.result.toString();
+            }
+          }, false);
           reader.readAsDataURL(result);
         },
         error: (err) => {
@@ -90,7 +93,11 @@ export class PersonaRequestsService {
     if (this.persona?.banner){
       this.http.get<Blob>(this.originURL + this.persona?.banner, {headers: httpHeaders, responseType: 'blob' as 'json'}).subscribe({
         next: result => {
-          reader.addEventListener("load", () => {this.imagenBanner = reader.result;}, false);
+          reader.addEventListener("load", () => {
+            if(reader.result){
+              this.imagenBanner = reader.result.toString();
+            }
+          }, false);
           reader.readAsDataURL(result);
         },
         error: (err) => {
@@ -109,7 +116,11 @@ export class PersonaRequestsService {
     if (this.persona?.imagenFondo){
       this.http.get<Blob>(this.originURL + this.persona?.imagenFondo, {headers: httpHeaders, responseType: 'blob' as 'json'}).subscribe({
         next: result => {
-          reader.addEventListener("load", () => {this.imagenFondo = reader.result;}, false);
+          reader.addEventListener("load", () => {
+            if(reader.result){
+              this.imagenFondo = reader.result.toString();
+            }
+          }, false);
           reader.readAsDataURL(result);
         },
         error: (err) => {
@@ -141,12 +152,12 @@ export class PersonaRequestsService {
         break;
     }
 
-    this.http.put<any>(path, form)
+    this.http.put(path, form)
     .subscribe({
       complete: () => {
         this.getJSON();
       },
-      error: (error: any) => {console.error("Error en solicitud PUT de imagen (persona)",error, form)}
+      error: (error) => {console.error("Error en solicitud PUT de imagen (persona)",error, form)}
     });    
   }
 
@@ -166,13 +177,13 @@ export class PersonaRequestsService {
         break;
     }
 
-    this.http.delete<any>(path).subscribe({
+    this.http.delete(path).subscribe({
       complete: () => {
         if (this.persona){
           this.getJSON();
         }
       },
-      error: (error: any) => {console.error("Error en solicitud DELETE de imagen (persona)",error)}
+      error: (error) => {console.error("Error en solicitud DELETE de imagen (persona)",error)}
     });  
   }
 

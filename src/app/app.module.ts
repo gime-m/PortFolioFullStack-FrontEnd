@@ -59,6 +59,7 @@ import { BannerNameFormComponent } from './components/forms/persona-forms/banner
 import { AboutMeDescripcionFormComponent } from './components/forms/persona-forms/about-me-descripcion-form/about-me-descripcion-form.component';
 import { AboutMeInfoFormComponent } from './components/forms/persona-forms/about-me-info-form/about-me-info-form.component';
 import { TemaFormComponent } from './components/forms/tema-form/tema-form.component';
+import { ConfirmacionEliminarComponent } from './components/forms/confirmacion-eliminar/confirmacion-eliminar.component';
 registerLocaleData(localeEs, 'es')
 
 
@@ -108,7 +109,8 @@ registerLocaleData(localeEs, 'es')
     BannerNameFormComponent,
     AboutMeDescripcionFormComponent,
     AboutMeInfoFormComponent,
-    TemaFormComponent
+    TemaFormComponent,
+    ConfirmacionEliminarComponent
   ],
   imports: [
     BrowserModule,

@@ -58,7 +58,7 @@
 
     <div class="offcanvas-body">
         <h6>Navegación</h6>
-        <ul>
+        <ul data-bs-dismiss="offcanvas" >
             <ng-container [ngTemplateOutlet]='navegacion'></ng-container>
         </ul>        
     </div>
@@ -84,19 +84,19 @@
 
 <ng-template #navegacion>
     <li class="nav-item">
-        <a class="nav-link" role="button" (click)="link('info-personal')" data-bs-dismiss="offcanvas">Info personal</a>
+        <a class="nav-link" role="button" (click)="link('info-personal')">Info personal</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" role="button" (click)="link('experiencia')" data-bs-dismiss="offcanvas">Experiencia</a>
+      <a class="nav-link" role="button" (click)="link('experiencia')">Experiencia</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" role="button" (click)="link('educacion')" data-bs-dismiss="offcanvas">Educación</a>
+        <a class="nav-link" role="button" (click)="link('educacion')">Educación</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" role="button" (click)="link('skills')" data-bs-dismiss="offcanvas">Skills</a>
+        <a class="nav-link" role="button" (click)="link('skills')">Skills</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" role="button" (click)="link('proyectos')" data-bs-dismiss="offcanvas">Proyectos</a>
+        <a class="nav-link" role="button" (click)="link('proyectos')">Proyectos</a>
     </li>
 </ng-template>
   
