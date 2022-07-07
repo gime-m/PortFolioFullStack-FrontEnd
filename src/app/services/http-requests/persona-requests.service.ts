@@ -20,10 +20,12 @@ export class PersonaRequestsService {
   public getUrl: string = this.originURL +'persona?id='+this.personaId;
   public putUrl: string = this.originURL+'persona/editar/';
 
+  public getImagenUrl: string = this.originURL+'persona/';
+
   public putImagenPerfilUrl: string = this.originURL+'persona/subir-imagen/perfil';
   public putImagenBannerUrl: string = this.originURL+'persona/subir-imagen/banner';
   public putImagenFondoUrl: string = this.originURL+'persona/subir-imagen/fondo';
-  
+
   public deleteImagenPerfilUrl: string = this.originURL + 'persona/borrar-imagen/perfil/'+this.personaId;
   public deleteImagenBannerUrl: string = this.originURL + 'persona/borrar-imagen/banner/'+this.personaId;
   public deleteImagenFondoUrl: string = this.originURL + 'persona/borrar-imagen/fondo/'+this.personaId;
@@ -70,7 +72,7 @@ export class PersonaRequestsService {
     let httpHeaders = new HttpHeaders().set('Accept', "image/webp,*/*");
     let reader = new FileReader;
     if (this.persona?.imagenPerfil){
-      this.http.get<Blob>(this.originURL + this.persona?.imagenPerfil, {headers: httpHeaders, responseType: 'blob' as 'json'}).subscribe({
+      this.http.get<Blob>(this.getImagenUrl + this.persona?.imagenPerfil, {headers: httpHeaders, responseType: 'blob' as 'json'}).subscribe({
         next: result => {
           reader.addEventListener("load", () => {
             if(reader.result){
@@ -93,7 +95,7 @@ export class PersonaRequestsService {
     let httpHeaders = new HttpHeaders().set('Accept', "image/webp,*/*");
     let reader = new FileReader;
     if (this.persona?.banner){
-      this.http.get<Blob>(this.originURL + this.persona?.banner, {headers: httpHeaders, responseType: 'blob' as 'json'}).subscribe({
+      this.http.get<Blob>(this.getImagenUrl + this.persona?.banner, {headers: httpHeaders, responseType: 'blob' as 'json'}).subscribe({
         next: result => {
           reader.addEventListener("load", () => {
             if(reader.result){
@@ -116,7 +118,7 @@ export class PersonaRequestsService {
     let httpHeaders = new HttpHeaders().set('Accept', "image/webp,*/*");
     let reader = new FileReader;
     if (this.persona?.imagenFondo){
-      this.http.get<Blob>(this.originURL + this.persona?.imagenFondo, {headers: httpHeaders, responseType: 'blob' as 'json'}).subscribe({
+      this.http.get<Blob>(this.getImagenUrl + this.persona?.imagenFondo, {headers: httpHeaders, responseType: 'blob' as 'json'}).subscribe({
         next: result => {
           reader.addEventListener("load", () => {
             if(reader.result){

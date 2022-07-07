@@ -1,12 +1,9 @@
-import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
+import { Directive, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { PersonaRequestsService } from 'src/app/services/http-requests/persona-requests.service';
 
-@Component({
-  selector: 'app-base-form-persona',
-  template: ''
-})
-export class BaseFormPersonaComponent implements OnInit {
+@Directive()
+export abstract class BaseFormPersonaComponent implements OnInit {
 
   @Output() showModalEvent = new EventEmitter<boolean>();
   

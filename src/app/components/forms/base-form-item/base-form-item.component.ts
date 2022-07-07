@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
+import { Directive, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { EducacionRequestsService } from 'src/app/services/http-requests/educacion-requests.service';
 import { ExperienciaRequestsService } from 'src/app/services/http-requests/experiencia-requests.service';
@@ -6,11 +6,8 @@ import { ProyectoRequestsService } from 'src/app/services/http-requests/proyecto
 import { SkillRequestsService } from 'src/app/services/http-requests/skill-requests.service';
 import { EducItem, ExpItem, ProyectoItem, SkillItem } from 'src/app/services/model-interfaces';
 
-@Component({
-  selector: 'app-base-form-item',
-  template: ''
-})
-export class BaseFormItemComponent<T extends EducItem|ExpItem|SkillItem|ProyectoItem, Serv extends EducacionRequestsService|ExperienciaRequestsService|SkillRequestsService|ProyectoRequestsService> implements OnInit {
+@Directive()
+export abstract class BaseFormItemComponent<T extends EducItem|ExpItem|SkillItem|ProyectoItem, Serv extends EducacionRequestsService|ExperienciaRequestsService|SkillRequestsService|ProyectoRequestsService> implements OnInit {
   
   @Input() isNewItem: boolean = true;
   @Input() object?: T;

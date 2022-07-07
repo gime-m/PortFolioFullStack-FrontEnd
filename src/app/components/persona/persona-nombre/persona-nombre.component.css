@@ -1,0 +1,47 @@
+.me{
+    margin:auto;
+    margin-top: 12px;
+    margin-bottom: 5px;
+    margin-left: 0;
+    text-align: left;
+    font-weight: 600;
+}
+
+.name{
+    font-size:x-large;
+    margin: 0;
+    align-self:center; 
+}
+
+.name-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-content: center;
+}
+
+.edit-button{
+   align-self:center; 
+   margin-left: 8px;
+}
+
+@media screen and (max-width: 575px) {
+    .me{
+        text-align: center;
+        margin:auto; 
+    }
+
+    .name{
+        margin: auto;
+    }
+
+    .name-container{
+        justify-content: center;
+    }
+
+    .edit-button{
+        align-self:center; 
+        margin: 8px;
+        margin-bottom: 0;
+    }
+}

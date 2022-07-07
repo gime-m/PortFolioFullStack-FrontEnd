@@ -1,13 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { PersonaRequestsService } from 'src/app/services/http-requests/persona-requests.service';
-import { ImagenBaseFormComponent } from '../../imagen-base-form/imagen-base-form.component';
+import { BaseFormImagenComponent } from '../../base-form-imagen/base-form-imagen.component';
 
 @Component({
   selector: 'app-image-form',
-  templateUrl: '../../imagen-base-form/imagen-base-form.component.html',
+  templateUrl: '../../base-form-imagen/base-form-imagen.component.html',
   styleUrls: ['../../../../styles/editing.styles.css']
 })
-export class ImageFormComponent extends ImagenBaseFormComponent implements OnInit {
+export class ImageFormComponent extends BaseFormImagenComponent implements OnInit {
   
   @Input() propiedad: string = "";
 

@@ -1,0 +1,10 @@
+<div>
+    <div class="name-container">
+        <p class="me name">{{pers.persona?.nombre + ' ' + pers.persona?.apellido}}</p> 
+        <app-edit-button [style.visibility]="(login.isAdmin() && login.editando)? 'visible': 'hidden'" (click)="this.showModal=true" class="d-none d-sm-flex edit-button"></app-edit-button>
+    </div>
+    <p class="me">{{pers.persona?.ocupacion}}</p>
+    <app-edit-button [style.visibility]="(login.isAdmin() && login.editando)? 'visible': 'hidden'" (click)="this.showModal=true" class="d-flex d-sm-none edit-button"></app-edit-button>
+</div>
+
+<app-persona-nombre-form (showModalEvent)="changeShowModal($event)" *ngIf="showModal"></app-persona-nombre-form>

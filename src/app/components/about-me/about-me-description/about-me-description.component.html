@@ -1,9 +1,0 @@
-<div >
-    <div class="about-header">
-        <h6 class="about-title"> Acerca de mí</h6>
-        <app-edit-button [style.visibility]="(login.isAdmin() && login.editando)? 'visible': 'hidden'"  (click)="this.showModal=true"></app-edit-button>
-    </div>
-    <p class="info">{{pers.persona?.descripcion}}</p>  
-</div>
-
-<app-about-me-descripcion-form (showModalEvent)="changeShowModal($event)" *ngIf="showModal"></app-about-me-descripcion-form>

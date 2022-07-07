@@ -26,6 +26,7 @@ export class TemaFormComponent extends ImageFormComponent implements OnInit {
 
   constructor(pers: PersonaRequestsService,  public temaServ: TemaService) {
     super(pers);
-    this.temaServ.getTemasLista()
+    this.imagen?.setValidators([]);
+    this.temaServ.getTemasLista();
   }
 }

@@ -1,9 +1,0 @@
-<div>
-    <div class="name-container">
-        <p class="me name">{{pers.persona?.nombre + ' ' + pers.persona?.apellido}}</p> 
-        <app-edit-button [style.visibility]="(login.isAdmin() && login.editando)? 'visible': 'hidden'" (click)="this.showModal=true" class="edit-button-here"></app-edit-button>
-    </div>
-    <p class="me">{{pers.persona?.ocupacion}}</p>
-</div>
-
-<app-banner-name-form (showModalEvent)="changeShowModal($event)" *ngIf="showModal"></app-banner-name-form>

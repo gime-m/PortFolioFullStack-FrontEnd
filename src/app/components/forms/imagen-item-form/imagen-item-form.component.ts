@@ -1,15 +1,11 @@
-import { Component, Inject, Input, OnInit} from '@angular/core';
+import { Directive, Inject, Input, OnInit} from '@angular/core';
 import { EducacionRequestsService } from 'src/app/services/http-requests/educacion-requests.service';
 import { ExperienciaRequestsService } from 'src/app/services/http-requests/experiencia-requests.service';
 import { ProyectoRequestsService } from 'src/app/services/http-requests/proyecto-requests.service';
-import { ImagenBaseFormComponent } from '../imagen-base-form/imagen-base-form.component';
+import { BaseFormImagenComponent } from '../base-form-imagen/base-form-imagen.component';
 
-@Component({
-  selector: 'app-item-imagen-form',
-  templateUrl: '../imagen-base-form/imagen-base-form.component.html',
-  styleUrls: ['../../../styles/editing.styles.css']
-})
-export class ImagenItemFormComponent<T extends ExperienciaRequestsService|EducacionRequestsService|ProyectoRequestsService> extends ImagenBaseFormComponent implements OnInit {
+@Directive()
+export abstract class ImagenItemFormComponent<T extends ExperienciaRequestsService|EducacionRequestsService|ProyectoRequestsService> extends BaseFormImagenComponent implements OnInit {
 
   @Input()   id: number = 0;
 

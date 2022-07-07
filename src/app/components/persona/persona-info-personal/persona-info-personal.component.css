@@ -1,0 +1,44 @@
+.personal-info{
+    display: flex;
+    flex-direction: column;
+    margin-top: 0px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.personal-info-item{
+    margin-top: 0px;
+    margin-bottom: 16px;
+    display:flex; 
+    flex-direction: row; 
+    justify-content:left;
+    color: var(--lighter-color);
+}
+
+.personal-info-text{
+    font-weight: 400;
+    color: var(--lighter-color);
+    margin:auto;
+    margin-left: 0;
+    padding-left: 5px;
+    font-size:small;
+    text-align: left;
+    text-decoration: none;
+}
+
+.personal-email{
+    word-break: break-all;
+}
+
+.edit-button{
+    align-self: center;
+    margin: 8px;
+}
+
+@media screen and (max-width: 575px) {
+    .personal-info-item{
+        margin: auto;
+        margin-top: 0px;
+        margin-bottom: 16px;
+    }
+}
