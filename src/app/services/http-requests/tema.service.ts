@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Tema, TemaCorto } from '../model-interfaces';
+import { PutTema, Tema, TemaCorto } from '../model-interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,7 @@ export class TemaService {
   public originURL: string = 'http://localhost:8080/';
   public getTemaUrl: string = this.originURL +'tema?id=';
   public getTemasListaUrl: string = this.originURL +'tema/lista';
-  public putTemaUrl: string = this.originURL +'tema/editar/';
+  public putTemaUrl: string = this.originURL +'persona/editar/tema';
 
   public personaId: number = 1;
 
@@ -36,7 +36,7 @@ export class TemaService {
   }
 
   public getTemasLista(): void {
-    this.http.get< TemaCorto[]>(this.getTemasListaUrl).subscribe({
+    this.http.get<TemaCorto[]>(this.getTemasListaUrl).subscribe({
       next: data => {
         this.listaTemas = data;
       },
@@ -47,7 +47,7 @@ export class TemaService {
   }
 
   public putTema(temaId: number): void{
-    let dto: DTOTema = new DTOTema;
+    let dto: PutTema = new PutTema;
     dto.personaId = this.personaId;
     dto.temaId = temaId;
     this.http.put<Tema>(this.putTemaUrl, dto)
@@ -60,12 +60,5 @@ export class TemaService {
   }
 
   constructor(public http: HttpClient) {
-    this.getTemasLista()
   }
 }
-
-class DTOTema {
-  personaId: number = 0;
-  temaId: number = 0;
-}
-

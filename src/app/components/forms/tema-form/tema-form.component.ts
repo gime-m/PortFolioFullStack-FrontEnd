@@ -13,14 +13,19 @@ export class TemaFormComponent extends ImageFormComponent implements OnInit {
   temaSeleccionado?: number = this.pers.persona?.temaId;
   
   override submitForm() {
-    if (this.pers.persona?.temaId && this.temaSeleccionado) {
+    if (this.pers.persona?.temaId && this.temaSeleccionado && this.temaSeleccionado !=this.pers.persona?.temaId ) {
       this.pers.persona.temaId = this.temaSeleccionado;
       this.temaServ.putTema(this.temaSeleccionado);
     }
-    super.submitForm();
+    if (this.componentForm.dirty){
+      this.pers.putImagen(this.fileSource?.value,this.propiedad)
+      this.componentForm.reset()
+    }
+    this.showModalEvent.emit(false)
   }
 
   constructor(pers: PersonaRequestsService,  public temaServ: TemaService) {
     super(pers);
+    this.temaServ.getTemasLista()
   }
 }

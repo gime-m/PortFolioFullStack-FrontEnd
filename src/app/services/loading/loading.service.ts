@@ -6,13 +6,27 @@ export let browserRefresh = false;
 })
 export class LoadingService {
 
-  private _isLoading: boolean = false;
-  public get isLoading(): boolean {
-    return this._isLoading;
+  private _navigationLoading: boolean = false;
+  public get navigationLoading(): boolean {
+    return this._navigationLoading;
   }
-  public set isLoading(value: boolean) {
-    this._isLoading = value;
+  public set navigationLoading(value: boolean) {
+    this._navigationLoading = value;
   }
 
-  imagesLoading: number = 0
+  private _imagesLoading: number = 0;
+  public get imagesLoading(): number {
+    return this._imagesLoading;
+  }
+  public set imagesLoading(value: number) {
+    this._imagesLoading = value;
+  }
+
+  private _requests: number = 0;
+  public get requests(): number {
+    return this._requests;
+  }
+  public set requests(value: number) {
+    this._requests = value;
+  }
 }

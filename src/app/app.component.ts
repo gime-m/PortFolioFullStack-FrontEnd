@@ -22,13 +22,13 @@ export class AppComponent implements OnInit {
 
   navigationInterceptor(event: RouterEvent): void {
     if (event instanceof NavigationStart) {
-      this.loading.isLoading = true;
+      this.loading.navigationLoading = true;
     }
     if (event instanceof NavigationEnd) {
-      this.loading.isLoading = false;
+      this.loading.navigationLoading = false;
     }
     if (event instanceof NavigationCancel) {
-      this.loading.isLoading = false;
+      this.loading.navigationLoading = false;
     }
   }
 }

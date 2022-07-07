@@ -1,3 +1,3 @@
 <router-outlet></router-outlet>
 
-<app-loading *ngIf="loading.isLoading || loading.imagesLoading != 0"></app-loading>
+<app-loading *ngIf="loading.navigationLoading || loading.requests || loading.imagesLoading"></app-loading>

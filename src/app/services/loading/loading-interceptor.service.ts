@@ -11,15 +11,13 @@ export class LoadingInterceptorService implements HttpInterceptor {
   constructor(private loadServ: LoadingService) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    
-    this.loadServ.isLoading =  true;
-
+    this.loadServ.requests++;
     return next.handle(request)
       .pipe(map<HttpEvent<any>, any>((evt: HttpEvent<any>) => {
         if (evt instanceof HttpResponse) {
-          this.loadServ.isLoading = false;
+          this.loadServ.requests--;
         }
         return evt;
       }));
-  }
+  }  
 }

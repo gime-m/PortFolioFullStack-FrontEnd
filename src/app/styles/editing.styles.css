@@ -140,6 +140,12 @@ textarea {
     display: flex;
     flex-direction: row-reverse;
 }
+.modal-buttons-container-imagen{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    justify-items: center;
+}
 
 .modal-alert-text{
     font-size: small;
@@ -153,6 +159,15 @@ textarea {
     align-content: center;
     padding: 0;
     padding-right: 12px;
+}
+.modal-alerts-container-imagen{
+    min-height: 48px;
+    align-content: center;
+    padding: 12px 0px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: flex-start;
 }
 
 .my-button{

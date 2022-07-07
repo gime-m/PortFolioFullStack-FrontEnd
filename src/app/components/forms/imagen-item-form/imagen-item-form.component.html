@@ -3,19 +3,25 @@
     <div class="modal-container">
         
         <!--Título-->
-        <p class="modal-title">Sube un logo para este ítem.</p>
+        <p class="modal-title">Sube una imagen.</p>
         <hr class="modal-hr">
 
         <!--Formulario-->
         <form [formGroup]="componentForm" (ngSubmit)="submitForm()">
             <div>
                 <label for="img-id" class="visually-hidden">Selecciona una imagen</label>
-                <input id="img-id" type="file" accept="image/*" formControlName="imagen" class="form-control"  (change)="onFileChange($event)" >   
+                <input id="img-id" type="file" accept="image/*" formControlName="imagen" class="form-control"  (change)="onFileChange()" >   
             </div>          
         
             <div class="modal-alerts-buttons-container"> 
                 <!--Alertas-->
                 <div class="modal-alerts-container">
+                    <div *ngIf="fileSource?.errors?.['fileSizeExceded']  && (imagen?.dirty || imagen?.touched)">
+                        <p class="modal-alert-text">El tamaño de la imagen debe ser menor a 25 MB.</p>
+                    </div>
+                    <div *ngIf="fileSource?.errors?.['notImage']  && (imagen?.dirty || imagen?.touched)">
+                        <p class="modal-alert-text">El archivo seleccionadono es una imagen.</p>
+                    </div>
                 </div>
 
                 <!--Botones-->
@@ -36,7 +42,8 @@
                     </button>
 
                     <button aria-label="Eliminar imagen" type="button" class="btn my-button" (click)="imagenPorDefecto()">
-                        <p class="button-text">Eliminar imagen</p>
+                        <p class="d-none d-sm-flex button-text">Imagen por defecto</p>
+                        <p class="d-flex d-sm-none button-text">Borrar</p>
                     </button>
                 </div>
             </div>

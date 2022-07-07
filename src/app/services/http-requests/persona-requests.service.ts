@@ -19,12 +19,14 @@ export class PersonaRequestsService {
   public originURL: string = 'http://localhost:8080/';
   public getUrl: string = this.originURL +'persona?id='+this.personaId;
   public putUrl: string = this.originURL+'persona/editar/';
-  public putImagenPerfilUrl: string = this.originURL+'subir-imagen/perfil';
-  public deleteImagenPerfilUrl: string = this.originURL + 'borrar-imagen/perfil/'+this.personaId;
-  public putImagenBannerUrl: string = this.originURL+'subir-imagen/banner';
-  public putImagenFondoUrl: string = this.originURL+'subir-imagen/fondo';
-  public deleteImagenBannerUrl: string = this.originURL + 'borrar-imagen/banner/'+this.personaId;
-  public deleteImagenFondoUrl: string = this.originURL + 'borrar-imagen/fondo/'+this.personaId;
+
+  public putImagenPerfilUrl: string = this.originURL+'persona/subir-imagen/perfil';
+  public putImagenBannerUrl: string = this.originURL+'persona/subir-imagen/banner';
+  public putImagenFondoUrl: string = this.originURL+'persona/subir-imagen/fondo';
+  
+  public deleteImagenPerfilUrl: string = this.originURL + 'persona/borrar-imagen/perfil/'+this.personaId;
+  public deleteImagenBannerUrl: string = this.originURL + 'persona/borrar-imagen/banner/'+this.personaId;
+  public deleteImagenFondoUrl: string = this.originURL + 'persona/borrar-imagen/fondo/'+this.personaId;
   
   imagenPerfil: string = "";
   imagenBanner: string = "";

@@ -99,6 +99,11 @@ export interface TemaCorto {
     nombre: string;
 }
 
+export class PutTema {
+    personaId: number = 0;
+    temaId: number = 0;
+}
+
 export interface Credenciales {
     username: string;
     password: string;

@@ -1,51 +1,28 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
 import { PersonaRequestsService } from 'src/app/services/http-requests/persona-requests.service';
+import { ImagenBaseFormComponent } from '../../imagen-base-form/imagen-base-form.component';
 
 @Component({
   selector: 'app-image-form',
-  templateUrl: './image-form.component.html',
+  templateUrl: '../../imagen-base-form/imagen-base-form.component.html',
   styleUrls: ['../../../../styles/editing.styles.css']
 })
-export class ImageFormComponent implements OnInit {
+export class ImageFormComponent extends ImagenBaseFormComponent implements OnInit {
   
-  @Input()   propiedad: string = "";
-  @Output() showModalEvent = new EventEmitter<boolean>();
+  @Input() propiedad: string = "";
 
-  componentForm = new FormGroup({
-    imagen: new FormControl(""),
-    fileSource: new FormControl ("")
-  })
-  get imagen() { return this.componentForm.get('imagen'); }
-  get fileSource() { return this.componentForm.get('fileSource'); }
-
-  submitForm() {
+  override submitForm() {
     this.pers.putImagen(this.fileSource?.value,this.propiedad)
-    this.componentForm.reset()
-    this.showModalEvent.emit(false)
-  }
-  cancelForm(){
-    this.componentForm.reset()
-    this.showModalEvent.emit(false)
+    super.submitForm();
   }
 
-  imagenPorDefecto(){
+  override imagenPorDefecto(){
     this.pers.deleteImagen(this.propiedad);
-    this.showModalEvent.emit(false)
+    super.imagenPorDefecto();
 
   }
   
-  onFileChange(event: any) {
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      this.componentForm.patchValue({
-        fileSource: file
-      });
-    }
-  }
-
   constructor(public pers: PersonaRequestsService) {
+    super();
   }
-
-  ngOnInit(): void {  }
 }
