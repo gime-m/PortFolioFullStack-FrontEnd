@@ -1,6 +1,3 @@
-/*@import '~@angular/cdk/overlay-prebuilt.css';*/
-
-/*colores*/
 :root{
     --main-color: rgb(218, 207, 141);
     --main-color-darker: rgb(86, 74, 62);
@@ -19,7 +16,7 @@
     --gray-color: rgb(60, 60, 60);
     
     --header-color: rgb(0, 0, 0);
-    --edit-button-color: whitesmoke;
+    --icon-button-color: whitesmoke;
 }
 
 html {
@@ -40,20 +37,6 @@ hr{
     color: var(--shadow-color);
 }
 
-::-webkit-scrollbar {
-    width: 10px;
-}
-
-::-webkit-scrollbar-track {
-    background: #acacac;
-}
-
-::-webkit-scrollbar-thumb {
-    background: linear-gradient(to bottom, transparent , var(--main-color-dark) 10% 90%, transparent);
-}
-
-/*botones*/
-
 .my-button{
     color: var(--main-color);
     border-color: var(--main-color);
@@ -63,15 +46,16 @@ hr{
     font-weight: 400;
     height: 46px;
     align-content: center;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
     white-space: nowrap; 
     text-overflow: ellipsis; 
     /*overflow: hidden; */
 }
-
 .my-button:hover{
     color:var(--main-color)
 }
-
 .my-button:focus{
     outline: none;
     box-shadow: none;
@@ -86,7 +70,7 @@ hr{
     color: currentColor;
 }
 
-.edit-button{
+.icon-button{
     margin: 0;
     padding: 0;
     height: 16px;
@@ -94,21 +78,25 @@ hr{
     align-content: center;
     justify-content: center;
     align-items: center;
-    color: var(--edit-button-color);
+    color: var(--icon-button-color);
     transition: transform .2s ease-in-out; 
 }
-
-.edit-button:hover { 
+.icon-button:hover { 
     transform: scale(1.4); 
     color:var(--main-color)
 }
-
-.edit-button:focus{
+.icon-button:focus{
     outline: none;
     box-shadow: none;
 }
 
-/*otros*/ 
+.icon-button-banner{
+    background-color: black;
+    color: whitesmoke;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
 
 .component-header{
     display: flex;
@@ -127,4 +115,25 @@ hr{
     align-content: center;
     align-items: center;
     width: 80px;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #3f3f3f;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--main-color);
+    border-radius: 4px;
+}
+
+.my-button-login{
+    color: var(--lighter-color);
+    border-color: var(--lighter-color);
+}
+.my-button-login:hover{
+    background-color: rgba(255, 255, 255, 0.286);
 }

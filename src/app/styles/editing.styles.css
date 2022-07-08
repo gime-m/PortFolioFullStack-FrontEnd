@@ -38,13 +38,13 @@
 .modal-form{
     display: flex; 
     flex-direction: column; 
-    max-height: 70vh;
+    max-height: 90vh;
 }
-
 
 /*Inputs*/
 
 .modal-scrollable-inputs{
+    max-height: 60vh;
     overflow-y: auto;
 }
 
@@ -174,15 +174,27 @@ textarea {
     color: var(--main-color-darker);
     border-color: var(--main-color-darker);
 }
-
 .my-button:hover{
     background-color: var(--main-color-low-opacity);
 }
 
+.my-button-login{
+    color: var(--lighter-color);
+    border-color: var(--lighter-color);
+}
+.my-button-login:hover{
+    background-color: rgba(255, 255, 255, 0.286);
+}
 
+::-webkit-scrollbar-track {
+    background: #979797;
+}
 
+::-webkit-scrollbar-thumb {
+    background: var(--main-color-dark);
+    border-radius: 4px;
+}
 
-/*media*/
 
 @media screen and (max-width: 575px) {
     .modal-container{

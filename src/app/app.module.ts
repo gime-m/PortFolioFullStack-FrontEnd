@@ -38,6 +38,8 @@ import { EditButtonComponent } from './components/buttons/edit-button/edit-butto
 import { AddButtonComponent } from './components/buttons/add-button/add-button.component';
 import { DeleteButtonComponent } from './components/buttons/delete-button/delete-button.component';
 import { DragButtonComponent } from './components/buttons/drag-button/drag-button.component';
+import { SaveButtonComponent } from './components/buttons/save-button/save-button.component';
+import { CancelButtonComponent } from './components/buttons/cancel-button/cancel-button.component';
 
 import { ImageFormComponent } from './components/forms/persona-forms/image-form/image-form.component';
 import { ExperienciaFormComponent } from './components/forms/experiencia-forms/experiencia-form/experiencia-form.component';
@@ -64,6 +66,8 @@ import { ConfirmacionEliminarComponent } from './components/forms/confirmacion-e
 import { InterceptorService } from './services/auth/interceptor.service';
 import { LoadingInterceptorService } from './services/loading/loading-interceptor.service';
 import { ImgLoadedDirective } from './services/loading/imagen-loading.directive';
+import { VerDescripcionButtonComponent } from './components/buttons/ver-descripcion-button/ver-descripcion-button.component';
+import { OcultarDescripcionButtonComponent } from './components/buttons/ocultar-descripcion-button/ocultar-descripcion-button.component';
 
 registerLocaleData(localeEs, 'es')
 
@@ -109,7 +113,11 @@ registerLocaleData(localeEs, 'es')
     PersonaDescripcionFormComponent,
     PersonaInfoPersonalFormComponent,
     TemaFormComponent,
-    ConfirmacionEliminarComponent
+    ConfirmacionEliminarComponent,
+    SaveButtonComponent,
+    CancelButtonComponent,
+    VerDescripcionButtonComponent,
+    OcultarDescripcionButtonComponent
   ],
   imports: [
     BrowserModule,

@@ -4,7 +4,7 @@ import { ImagenItemFormComponent } from '../../imagen-item-form/imagen-item-form
 
 @Component({
   selector: 'app-experiencia-imagen-form',
-  templateUrl: '../../imagen-item-form/imagen-item-form.component.html',
+  templateUrl: '../../base-form-imagen/base-form-imagen.component.html',
   styleUrls: ['../../../../styles/editing.styles.css']
 })
 export class ExperienciaImagenFormComponent extends ImagenItemFormComponent<ExperienciaRequestsService> implements OnInit {

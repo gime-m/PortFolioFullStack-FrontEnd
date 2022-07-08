@@ -32,13 +32,14 @@
     /*align-self: start;*/
 }
 
-.edit-button-logo{
+.icon-button-logo{
     position: absolute;
     z-index: 200;
     color: var(--lighter-color);
     height: auto;
     margin-left: auto;
     margin-right: auto;
+    transform: scale(1.7);
 }
 
 .item-buttons-container{
@@ -68,3 +69,27 @@
     border-radius: 12px;
 }
 
+.icon-button-proyecto{
+    color: var(--main-color-darker);
+    border: 0px;
+    background-color: transparent;
+}
+
+.image-button{
+    z-index: 50;
+    color: whitesmoke !important;
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    height: 30px !important;
+    width: 30px;
+    background-color: black;
+}
+
+.icon-button-banner{
+    background-color: black;
+    color: whitesmoke;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}

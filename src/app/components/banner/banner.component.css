@@ -5,14 +5,6 @@
     position: relative;
 }
 
-.edit-button{
-    background-color: black;
-    color: whitesmoke;
-    height: 40px;
-    width: 40px;
-    border-radius: 50%;
-}
-
 .background-image{
     object-fit: cover;
     width: 100%;
@@ -29,5 +21,5 @@
     position: absolute;
     top: 0;
     left: 0;
-    padding: 28px;
+    padding: 20px;
 }

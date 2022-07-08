@@ -7,7 +7,7 @@ import { LoginService } from 'src/app/services/login.service';
 @Component({
   selector: 'app-proyecto-item',
   templateUrl: './proyecto-item.component.html',
-  styleUrls: ['./proyecto-item.component.css']
+  styleUrls: ['../../../../styles/item.styles.css', './proyecto-item.component.css']
 })
 export class ProyectoItemComponent extends BaseItemComponent<ProyectoItem,ProyectoRequestsService> implements OnInit {
 

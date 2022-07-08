@@ -4,7 +4,7 @@ import { ImagenItemFormComponent } from '../../imagen-item-form/imagen-item-form
 
 @Component({
   selector: 'app-educacion-imagen-form',
-  templateUrl: '../../imagen-item-form/imagen-item-form.component.html',
+  templateUrl: '../../base-form-imagen/base-form-imagen.component.html',
   styleUrls: ['../../../../styles/editing.styles.css']
 })
 export class EducacionImagenFormComponent extends ImagenItemFormComponent<EducacionRequestsService> implements OnInit {

@@ -24,13 +24,14 @@
     aspect-ratio: 1 / 1;
 }
 
-.edit-button{
+.icon-button-perfil{
     position: absolute;
     z-index: 200;
     color: rgba(255, 255, 255, 0.859);
     height: auto;
     margin-left: auto;
     margin-right: auto;
+    transform: scale(3);
 }
 
 
