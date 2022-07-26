@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { EducItem, EducItemPost, ExpItem, ExpItemPost, ProyectoItem, ProyectoItemPost } from '../model-interfaces';
+import { GlobalVariablesService } from './global-variables.service';
 import { RequestsBaseService } from './requests-base.service';
 
 @Injectable({
@@ -17,7 +18,7 @@ export class ImagenRequestsService<T extends EducItem|ExpItem|ProyectoItem, Tpos
   }
   
   public getImagen(id: number, imgPath: string): void{ 
-    let url: string = this.originURL + this.component + "/" + imgPath;
+    let url: string = this.gv.originURL + this.component + "/" + imgPath;
     let httpHeaders = new HttpHeaders().set('Accept', "image/webp,*/*");
     let reader = new FileReader;
   
@@ -49,7 +50,7 @@ export class ImagenRequestsService<T extends EducItem|ExpItem|ProyectoItem, Tpos
     let form = new FormData();
     form.append('id', id.toString());
     form.append('file', file );
-    let path: string = this.originURL + this.component + "/" + "subir-imagen/";
+    let path: string = this.gv.originURL + this.component + "/" + "subir-imagen/";
 
     this.http.put(path, form)
     .subscribe({
@@ -61,7 +62,7 @@ export class ImagenRequestsService<T extends EducItem|ExpItem|ProyectoItem, Tpos
   }
 
   public deleteImagen<T> (id: T){
-    let path: string = this.originURL + this.component + "/"+ "borrar-imagen/" + id;
+    let path: string = this.gv.originURL + this.component + "/"+ "borrar-imagen/" + id;
     this.http.delete(path).subscribe({
       complete: () => {
         this.getJSON();
@@ -71,7 +72,7 @@ export class ImagenRequestsService<T extends EducItem|ExpItem|ProyectoItem, Tpos
   }
 
   public override getJSON(): void{ 
-    let url: string = this.originURL + this.component + this.getUrl + this.personaId;
+    let url: string = this.gv.originURL + this.component + this.getUrl + this.gv.personaId;
     this.http.get<T[]>(url).subscribe({
       next: (data: T[]) => {
         this.items=data?.sort((a, b) => {return a.displayOrder - b.displayOrder}); 
@@ -87,8 +88,8 @@ export class ImagenRequestsService<T extends EducItem|ExpItem|ProyectoItem, Tpos
     });
   }
 
-  constructor( http: HttpClient, @Inject('component') component: string) {
-    super(http, component);
+  constructor( http: HttpClient, @Inject('component') component: string, gv: GlobalVariablesService) {
+    super(http, component, gv);
   }
 }
 

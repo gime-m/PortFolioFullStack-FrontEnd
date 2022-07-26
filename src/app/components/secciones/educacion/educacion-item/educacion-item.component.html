@@ -35,7 +35,7 @@
   </div>
   
   <div *ngIf="verDescripcion" class="item-container descripcion-container" >
-    <p>{{object?.descripcion}}</p>
+    <p class="description-text">{{object?.descripcion}}</p>
     <app-ocultar-descripcion-button (click)="verDescripcion = false"></app-ocultar-descripcion-button>
   </div>
 </div>

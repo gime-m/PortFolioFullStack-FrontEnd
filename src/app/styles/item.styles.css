@@ -69,6 +69,10 @@
     border-radius: 12px;
 }
 
+.description-text{
+    white-space: pre-wrap;
+}
+
 .icon-button-proyecto{
     color: var(--main-color-darker);
     border: 0px;

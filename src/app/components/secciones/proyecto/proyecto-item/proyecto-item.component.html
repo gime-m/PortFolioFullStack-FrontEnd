@@ -10,7 +10,7 @@
       </svg>
     </button>
 
-    <app-edit-button  clases="image-button" *ngIf="login.editando"></app-edit-button>
+    <app-edit-button  clases="image-button" *ngIf="login.editando" (click)="showModalImagen = true"></app-edit-button>
 
     <div class="card-body">
       <h5 class="card-title">{{object.titulo}}</h5>

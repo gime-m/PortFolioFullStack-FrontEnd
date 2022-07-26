@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PersonaRequestsService } from 'src/app/services/http-requests/persona-requests.service';
-import { TemaService } from 'src/app/services/http-requests/tema.service';
+import { TemaRequestsService } from 'src/app/services/http-requests/tema-requests.service';
 import { ImageFormComponent } from '../persona-forms/image-form/image-form.component';
 
 @Component({
@@ -24,7 +24,7 @@ export class TemaFormComponent extends ImageFormComponent implements OnInit {
     this.showModalEvent.emit(false)
   }
 
-  constructor(pers: PersonaRequestsService,  public temaServ: TemaService) {
+  constructor(pers: PersonaRequestsService,  public temaServ: TemaRequestsService) {
     super(pers);
     this.imagen?.setValidators([]);
     this.temaServ.getTemasLista();

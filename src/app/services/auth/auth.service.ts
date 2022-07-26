@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
 import { Router } from '@angular/router';
 import { AuthResponse, Credenciales } from '../model-interfaces';
 import { LoginService } from '../login.service';
+import { GlobalVariablesService } from '../http-requests/global-variables.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +11,8 @@ import { LoginService } from '../login.service';
 
 export class AuthService {
 
-  authURL="http://localhost:8080/login";
-  refreshURL="http://localhost:8080/refresh";
+  authURL=this.gv.originURL+ "login";
+  refreshURL=this.gv.originURL + "refresh";
   wrongAuth: boolean = false;
   failedAuth: boolean = false;
 
@@ -50,7 +51,7 @@ export class AuthService {
     this.router.navigate(['/login']);
   }
 
-  constructor(private http: HttpClient, private router:Router, private login: LoginService){
+  constructor(private http: HttpClient, private router:Router, private login: LoginService, public gv: GlobalVariablesService){
   }
 
   refreshToken() {

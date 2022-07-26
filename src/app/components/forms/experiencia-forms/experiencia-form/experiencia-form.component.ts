@@ -16,11 +16,11 @@ export class ExperienciaFormComponent extends BaseFormItemComponent<ExpItem, Exp
       this.componentForm = new FormGroup({
         titulo: new FormControl("", [Validators.required, Validators.maxLength(100)]),
         lugar: new FormControl("",[Validators.maxLength(60)]),
-        descripcion: new FormControl("",[Validators.maxLength(250)]),
+        descripcion: new FormControl("",[Validators.maxLength(300)]),
         fechaInicio: new FormControl(null),
         fechaFin: new FormControl(null),
         isCurrent: new FormControl(false),
-        personaId: new FormControl(this.service.personaId),
+        personaId: new FormControl(this.service.gv.personaId),
         imagen:  new FormControl(""),
         displayOrder: new FormControl(this.newDisplayOrder())
       })
@@ -29,7 +29,7 @@ export class ExperienciaFormComponent extends BaseFormItemComponent<ExpItem, Exp
         id: new FormControl(this.object?.id),
         titulo: new FormControl(this.object?.titulo, [Validators.required, Validators.maxLength(100)]),
         lugar: new FormControl(this.object?.lugar,[Validators.maxLength(60)]),
-        descripcion: new FormControl(this.object?.descripcion,[Validators.maxLength(250)]),
+        descripcion: new FormControl(this.object?.descripcion,[Validators.maxLength(300)]),
         fechaInicio: new FormControl(null),
         fechaFin: new FormControl(null),
         isCurrent: new FormControl(this.object?.isCurrent),

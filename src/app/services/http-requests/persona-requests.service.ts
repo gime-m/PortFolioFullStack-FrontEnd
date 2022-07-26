@@ -1,34 +1,26 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Persona } from '../model-interfaces';
-import { TemaService } from './tema.service';
+import { TemaRequestsService } from './tema-requests.service';
+import { GlobalVariablesService } from './global-variables.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PersonaRequestsService {
 
-  private _personaId: number = 1;
-  public get personaId(): number {
-    return this._personaId;
-  }
-  public set personaId(value: number) {
-    this._personaId = value;
-  }
+  public getUrl: string = this.gv.originURL +'persona?id='+this.gv.personaId;
+  public putUrl: string = this.gv.originURL+'persona/editar/';
 
-  public originURL: string = 'http://localhost:8080/';
-  public getUrl: string = this.originURL +'persona?id='+this.personaId;
-  public putUrl: string = this.originURL+'persona/editar/';
+  public getImagenUrl: string = this.gv.originURL+'persona/';
 
-  public getImagenUrl: string = this.originURL+'persona/';
+  public putImagenPerfilUrl: string = this.gv.originURL+'persona/subir-imagen/perfil';
+  public putImagenBannerUrl: string = this.gv.originURL+'persona/subir-imagen/banner';
+  public putImagenFondoUrl: string = this.gv.originURL+'persona/subir-imagen/fondo';
 
-  public putImagenPerfilUrl: string = this.originURL+'persona/subir-imagen/perfil';
-  public putImagenBannerUrl: string = this.originURL+'persona/subir-imagen/banner';
-  public putImagenFondoUrl: string = this.originURL+'persona/subir-imagen/fondo';
-
-  public deleteImagenPerfilUrl: string = this.originURL + 'persona/borrar-imagen/perfil/'+this.personaId;
-  public deleteImagenBannerUrl: string = this.originURL + 'persona/borrar-imagen/banner/'+this.personaId;
-  public deleteImagenFondoUrl: string = this.originURL + 'persona/borrar-imagen/fondo/'+this.personaId;
+  public deleteImagenPerfilUrl: string = this.gv.originURL + 'persona/borrar-imagen/perfil/'+this.gv.personaId;
+  public deleteImagenBannerUrl: string = this.gv.originURL + 'persona/borrar-imagen/banner/'+this.gv.personaId;
+  public deleteImagenFondoUrl: string = this.gv.originURL + 'persona/borrar-imagen/fondo/'+this.gv.personaId;
   
   imagenPerfil: string = "";
   imagenBanner: string = "";
@@ -58,7 +50,7 @@ export class PersonaRequestsService {
   }
 
   public putJSON(comp: string, dto: any): void{
-    dto.id = this.personaId
+    dto.id = this.gv.personaId
     this.http.put<any>(this.putUrl + comp, dto)
     .subscribe({
       next: () => {},
@@ -139,7 +131,7 @@ export class PersonaRequestsService {
 
   public putImagen(file: File, imagenCambiar: string) {
     let form = new FormData();
-    form.append('id', this.personaId.toString());
+    form.append('id', this.gv.personaId.toString());
     form.append('file', file );
     let path: string = "";
     switch (imagenCambiar) {
@@ -191,7 +183,7 @@ export class PersonaRequestsService {
     });  
   }
 
-  constructor(public http: HttpClient, public temaServ: TemaService){
+  constructor(public http: HttpClient, public temaServ: TemaRequestsService, public gv: GlobalVariablesService){
     this.getJSON();
   }
 }

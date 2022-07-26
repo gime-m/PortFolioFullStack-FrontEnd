@@ -24,10 +24,6 @@ export class LoginComponent implements OnInit{
     this.auth.iniciarSesion(this.componentForm.value);
     this.componentForm.reset();  
   }
-  cancelForm(){
-    this.componentForm.reset();
-  }
-
   invitado(){
     this.username?.setValue("Invitado");
     this.password?.setValue("0000");

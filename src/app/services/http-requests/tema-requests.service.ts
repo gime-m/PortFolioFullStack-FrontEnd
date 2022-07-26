@@ -1,11 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { PutTema, Tema, TemaCorto } from '../model-interfaces';
+import { GlobalVariablesService } from './global-variables.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TemaService {
+export class TemaRequestsService {
 
   public cambiarTema(tema: Tema){
     document.documentElement.style.setProperty('--main-color', `rgba(${tema.mainColor})`)
@@ -15,12 +16,9 @@ export class TemaService {
     document.documentElement.style.setProperty('--shadow-color', `rgba(${tema.shadowColor})`)
   }
 
-  public originURL: string = 'http://localhost:8080/';
-  public getTemaUrl: string = this.originURL +'tema?id=';
-  public getTemasListaUrl: string = this.originURL +'tema/lista';
-  public putTemaUrl: string = this.originURL +'persona/editar/tema';
-
-  public personaId: number = 1;
+  public getTemaUrl: string = this.gv.originURL +'tema?id=';
+  public getTemasListaUrl: string = this.gv.originURL +'tema/lista';
+  public putTemaUrl: string = this.gv.originURL +'persona/editar/tema';
 
   public listaTemas: TemaCorto[] = [];
 
@@ -48,7 +46,7 @@ export class TemaService {
 
   public putTema(temaId: number): void{
     let dto: PutTema = new PutTema;
-    dto.personaId = this.personaId;
+    dto.personaId = this.gv.personaId;
     dto.temaId = temaId;
     this.http.put<Tema>(this.putTemaUrl, dto)
     .subscribe({
@@ -59,6 +57,6 @@ export class TemaService {
     })
   }
 
-  constructor(public http: HttpClient) {
+  constructor(public http: HttpClient, public gv: GlobalVariablesService) {
   }
 }

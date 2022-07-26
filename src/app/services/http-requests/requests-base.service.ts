@@ -1,20 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject } from '@angular/core';
 import { EducItem, EducItemPost, ExpItem, ExpItemPost, OrderDTO, ProyectoItem, ProyectoItemPost, SkillItem, SkillItemPost } from '../model-interfaces';
+import { GlobalVariablesService } from './global-variables.service';
 
 export class RequestsBaseService<T extends EducItem|ExpItem|SkillItem|ProyectoItem, Tpost extends EducItemPost|ExpItemPost|SkillItemPost|ProyectoItemPost> {
 
-  //Id de persona
-  private _personaId: number = 1;
-  public get personaId(): number {
-    return this._personaId;
-  }
-  public set personaId(value: number) {
-    this._personaId = value;
-  }
-
   //URL
-  public originURL: string = 'http://localhost:8080/';
   public getUrl: string = '/ver/';
   public putUrl: string ='/editar';
   public postUrl: string = '/crear';
@@ -33,7 +24,7 @@ export class RequestsBaseService<T extends EducItem|ExpItem|SkillItem|ProyectoIt
   //Metodos get, put, post, delete.
 
   public getJSON(): void{ 
-    let url: string = this.originURL + this.component + this.getUrl + this.personaId;
+    let url: string = this.gv.originURL + this.component + this.getUrl + this.gv.personaId;
     this.http.get<T[] | undefined>(url).subscribe({
       next: (data) => {
         this.items=data?.sort((a, b) => {return a.displayOrder - b.displayOrder}); 
@@ -43,7 +34,7 @@ export class RequestsBaseService<T extends EducItem|ExpItem|SkillItem|ProyectoIt
   }
 
   public putJSON(objectPut: T): void{
-    let url: string = this.originURL + this.component + this.putUrl;
+    let url: string = this.gv.originURL + this.component + this.putUrl;
     if (this.items){
       let index = this.items.map(x => {return x.id;}).indexOf(objectPut.id) //encuentro elemento con id
       this.items.splice(index,1,objectPut); //reemplazo elemento 
@@ -56,7 +47,7 @@ export class RequestsBaseService<T extends EducItem|ExpItem|SkillItem|ProyectoIt
   }
 
   public postJSON(objectPost: Tpost): void{
-    let url: string = this.originURL + this.component + this.postUrl;
+    let url: string = this.gv.originURL + this.component + this.postUrl;
     this.http.post<T>(url, objectPost)
     .subscribe({
       next: (data: T) => {
@@ -67,7 +58,7 @@ export class RequestsBaseService<T extends EducItem|ExpItem|SkillItem|ProyectoIt
   }
 
   public deleteJSON(deleteId: number): void{
-    let url: string = this.originURL + this.component + this.deleteByIdUrl + deleteId;
+    let url: string = this.gv.originURL + this.component + this.deleteByIdUrl + deleteId;
     if (this.items){
       var index = this.items.map(x => {return x.id;}).indexOf(deleteId);
       this.items.splice(index,1);
@@ -80,7 +71,7 @@ export class RequestsBaseService<T extends EducItem|ExpItem|SkillItem|ProyectoIt
   }
 
   public putJSONorder(lista: T[]): void{
-    let url: string = this.originURL + this.component + this.putOrderUrl;
+    let url: string = this.gv.originURL + this.component + this.putOrderUrl;
     if (lista){
       let order = lista.map((x, ind) => new OrderDTO(x.id,ind+1));
       this.items = lista;
@@ -92,7 +83,7 @@ export class RequestsBaseService<T extends EducItem|ExpItem|SkillItem|ProyectoIt
     }   
   }
 
-  constructor(public http: HttpClient, @Inject('component') public component: string){
+  constructor(public http: HttpClient, @Inject('component') public component: string, public gv: GlobalVariablesService){
     this.component = component
   }
 }

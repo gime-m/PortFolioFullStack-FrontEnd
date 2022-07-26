@@ -16,11 +16,11 @@ export class EducacionFormComponent extends BaseFormItemComponent<EducItem, Educ
       this.componentForm = new FormGroup({
         titulo: new FormControl("", [Validators.required, Validators.maxLength(100)]),
         institucion: new FormControl("",[Validators.maxLength(60)]),
-        descripcion: new FormControl("",[Validators.maxLength(250)]),
+        descripcion: new FormControl("",[Validators.maxLength(300)]),
         fechaInicio: new FormControl(null),
         fechaFin: new FormControl(null),
         isCurrent: new FormControl(false),
-        personaId: new FormControl(this.service.personaId),
+        personaId: new FormControl(this.service.gv.personaId),
         imagen: new FormControl(this.object?.imagen),
         displayOrder: new FormControl(this.newDisplayOrder())
       })
@@ -29,7 +29,7 @@ export class EducacionFormComponent extends BaseFormItemComponent<EducItem, Educ
         id: new FormControl(this.object?.id),
         titulo: new FormControl(this.object?.titulo, [Validators.required, Validators.maxLength(100)]),
         institucion: new FormControl(this.object?.institucion,[Validators.maxLength(60)]),
-        descripcion: new FormControl(this.object?.descripcion,[Validators.maxLength(250)]),
+        descripcion: new FormControl(this.object?.descripcion,[Validators.maxLength(300)]),
         fechaInicio: new FormControl(null),
         fechaFin: new FormControl(null),
         isCurrent: new FormControl(this.object?.isCurrent),

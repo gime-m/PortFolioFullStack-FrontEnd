@@ -16,9 +16,9 @@ export class SkillFormComponent extends BaseFormItemComponent<SkillItem, SkillRe
       this.componentForm = new FormGroup({
         titulo: new FormControl("", [Validators.required, Validators.maxLength(25)]),
         valor: new FormControl(0,[Validators.max(10), Validators.min(0), Validators.required]),
-        tipo: new FormControl(0,[Validators.required]),
+        tipo: new FormControl("hard",[Validators.required]),
         displayOrder: new FormControl(this.newDisplayOrder()),
-        personaId: new FormControl (this.service.personaId)       
+        personaId: new FormControl (this.service.gv.personaId)       
       })
     } else {
       this.componentForm = new FormGroup({
