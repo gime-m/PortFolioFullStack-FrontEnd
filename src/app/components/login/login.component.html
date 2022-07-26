@@ -3,10 +3,24 @@
     <img [src]="backgroundImages[random]" class="background-image">
 
     <div class="modal-container">
+
+        <div class="invitado">
+            <p class="modal-title bienvenido">Bienvenido</p>
+            <button type="button" class="btn my-button my-button-login" (click)="invitado()">
+                <p class="button-text">Ver portfolio</p>
+            </button>
+        </div>
+
+        <div class="divisor">
+            <hr class="modal-hr">
+            <p  class="modal-title"> o </p>
+            <hr class="modal-hr">
+        </div>
+        
         
         <!--Título-->
-        <p class="modal-title">Inicia sesión</p>
-        <hr class="modal-hr">
+        <p class="modal-title">Inicia sesión para editar</p>
+        
 
         <!--Formulario-->
         <form [formGroup]="componentForm" (ngSubmit)="submitForm()">
@@ -42,10 +56,6 @@
                 <!--Botones-->
                 <div class="modal-buttons-container">
                     <app-save-button (clickEvent)="submitForm()" [desactivado]="!componentForm.valid" titulo="Iniciar sesión" clases="my-button-login"></app-save-button>
-                    <button type="button" class="btn my-button my-button-login" (click)="invitado()">
-                        <p class="d-none d-sm-flex button-text">Ingresa como invitado</p>
-                        <p class="d-flex d-sm-none button-text">Invitado</p>
-                    </button>
                 </div>
             </div>
         </form>

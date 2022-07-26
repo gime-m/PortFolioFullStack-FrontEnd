@@ -11,6 +11,7 @@
 .modal-container{
     background-color: var(--low-opacty-black);
     z-index: 200;
+    max-width: 500px;
 }
 
 .modal-text, .modal-hr, .modal-alert-text{
@@ -18,15 +19,42 @@
     font-weight: 300;
 }
 
+.modal-text{
+    font-size: 90%;
+}
+
 .modal-title{
     color: var(--lighter-color);
+    margin-bottom: 16px;
 }
 
 .modal-input{
     color: var(--text-color);
+    padding: 2px;
+} 
+
+.invitado{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
+.bienvenido{
+    font-size: large;
+    margin-bottom: 16px;
+}
 
+.divisor{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    justify-content: space-around;
+    margin-bottom: 12px;
+    margin-top: 12px;
+}
 
-
-
+.modal-hr{
+    width: 45%;
+}
